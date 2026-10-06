@@ -23,5 +23,7 @@ export function initRoute() {
     const a = e.target.closest("a[data-stepref]");
     if (a && a.getAttribute("href") === window.location.hash) { e.preventDefault(); route(false); }
   });
-  route(true);
+  // Run after the browser's own fragment navigation, which would otherwise move focus back.
+  if (document.readyState === "complete") route(true);
+  else window.addEventListener("load", () => window.requestAnimationFrame(() => route(true)), { once: true });
 }
