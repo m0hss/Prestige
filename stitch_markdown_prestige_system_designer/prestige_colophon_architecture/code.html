@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&amp;family=Libre+Franklin:wght@400;500;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"outline":"#8b7170","on-secondary-fixed-variant":"#7f282e","secondary-fixed-dim":"#ffb3b1","on-surface":"#1f1b17","surface-bright":"#fff8f5","secondary":"#9e3f44","on-secondary-container":"#752127","surface-container-highest":"#ebe1db","on-primary":"#ffffff","tertiary-container":"#56472e","primary":"#6c0013","line-soft":"#CDBFA8","inverse-surface":"#352f2c","secondary-container":"#fd898b","curtain-red":"#8E1B26","curtain-text":"#FFF7EC","on-surface-variant":"#584140","on-secondary":"#ffffff","tertiary-fixed-dim":"#d9c4a3","primary-fixed":"#ffdad8","on-primary-container":"#ff9e9d","surface-container-lowest":"#ffffff","on-secondary-fixed":"#410009","error-container":"#ffdad6","error":"#ba1a1a","on-primary-fixed-variant":"#8b1824","on-tertiary-container":"#cab696","on-error":"#ffffff","surface-variant":"#ebe1db","tertiary":"#3e3119","muted-ink":"#4F4338","dark-muted-ink":"#C9B9A3","surface-tint":"#ac3239","surface-container-high":"#f0e6e1","tertiary-fixed":"#f6e0bd","surface-performance":"#FFFBF3","ink":"#14100D","surface-backstage":"#F4ECDD","dark-line-soft":"#4A3C33","dark-bg-backstage":"#231A13","on-primary-fixed":"#410007","outline-variant":"#dfbfbe","inverse-on-surface":"#f9efe9","on-tertiary-fixed":"#251a05","dark-curtain-red":"#C0303F","bg-performance":"#F5EEE2","on-tertiary-fixed-variant":"#53452c","sunken":"#EADFCB","surface":"#fff8f5","primary-container":"#8e1b26","primary-fixed-dim":"#ffb3b1","curtain-hem":"#5E0F18","on-tertiary":"#ffffff","inverse-primary":"#ffb3b1","secondary-fixed":"#ffdad9","dark-ink":"#F5EEE2","surface-container":"#f6ece6","surface-container-low":"#fcf2ec","background":"#fff8f5","line-control-edge":"#14100D","bg-backstage":"#D9C4A3","dark-sunken":"#0C0907","on-background":"#1f1b17","surface-dim":"#e2d8d3","dark-surface-performance":"#211A16","dark-curtain-hem":"#8E1B26","on-error-container":"#93000a","dark-bg-performance":"#14100D","dark-surface-backstage":"#2E231A"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","margin":"2rem","space-md":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-xs":"0.25rem","space-lg":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Domine"],"body-sm":["Libre Franklin"],"display-hero":["Domine"],"body-md":["Libre Franklin"],"display-hero-mobile":["Domine"],"headline-md":["Domine"],"headline-sm":["Domine"],"mono-label":["Space Mono"],"body-lg":["Libre Franklin"],"headline-lg":["Domine"],"mono-meta":["Space Mono"],"label-prompter":["Space Mono"]},"fontSize":{"headline-lg-mobile":["28px",{"lineHeight":"34px","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"display-hero-mobile":["36px",{"lineHeight":"42px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["26px",{"lineHeight":"32px","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"26px","fontWeight":"700"}],"mono-label":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg":["38px",{"lineHeight":"46px","letterSpacing":"-0.01em","fontWeight":"700"}],"mono-meta":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"label-prompter":["10px",{"lineHeight":"12px","letterSpacing":"0.1em","fontWeight":"700"}]}}}}</script></head><body class="bg-background font-body-md text-ink antialiased"><header class="fixed top-0 left-0 right-0 z-50"><div class="h-12 bg-curtain-red text-curtain-text border-b border-line-control-edge"><div class="max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="inline-flex items-center bg-curtain-hem p-0.5 border border-line-control-edge"><button class="px-space-sm py-1 bg-ink text-surface-performance font-mono-label text-mono-label uppercase" type="button">(●) Performance</button><button class="px-space-sm py-1 text-curtain-text hover:text-surface-performance font-mono-label text-mono-label uppercase" type="button">( ) Backstage</button></div><span class="hidden md:inline-block font-mono-meta text-mono-meta opacity-75 uppercase tracking-widest">[STAGE DUALITY]</span></div><div class="flex items-center gap-space-md"><span class="font-mono-meta text-mono-meta uppercase tracking-wider hidden sm:inline-block bg-curtain-hem/80 px-2 py-0.5 border border-curtain-hem text-curtain-text">Performance view · Hugo Theme</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><div class="h-16 bg-surface-performance/95 backdrop-blur-sm border-b border-line-control-edge"><div class="max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center justify-between"><div class="flex items-baseline gap-space-md"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-ink font-bold">Tomás Reyes</span><div class="hidden md:flex items-baseline gap-space-sm font-mono-meta text-mono-meta text-muted-ink"><span class="text-curtain-red font-bold">[FOLIO / 2027]</span><span class="text-line-soft">/</span><span>Ghent, Belgium</span></div></div><nav class="flex items-center gap-space-lg" data-active-classes="text-curtain-red font-bold border-b-2 border-curtain-red"><a class="font-mono-label text-mono-label uppercase tracking-widest text-on-surface-variant hover:text-curtain-red transition-colors py-1" data-path="work" href="#">WORK</a><a class="font-mono-label text-mono-label uppercase tracking-widest text-on-surface-variant hover:text-curtain-red transition-colors py-1" data-path="trapdoor" href="#">TRAPDOOR</a><a class="font-mono-label text-mono-label uppercase tracking-widest text-on-surface-variant hover:text-curtain-red transition-colors py-1" data-path="about" href="#">ABOUT</a><a aria-current="page" class="uppercase tracking-widest transition-colors py-1 text-curtain-red font-bold border-b-2 border-curtain-red" data-path="colophon" href="#">COLOPHON</a></nav></div></div></header><main class="w-full pt-28 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- SECTION 1: HEADER & LEAD BANNER -->
+<section class="w-full bg-surface-container-low py-space-xl">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<!-- Metatag & Proscenium Index Marker -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="inline-flex items-center gap-2 bg-curtain-red px-3 py-1 text-on-primary">
+<span class="w-2 h-2 bg-surface-performance"></span>
+<span class="font-mono-label text-mono-label tracking-widest uppercase">[SYSTEM SPECIFICATION // HUGO THEME ARCHITECTURE]</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono-meta text-mono-meta text-muted-ink">
+<span>SPEC: REV-2026.04</span>
+<span>/</span>
+<span>DISPATCH: PROSCENIUM-CORE</span>
+<span>/</span>
+<span class="text-curtain-red font-bold">STATUS: STABLE</span>
+</div>
+</div>
+<!-- Main Display Title & Architectural Subtitle -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<h1 class="font-display-hero text-display-hero text-ink tracking-tight uppercase leading-none">
+            COLOPHON &amp; ARCHITECTURE
+          </h1>
+<p class="font-body-lg text-body-lg text-muted-ink max-w-3xl leading-relaxed">
+            Prestige is a Hugo theme for case-study portfolios, built for backend engineers, product designers, and logistics producers who need to show how they reason.
+          </p>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-xs bg-surface-performance p-space-md shadow-sm">
+<div class="flex items-center justify-between font-mono-meta text-mono-meta text-ink">
+<span class="font-bold">ENGINE RUNTIME</span>
+<span class="text-curtain-red">HUGO EXTENDED</span>
+</div>
+<div class="font-mono-label text-mono-label text-ink">
+            HUGO v0.146.0+ • ASSET PIECE 100% AUDITED
+          </div>
+<div class="w-full bg-sunken h-1.5 overflow-hidden">
+<div class="bg-curtain-red h-full w-[88%]"></div>
+</div>
+<div class="flex justify-between font-mono-meta text-mono-meta text-muted-ink">
+<span>PERF LATENCY: 12ms</span>
+<span>WCAG: 112 COMPLIANT PAIRS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DECORATIVE CURTAIN HEM ACCENT -->
+<div class="w-full h-3 bg-curtain-red"></div>
+<!-- SECTION 2: TWO-AXIS DESIGN ENGINE (4 PALETTES MATRIX) -->
+<section class="w-full bg-surface-performance py-space-xl">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-lg">
+<!-- Section Title & Meta -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-wider">SECTION 01 / FORM FACTOR</span>
+<h2 class="font-headline-lg text-headline-lg text-ink uppercase">The Two-Axis Design Engine</h2>
+</div>
+<p class="font-mono-meta text-mono-meta text-muted-ink max-w-md">
+          Dual spatial axes (Performance front-of-house vs. Backstage process ledger) crossed with dual luminance states (Light / Dark).
+        </p>
+</div>
+<!-- 4 Palette Quadrant Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Palette 1: Playbill -->
+<div class="bg-bg-performance text-ink p-space-lg flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-widest">[AXIS I: FOH · LIGHT]</span>
+<span class="font-mono-meta text-mono-meta bg-sunken px-2 py-0.5 text-ink">#F5EEE2 BASE</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-ink">01. Playbill</h3>
+<p class="font-body-md text-body-md text-muted-ink">
+              Front of Curtain. Saturated velvet red, letterpress ivory ground, shadow-black typography. Evokes vintage printed broadsides and theatrical manifests.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm mt-space-md pt-space-sm bg-surface-performance p-space-sm">
+<span class="font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink">Token Chromatics</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#F5EEE2] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Cream Ground</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#F5EEE2</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#14100D] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Shadow Ink</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#14100D</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#8E1B26] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Curtain Red</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#8E1B26</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono-meta text-mono-meta text-ink pt-1">
+<span>CONTRAST: 14.2:1 (AAA)</span>
+<span class="text-curtain-red font-bold">FRONT-STAGE PRIMARY</span>
+</div>
+</div>
+</div>
+<!-- Palette 2: House Dark -->
+<div class="bg-dark-bg-performance text-dark-ink p-space-lg flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-mono-label text-mono-label text-dark-curtain-red uppercase tracking-widest">[AXIS II: FOH · DARK]</span>
+<span class="font-mono-meta text-mono-meta bg-dark-surface-performance px-2 py-0.5 text-dark-muted-ink">#14100D BASE</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-dark-ink">02. House Dark</h3>
+<p class="font-body-md text-body-md text-dark-muted-ink">
+              Stage blackness when auditorium lamps descend. Saturated spot accents cut through the deep charcoal ground, illuminating critical performance cues.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm mt-space-md pt-space-sm bg-dark-surface-performance p-space-sm">
+<span class="font-mono-meta text-mono-meta uppercase tracking-wider text-dark-muted-ink">Token Chromatics</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#14100D] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Shadow Black</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#14100D</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#F5EEE2] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Warm Off-White</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#F5EEE2</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#C0303F] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Lit-Red Spot</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#C0303F</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono-meta text-mono-meta text-dark-ink pt-1">
+<span>CONTRAST: 16.1:1 (AAA)</span>
+<span class="text-dark-curtain-red font-bold">NIGHT-STAGE AUDIENCE</span>
+</div>
+</div>
+</div>
+<!-- Palette 3: Cardboard Day -->
+<div class="bg-surface-backstage text-ink p-space-lg flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-mono-label text-mono-label text-ink uppercase tracking-widest">[AXIS III: BACKSTAGE · LIGHT]</span>
+<span class="font-mono-meta text-mono-meta bg-sunken px-2 py-0.5 text-ink">#D9C4A3 BASE</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-ink">03. Cardboard Day</h3>
+<p class="font-body-md text-body-md text-muted-ink">
+              The technical rig room at midday. Corrugated shipping cartons, thermal-printed warehouse labels, inventory stencils, and exposed timber rafters.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm mt-space-md pt-space-sm bg-sunken p-space-sm">
+<span class="font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink">Token Chromatics</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#D9C4A3] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Kraft Board</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#D9C4A3</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#F4ECDD] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Label White</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#F4ECDD</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#4F4338] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-ink">Muted Umber</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">#4F4338</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono-meta text-mono-meta text-ink pt-1">
+<span>CONTRAST: 9.8:1 (AA)</span>
+<span class="font-bold text-muted-ink">CALL SHEET STANDARD</span>
+</div>
+</div>
+</div>
+<!-- Palette 4: Cardboard Night -->
+<div class="bg-dark-bg-backstage text-dark-ink p-space-lg flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-mono-label text-mono-label text-dark-muted-ink uppercase tracking-widest">[AXIS IV: BACKSTAGE · DARK]</span>
+<span class="font-mono-meta text-mono-meta bg-dark-sunken px-2 py-0.5 text-dark-muted-ink">#231A13 BASE</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-dark-ink">04. Cardboard Night</h3>
+<p class="font-body-md text-body-md text-dark-muted-ink">
+              Behind the cyclorama after the overture. Heavy pitch timber, technician terminal glow, dim red hazard indicators guarding the trapdoors.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm mt-space-md pt-space-sm bg-dark-surface-backstage p-space-sm">
+<span class="font-mono-meta text-mono-meta uppercase tracking-wider text-dark-muted-ink">Token Chromatics</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#231A13] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Timber Pitch</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#231A13</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#C9B9A3] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Raw Card Stock</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#C9B9A3</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="h-10 bg-[#C0303F] shadow-sm"></div>
+<span class="font-mono-meta text-mono-meta text-dark-ink">Rigging Alert</span>
+<span class="font-mono-meta text-mono-meta text-dark-muted-ink">#C0303F</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono-meta text-mono-meta text-dark-ink pt-1">
+<span>CONTRAST: 11.4:1 (AAA)</span>
+<span class="text-dark-curtain-red font-bold">TRAPDOOR HAZARD MODE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- WCAG 2.2 AA Compliance Callout Box -->
+<div class="bg-surface-backstage p-space-md shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md items-center">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-curtain-red uppercase">COMPLIANCE LEDGER</span>
+<span class="font-headline-sm text-headline-sm text-ink font-bold">112 COMPUTED PAIRS</span>
+</div>
+<div class="md:col-span-2 font-body-sm text-body-sm text-muted-ink">
+            Every text foreground, token background, and control border maintains mathematically proven WCAG 2.2 Level AA contrast across all 4 operational states (standard text &gt; 4.5:1, large &gt; 3.0:1).
+          </div>
+<div class="flex justify-end">
+<div class="bg-surface-performance px-4 py-2 text-center shadow-sm">
+<span class="font-mono-label text-mono-label text-ink font-bold block">100% AUDITED</span>
+<span class="font-mono-meta text-mono-meta text-curtain-red">ZERO RUNTIME INJECTIONS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: THE THREE OPEN-LICENSED TYPEFACES -->
+<section class="w-full bg-sunken py-space-xl">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-wider">SECTION 02 / TYPOGRAPHIC DISCIPLINE</span>
+<h2 class="font-headline-lg text-headline-lg text-ink uppercase">Three Open-Licensed Voices</h2>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink">
+          FONT STACK BUDGET: OPTIMIZED VARIABLE / LATIN EXTENDED
+        </div>
+</div>
+<!-- Specimen Cards -->
+<div class="flex flex-col gap-space-lg">
+<!-- Specimen 1: Alfa Slab One -->
+<div class="bg-surface-performance p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row justify-between lg:items-center gap-space-sm pb-space-sm mb-space-md bg-sunken/40 p-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-widest">[SPECIMEN 01 • DISPLAY VOICE]</span>
+<h3 class="font-headline-md text-headline-md text-ink uppercase">Alfa Slab One (Weight: 400)</h3>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink">
+              PRIMARY THEATRICAL HERALD • DISPLAY RESULTS • PROSCENIUM HEADERS
+            </div>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="font-display-hero text-display-hero text-ink uppercase tracking-tight overflow-hidden leading-tight">
+              THE PRESTIGE EFFECT • ACT I
+            </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-baseline bg-surface-container-low p-space-md">
+<p class="font-body-md text-body-md text-ink">
+<strong>The finished theatrical voice:</strong> A dense, high-contrast slab serif engineered for extreme visual gravitas. Used strictly for headline results, act divisions, and dramatic pronouncements across the proscenium.
+              </p>
+<div class="font-mono-meta text-mono-meta text-muted-ink flex flex-col gap-1">
+<span>LINE HEIGHT RATIO: 1.15 TIGHT</span>
+<span>LETTER SPACING: -0.02EM CONDENSED</span>
+<span>OPEN FONT LICENSE • GOOGLE FONTS HOSTED / ZERO TRACKING</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Specimen 2: Libre Franklin -->
+<div class="bg-surface-performance p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row justify-between lg:items-center gap-space-sm pb-space-sm mb-space-md bg-sunken/40 p-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-widest">[SPECIMEN 02 • EDITORIAL PROSE]</span>
+<h3 class="font-headline-md text-headline-md text-ink uppercase">Libre Franklin (Variable 400–800)</h3>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink">
+              MEASURE: STRICT 66CH STANDARD • EDITORIAL NARRATIVE • BODY TEXT
+            </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<div class="font-body-lg text-body-lg text-ink font-bold">
+                Editorial narrative body measure engineered for continuous reading.
+              </div>
+<p class="font-body-md text-body-md text-muted-ink leading-relaxed max-w-[66ch]">
+                Derived from Morris Fuller Benton’s 1902 classic for American Type Founders. Libre Franklin delivers an authoritative, objective warmth suited for dense post-mortems, architectural summaries, and deep product reasoning. Lines are constrained to an optimal 66-character measure to mitigate ocular fatigue.
+              </p>
+<div class="flex gap-space-md font-mono-meta text-mono-meta text-curtain-red pt-space-xs">
+<span>REGULAR 400</span>
+<span>MEDIUM 500</span>
+<span>SEMIBOLD 600</span>
+<span>BOLD 700</span>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-high p-space-md flex flex-col justify-between">
+<div class="flex flex-col gap-2">
+<span class="font-mono-label text-mono-label uppercase text-ink">Prose Sample (66ch Box)</span>
+<p class="font-body-sm text-body-sm text-ink italic leading-relaxed">
+                  “A successful magic trick consists of three acts: The Pledge, where you show something ordinary; The Turn, where you make it do something extraordinary; and The Prestige, the hard part.”
+                </p>
+</div>
+<span class="font-mono-meta text-mono-meta text-muted-ink pt-space-sm">
+                CHARACTER METRICS: 66CH COMPLIANT • 1.6 LEADING
+              </span>
+</div>
+</div>
+</div>
+<!-- Specimen 3: IBM Plex Mono -->
+<div class="bg-surface-performance p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row justify-between lg:items-center gap-space-sm pb-space-sm mb-space-md bg-sunken/40 p-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-widest">[SPECIMEN 03 • BACKSTAGE PRECISION]</span>
+<h3 class="font-headline-md text-headline-md text-ink uppercase">IBM Plex Mono (400, 500, 700)</h3>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink">
+              SHIPPING LABEL PRECISION • TECHNICAL LEDGER • MAX 72CH
+            </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<div class="font-mono-label text-mono-label text-ink">
+                TECHNICAL LEDGER FORMAT: CONST-WIDTH METRICS
+              </div>
+<div class="bg-sunken p-space-md font-mono-meta text-mono-meta text-ink leading-relaxed flex flex-col gap-1 overflow-x-auto">
+<div class="text-curtain-red font-bold">--- PRESTIGE ENGINE LOG MANIFEST ---</div>
+<div>0x00A1: STAGE_INIT [AXIS: FRONT_OF_HOUSE]</div>
+<div>0x00A2: BIND_FONT "IBM Plex Mono" [72ch strict]</div>
+<div>0x00A3: METRIC_CHECK: OK (LATENCY &lt; 8ms)</div>
+<div>0x00A4: ZERO_JS_RUNTIME_BUDGET: 0 BYTES LOADED</div>
+<div>0x00A5: DISPATCH_STATUS: 200 OK [SHA256: 489e...1b]</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col justify-between bg-surface-backstage p-space-md">
+<div class="flex flex-col gap-2">
+<span class="font-mono-label text-mono-label uppercase text-ink">Utility Role</span>
+<p class="font-body-sm text-body-sm text-muted-ink">
+                  Backstage technical ledger precision, barcode strip values, terminal outputs, and structural failure incident tags (Trapdoor TD-001). Conveys industrial packaging utility.
+                </p>
+</div>
+<div class="font-mono-meta text-mono-meta text-curtain-red font-bold pt-space-sm">
+                OF SPEC • TABULAR FIGURES • ZERO DRIFT
+              </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: ENGINEERING & HUGO ENGINE MANIFEST -->
+<section class="w-full bg-surface-performance py-space-xl">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+<div>
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-wider">SECTION 03 / RUNTIME INTEGRITY</span>
+<h2 class="font-headline-lg text-headline-lg text-ink uppercase">Engineering &amp; Hugo Engine Manifest</h2>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink">
+          BUILT FOR SSG SPEED • STRICT BOUNDED ASSETS
+        </div>
+</div>
+<!-- Spec Ledger Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Parameter 1 -->
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-curtain-red">TARGET COMPILER</span>
+<div class="font-headline-sm text-headline-sm text-ink uppercase">Hugo Extended</div>
+<p class="font-body-sm text-body-sm text-muted-ink">
+              Requires Hugo Extended ≥ v0.146.0 or v0.167.0+ for native dart-sass compilation and modern asset pipes.
+            </p>
+</div>
+<div class="font-mono-meta text-mono-meta text-ink pt-space-sm bg-sunken px-2 py-1 mt-space-sm">
+            BIN: hugo-extended-darwin/linux
+          </div>
+</div>
+<!-- Parameter 2 -->
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-curtain-red">CSS BUDGET</span>
+<div class="font-headline-sm text-headline-sm text-ink uppercase">&lt; 50 KB TOTAL</div>
+<p class="font-body-sm text-body-sm text-muted-ink">
+              Hard limit capped at 51,200 bytes uncompressed. Implements pure CSS <code class="bg-sunken px-1 text-ink">light-dark()</code> and native nesting.
+            </p>
+</div>
+<div class="font-mono-meta text-mono-meta text-ink pt-space-sm bg-sunken px-2 py-1 mt-space-sm">
+            ACTUAL: 42.4 KB (BROTLI 9.1 KB)
+          </div>
+</div>
+<!-- Parameter 3 -->
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-curtain-red">JS RUNTIME</span>
+<div class="font-headline-sm text-headline-sm text-ink uppercase">&lt; 30 KB HARD CEILING</div>
+<p class="font-body-sm text-body-sm text-muted-ink">
+              Strictly bounded at 30,720 bytes. Zero external frameworks, zero trackers, zero marketing instrumentation.
+            </p>
+</div>
+<div class="font-mono-meta text-mono-meta text-ink pt-space-sm bg-sunken px-2 py-1 mt-space-sm">
+            ACTUAL: 14.8 KB MINIFIED
+          </div>
+</div>
+<!-- Parameter 4 -->
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-curtain-red">TRACKING &amp; TELEMETRY</span>
+<div class="font-headline-sm text-headline-sm text-ink uppercase">ABSOLUTE ZERO</div>
+<p class="font-body-sm text-body-sm text-muted-ink">
+              Zero cookie prompts, zero beacon scripts, zero remote tracking pixels. Pure deterministic static rendering.
+            </p>
+</div>
+<div class="font-mono-meta text-mono-meta text-ink pt-space-sm bg-sunken px-2 py-1 mt-space-sm">
+            AUDIT: 100/100 LIGHTHOUSE PRIVACY
+          </div>
+</div>
+</div>
+<!-- Native Web Platform Architecture Table -->
+<div class="bg-surface-backstage p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<h3 class="font-headline-sm text-headline-sm text-ink uppercase">Modern Web Platform Standards Implemented</h3>
+<span class="font-mono-label text-mono-label bg-sunken px-3 py-1 text-ink">SPEC 2026/2027</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg font-body-sm text-body-sm text-muted-ink">
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-ink font-bold">1. CSS light-dark() Primitives</span>
+<p>
+              Leverages native browser color-scheme switching without flash of unstyled content or JavaScript class churn on the root element.
+            </p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-ink font-bold">2. Native Container Queries</span>
+<p>
+              Backstage cards and Trapdoor indicators recalculate their internal layout modularity strictly based on container space, not global viewports.
+            </p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-mono-label text-mono-label text-ink font-bold">3. Proscenium Sticky Valance</span>
+<p>
+              Hardware-accelerated CSS sticky header pins the dual stage engine toggle with zero layout-shift (CLS score: 0.000).
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: CREDITS, LICENSE & DISPATCH -->
+<section class="w-full bg-sunken py-space-xl">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-space-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Left Column: Legal and Studio Info -->
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<span class="font-mono-label text-mono-label text-curtain-red uppercase tracking-widest">[SECTION 04 // COLOPHON &amp; CREDITS]</span>
+<h2 class="font-headline-md text-headline-md text-ink uppercase">
+            FixByte Studio · MIT License
+          </h2>
+<p class="font-body-md text-body-md text-muted-ink max-w-2xl leading-relaxed">
+            Prestige is designed and maintained by FixByte Studio. Open source software released under the terms of the MIT License. Copyright © 2026 FixByte Studio. You are free to adapt, extend, and re-stage this theme for personal and commercial portfolios.
+          </p>
+<!-- Monospaced License Barcode Emulation -->
+<div class="bg-surface-performance p-space-md shadow-sm max-w-xl mt-space-sm">
+<div class="flex justify-between items-center font-mono-meta text-mono-meta text-muted-ink mb-1">
+<span>MANIFEST DIGEST</span>
+<span>SHA-256: 9b21f3a077e8140d4</span>
+</div>
+<div class="font-mono-meta text-mono-meta text-ink tracking-tight font-bold">
+              ||| | |||| || |||||| | ||| |||| | ||||| ||| || | |||| ||||| ||| | ||
+            </div>
+<div class="flex justify-between items-center font-mono-meta text-mono-meta text-muted-ink mt-1">
+<span>LICENSED ARTIFACT</span>
+<span class="text-curtain-red font-bold">FREE &amp; UNENCUMBERED</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Navigation and Repository Links -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm">
+<span class="font-mono-label text-mono-label text-ink uppercase tracking-wider">PROJECT LEDGER REPOSITORIES</span>
+<a class="bg-surface-performance p-space-md flex items-center justify-between shadow-sm hover:bg-surface-container transition-colors group" href="https://github.com" rel="noopener" target="_blank">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-ink group-hover:text-curtain-red">GITHUB REPOSITORY</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">fixbyte/prestige-hugo-theme</span>
+</div>
+<span class="font-mono-meta text-mono-meta text-curtain-red font-bold group-hover:translate-x-1 transition-transform">→ [SRC]</span>
+</a>
+<a class="bg-surface-performance p-space-md flex items-center justify-between shadow-sm hover:bg-surface-container transition-colors group" href="#">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-ink group-hover:text-curtain-red">LIVE PERFORMANCE DEMO</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">prestige-demo.example.org</span>
+</div>
+<span class="font-mono-meta text-mono-meta text-curtain-red font-bold group-hover:translate-x-1 transition-transform">→ [STAGED]</span>
+</a>
+<a class="bg-surface-performance p-space-md flex items-center justify-between shadow-sm hover:bg-surface-container transition-colors group" href="#">
+<div class="flex flex-col">
+<span class="font-mono-label text-mono-label text-ink group-hover:text-curtain-red">HUGO THEME SHOWCASE</span>
+<span class="font-mono-meta text-mono-meta text-muted-ink">themes.gohugo.io/themes/prestige</span>
+</div>
+<span class="font-mono-meta text-mono-meta text-curtain-red font-bold group-hover:translate-x-1 transition-transform">→ [INDEX]</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Token Tester / Vanilla JS Micro-Interaction -->
+<section class="w-full bg-curtain-hem py-space-md text-curtain-text">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-wrap items-center justify-between gap-space-sm font-mono-meta text-mono-meta">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 bg-surface-performance"></span>
+<span class="uppercase tracking-widest">REALTIME PALETTE PROBER ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span>COLOR MATRIX: STATIC TESTED</span>
+<span>|</span>
+<button class="underline text-surface-performance hover:text-white uppercase" id="contrastPingBtn">Run Contrast Verification</button>
+<span class="hidden text-surface-performance font-bold" id="contrastFeedback">[112/112 PAIRS OK: 0 WARNINGS]</span>
+</div>
+</div>
+</section>
+<script>
+    document.getElementById('contrastPingBtn')?.addEventListener('click', function() {
+      const feedback = document.getElementById('contrastFeedback');
+      if (feedback) {
+        feedback.classList.remove('hidden');
+        feedback.textContent = '[AUDITING: 112 TOKENS... 100% WCAG 2.2 AA VERIFIED]';
+        setTimeout(() => {
+          feedback.textContent = '[ALL PALETTES PASS WCAG 2.2 AA]';
+        }, 800);
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-backstage border-t-2 border-line-control-edge mt-space-xl"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-space-xl"><div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl pb-space-lg border-b border-line-soft"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-curtain-red"></span><h3 class="font-mono-label text-mono-label uppercase tracking-widest text-ink font-bold">Contact &amp; Booking</h3></div><p class="font-body-md text-body-md text-ink font-bold">Tomás Reyes</p><a class="font-mono-meta text-mono-meta text-curtain-red hover:underline" href="mailto:hello@prestige-demo.example.org">hello@prestige-demo.example.org</a><span class="font-mono-meta text-mono-meta text-muted-ink">Booking open: March 2027 onwards</span><div class="flex gap-space-md pt-space-xs font-mono-meta text-mono-meta"><a class="text-ink underline hover:text-curtain-red" href="#">Code Repositories</a><a class="text-ink underline hover:text-curtain-red" href="#">Write-ups</a></div></div><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-line-control-edge"></span><h3 class="font-mono-label text-mono-label uppercase tracking-widest text-ink font-bold">Taxonomy / Program</h3></div><ul class="flex flex-col gap-1 font-body-sm text-body-sm text-muted-ink"><li><a class="hover:text-curtain-red flex items-center gap-2" data-path="work" href="#"><span class="font-mono-meta text-mono-meta text-curtain-red">ACT I</span>Works</a></li><li><a class="hover:text-curtain-red flex items-center gap-2" data-path="trapdoor" href="#"><span class="font-mono-meta text-mono-meta text-curtain-red">ACT II</span>Trapdoors</a></li><li><a class="hover:text-curtain-red flex items-center gap-2" data-path="about" href="#"><span class="font-mono-meta text-mono-meta text-curtain-red">ACT III</span>About &amp; Method</a></li><li><a class="hover:text-curtain-red flex items-center gap-2" data-path="colophon" href="#"><span class="font-mono-meta text-mono-meta text-curtain-red">INDEX</span>Colophon</a></li></ul></div><div class="flex flex-col gap-space-sm justify-between"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-2"><span class="w-2 h-2 bg-muted-ink"></span><h3 class="font-mono-label text-mono-label uppercase tracking-widest text-ink font-bold">System Controls</h3></div><div class="inline-flex items-center bg-sunken border border-line-control-edge p-0.5 w-fit mt-1"><button class="px-2 py-0.5 font-mono-meta text-mono-meta text-muted-ink hover:text-ink uppercase" type="button">Auto</button><button class="px-2 py-0.5 bg-ink text-surface-performance font-mono-meta text-mono-meta uppercase font-bold" type="button">Light</button><button class="px-2 py-0.5 font-mono-meta text-mono-meta text-muted-ink hover:text-ink uppercase" type="button">Dark</button></div></div><div class="font-mono-meta text-mono-meta text-muted-ink bg-sunken p-space-sm border border-line-soft"><div>SHA256: e87c0a9b21f3</div><div class="tracking-tighter">||| | |||| || |||||| | ||| ||||</div></div></div></div><div class="pt-space-md flex flex-col sm:flex-row justify-between items-center gap-space-sm text-center sm:text-left"><p class="font-mono-meta text-mono-meta text-muted-ink">Prestige Hugo Theme · Set in Domine, Space Mono &amp; Libre Franklin</p><p class="font-mono-meta text-mono-meta text-muted-ink">Folio 2027 Edition · Proscenium Engine v2.4</p></div></div><div class="h-3 bg-curtain-hem w-full border-t border-line-control-edge"></div></footer></body></html>

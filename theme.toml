@@ -1,0 +1,17 @@
+name = "Prestige"
+license = "MIT"
+licenselink = "https://github.com/fixbyte-studio/hugo-theme-prestige/blob/main/LICENSE"
+description = "A case-study portfolio theme with Performance, Backstage, and Trapdoor content."
+homepage = "https://github.com/fixbyte-studio/hugo-theme-prestige"
+demosite = "https://fixbyte-studio.github.io/hugo-theme-prestige/"
+tags = ["portfolio", "personal", "responsive", "accessibility"]
+features = [
+  "Case-study page bundles",
+  "Performance and Backstage content layers",
+  "Standalone failure reports (Trapdoor)",
+]
+min_version = "0.146.0"
+
+[author]
+  name = "FixByte Studio"
+  homepage = "https://github.com/fixbyte-studio"

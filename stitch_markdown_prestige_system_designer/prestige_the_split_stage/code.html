@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&amp;family=Libre+Franklin:wght@400;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error":"#ffffff","tertiary-fixed":"#f6e0bd","surface-tint":"#ac3239","dark-line-soft":"#4A3C33","on-primary-fixed-variant":"#8b1824","on-secondary-fixed-variant":"#7f282e","tertiary-container":"#56472e","on-secondary-container":"#752127","on-tertiary-fixed":"#251a05","outline":"#8b7170","inverse-on-surface":"#f9efe9","bg-backstage":"#D9C4A3","dark-curtain-red":"#C0303F","on-secondary-fixed":"#410009","error":"#ba1a1a","on-background":"#1f1b17","background":"#fff8f5","sunken":"#EADFCB","on-secondary":"#ffffff","ink":"#14100D","dark-bg-performance":"#14100D","primary":"#6c0013","error-container":"#ffdad6","primary-fixed":"#ffdad8","on-primary-container":"#ff9e9d","surface-container-high":"#f0e6e1","dark-curtain-hem":"#8E1B26","surface-backstage":"#F4ECDD","primary-container":"#8e1b26","on-error-container":"#93000a","line-soft":"#CDBFA8","curtain-hem":"#5E0F18","on-surface-variant":"#584140","surface-dim":"#e2d8d3","inverse-primary":"#ffb3b1","secondary-fixed-dim":"#ffb3b3","muted-ink":"#4F4338","secondary-container":"#fd898b","primary-fixed-dim":"#ffb3b1","tertiary-fixed-dim":"#d9c4a3","outline-variant":"#dfbfbe","surface-variant":"#ebe1db","on-surface":"#1f1b17","tertiary":"#3e3119","on-primary-fixed":"#410007","surface-container-highest":"#ebe1db","surface-container-lowest":"#ffffff","dark-muted-ink":"#C9B9A3","curtain-text":"#FFF7EC","secondary":"#9e3f44","dark-surface-performance":"#211A16","surface":"#fff8f5","on-tertiary-container":"#cab696","bg-performance":"#F5EEE2","surface-bright":"#fff8f5","surface-container-low":"#fcf2ec","curtain-red":"#8E1B26","on-primary":"#ffffff","inverse-surface":"#352f2c","surface-performance":"#FFFBF3","dark-sunken":"#0C0907","on-tertiary-fixed-variant":"#53452c","line-control-edge":"#14100D","dark-ink":"#F5EEE2","surface-container":"#f6ece6","dark-surface-backstage":"#2E231A","on-tertiary":"#ffffff","secondary-fixed":"#ffdad9","dark-bg-backstage":"#231A13"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"2rem","space-md":"1rem","space-xl":"2.5rem","margin-mobile":"1rem","gutter":"1.5rem","space-xs":"0.25rem","space-sm":"0.5rem","gutter-mobile":"0.75rem","space-lg":"1.5rem"},fontFamily:{"headline-lg":["Domine"],"label-prompter":["Space Mono"],"headline-md":["Domine"],"mono-label":["Space Mono"],"display-hero-mobile":["Domine"],"body-sm":["Libre Franklin"],"body-lg":["Libre Franklin"],"headline-lg-mobile":["Domine"],"body-md":["Libre Franklin"],"mono-meta":["Space Mono"],"headline-sm":["Domine"],"display-hero":["Domine"]},fontSize:{"headline-lg":["38px",{"lineHeight":"46px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-prompter":["10px",{"lineHeight":"12px","letterSpacing":"0.1em","fontWeight":"700"}],"headline-md":["26px",{"lineHeight":"32px","fontWeight":"700"}],"mono-label":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"700"}],"display-hero-mobile":["36px",{"lineHeight":"42px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"34px","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"mono-meta":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"26px","fontWeight":"700"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-bg-performance font-body-md text-ink min-h-screen selection:bg-curtain-red selection:text-curtain-text"><div class="sticky top-0 w-full z-40 bg-curtain-red border-b-[3px] border-ink"><div class="w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin h-12 flex items-center justify-between text-curtain-text"><div class="flex items-center gap-space-xs"><div aria-label="Stage Layer Toggle" class="inline-flex border-2 border-ink bg-curtain-hem p-0.5" role="group"><button class="w-[140px] py-1 px-space-sm bg-ink text-curtain-text font-mono-label text-mono-label uppercase tracking-widest text-center flex items-center justify-center gap-1.5 transition-colors" type="button"><span class="w-2 h-2 rounded-full bg-curtain-red border border-curtain-text"></span><span>Performance</span></button><button class="w-[140px] py-1 px-space-sm bg-transparent text-curtain-text/70 hover:text-curtain-text font-mono-label text-mono-label uppercase tracking-widest text-center flex items-center justify-center gap-1.5 transition-colors" type="button"><span class="w-2 h-2 rounded-full border border-curtain-text/60"></span><span>Backstage</span></button></div></div><div class="hidden md:flex items-center gap-space-md"><span class="font-mono-meta text-mono-meta tracking-wider uppercase text-curtain-text/90 bg-curtain-hem/80 px-space-sm py-1 border border-ink/40">Performance view · 3 case studies</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><header class="w-full bg-bg-performance border-b-[3px] border-ink"><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin flex items-center justify-between"><a class="flex items-baseline gap-space-xs group" data-path="work" href="#"><span class="font-headline-lg-mobile lg:font-headline-md text-headline-lg-mobile lg:text-headline-md text-ink tracking-tight uppercase group-hover:text-primary transition-colors">Tomás Reyes</span><span class="font-mono-meta text-mono-meta text-muted-ink ml-1 hidden sm:inline-block uppercase tracking-widest">[FOLIO / 2027]</span></a><nav class="flex items-center gap-space-xs" data-active-classes="bg-curtain-red text-curtain-text border-2 border-ink"><a aria-current="page" class="px-space-md py-space-xs font-mono-label uppercase tracking-widest transition-all bg-curtain-red text-curtain-text border-2 border-ink" data-path="work" href="#">Work</a><a class="px-space-md py-space-xs font-mono-label text-mono-label uppercase tracking-widest text-ink hover:bg-surface-performance transition-all" data-path="trapdoor" href="#">Trapdoor</a><a class="px-space-md py-space-xs font-mono-label text-mono-label uppercase tracking-widest text-ink hover:bg-surface-performance transition-all" data-path="about" href="#">About</a><a class="hidden sm:inline-block px-space-md py-space-xs font-mono-label text-mono-label uppercase tracking-widest text-ink hover:bg-surface-performance transition-all" data-path="colophon" href="#">Colophon</a></nav><div class="flex md:hidden items-center"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin bg-bg-performance"><div class="flex flex-col w-full">
+<!-- INTRO SECTION: 8 cols editorial statement, 4 cols legend key -->
+<section class="w-full pt-space-lg pb-space-xl border-b-[3px] border-ink">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<span class="font-mono-meta text-mono-meta tracking-widest uppercase text-muted-ink">[PROLOGUE // CORE THESIS]</span>
+<h1 class="font-display-hero-mobile lg:font-display-hero text-display-hero-mobile lg:text-display-hero text-ink uppercase tracking-tight leading-none">
+          Every result has a backstage.
+        </h1>
+<p class="font-body-lg text-body-lg text-muted-ink max-w-2xl pt-space-xs leading-relaxed">
+          Backend systems and live-event logistics. Every project is shown twice: the result, then the working.
+        </p>
+</div>
+<div class="lg:col-span-4 bg-surface-performance p-space-md border-2 border-ink shadow-[4px_4px_0_0_#14100D] mt-2 lg:mt-0">
+<div class="flex items-center justify-between border-b border-line-soft pb-space-xs mb-space-sm">
+<span class="font-mono-label text-mono-label uppercase tracking-widest text-ink font-bold">How to read this page</span>
+<span class="material-symbols-outlined text-[18px] text-curtain-red">help_center</span>
+</div>
+<div class="space-y-space-sm font-mono-meta text-mono-meta">
+<div class="flex items-start gap-space-xs p-space-xs bg-bg-performance border border-line-soft">
+<span class="text-curtain-red font-bold text-[14px] leading-none">▌</span>
+<div>
+<span class="font-bold text-ink uppercase">Front of curtain</span>
+<p class="text-muted-ink">The finished execution, business outcomes, and runtime metrics.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-xs p-space-xs bg-surface-backstage border border-dashed border-ink">
+<span class="text-ink font-bold text-[14px] leading-none">▌</span>
+<div>
+<span class="font-bold text-ink uppercase">Behind the curtain</span>
+<p class="text-muted-ink">The raw scaffolding: hypotheses, rejected architecture, constraints, and postmortems.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STAGE SECTION: TRIPLE BILL -->
+<section class="w-full py-space-xl">
+<!-- Stage Counter Header -->
+<div class="flex items-baseline justify-between mb-space-md border-b-2 border-ink pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block w-3 h-3 bg-curtain-red border border-ink"></span>
+<h2 class="font-headline-lg-mobile lg:font-headline-md text-headline-lg-mobile lg:text-headline-md text-ink uppercase tracking-tight">
+          Triple Bill <span class="font-mono-meta text-mono-meta font-normal text-muted-ink ml-2">[3 ACTS MOUNTED]</span>
+</h2>
+</div>
+<span class="font-mono-meta text-mono-meta uppercase tracking-widest text-muted-ink hidden sm:inline-block">Stage Seam: Split-Screen Engine</span>
+</div>
+<!-- THE SPLIT STAGE CONTAINER -->
+<div class="relative w-full border-[3px] border-ink bg-ink transition-all" id="split-stage">
+<!-- 48px Header Valance Bars (Left / Right Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 text-curtain-text">
+<div class="h-12 bg-ink px-space-md flex items-center justify-between border-b-2 lg:border-b-0 lg:border-r-2 border-line-soft">
+<span class="font-mono-label text-mono-label uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-surface-bright inline-block"></span>
+            Front of Curtain · Results
+          </span>
+<span class="font-mono-meta text-mono-meta text-surface-dim uppercase">[Act 01–03]</span>
+</div>
+<div class="h-12 bg-curtain-red px-space-md flex items-center justify-between border-t-2 lg:border-t-0 border-ink">
+<span class="font-mono-label text-mono-label uppercase tracking-widest text-curtain-text flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-curtain-text inline-block animate-pulse"></span>
+            Behind the Curtain · Process
+          </span>
+<span class="font-mono-meta text-mono-meta text-tertiary-fixed uppercase">[The Working]</span>
+</div>
+</div>
+<!-- MAIN SPLIT WORKSPACE -->
+<div class="relative grid grid-cols-1 lg:grid-cols-2 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-ink bg-bg-performance">
+<!-- ============================================ -->
+<!-- LEFT COLUMN: FRONT OF CURTAIN (RESULTS)      -->
+<!-- ============================================ -->
+<div class="flex flex-col divide-y-2 divide-ink bg-bg-performance">
+<!-- ACT I: HEADLINER (LEDGER CUTOVER) -->
+<article class="p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-performance hover:bg-surface-bright transition-colors relative group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink">
+<span class="bg-sunken px-2 py-0.5 border border-line-soft font-bold text-ink">Headliner · Act I</span>
+<span>Ref: PRS-2025-003</span>
+</div>
+<!-- Cover Image (reconciliation architecture schematic) -->
+<div class="relative w-full aspect-[16/9] bg-sunken overflow-hidden border-2 border-ink shadow-[3px_3px_0_0_#14100D]">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="High contrast technical architectural diagram showing reconciliation database stages, ingestion pipelines, SQL DB, CSV feeds, and matching engine with red exceptions flagged in an editorial technical journal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAv8Anw0gBWW12rTG5GOlNXURoEuT-GDIpqen41V7ZBXwsdjhCsMdm_zBxurzbC5QygglSgwZwMZtvRwpuQAfu1tB9z_oogEXCaTU30wpVBYM-XJWKAeHTA71ghAhO3s6IhhUOqvmFLVnPtC5-PXqFOXKl-5QmuZWKDXp3E3g9Nbcqkyty-dojJGrEkJIgrKf603mK2bsv9BcU0DWZgl7LiSK0MsRE4KP0aJZcxpbsMohOUIJQot6nhA"/>
+<div class="absolute bottom-2 left-2 bg-ink text-curtain-text font-mono-meta text-[10px] px-2 py-1 uppercase tracking-widest">
+                  Live Terminal Schematic
+                </div>
+</div>
+<!-- Title & Summary -->
+<div>
+<h3 class="font-headline-lg-mobile lg:font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-ink uppercase tracking-tight mt-1">
+                  Ledger Cutover
+                </h3>
+<p class="font-body-md text-body-md text-muted-ink mt-2 leading-relaxed">
+                  Month-end close went from three hours to fourteen minutes, and nobody was paid twice.
+                </p>
+</div>
+<!-- Standout Metric Box -->
+<div class="p-space-md bg-sunken border-2 border-ink flex items-center justify-between">
+<div>
+<div class="font-display-hero-mobile lg:font-display-hero text-[38px] lg:text-[44px] leading-none text-curtain-red font-bold">14 min</div>
+<div class="font-mono-label text-mono-label text-ink uppercase mt-1">Reconciliation duration</div>
+</div>
+<div class="text-right border-l-2 border-ink pl-space-md">
+<div class="font-mono-meta text-mono-meta line-through text-muted-ink">3 h 10 min</div>
+<div class="font-mono-meta text-mono-meta font-bold text-primary">−93% reduction</div>
+</div>
+</div>
+</div>
+<!-- Algorithmic SHA-256 Barcode Metadata Strip -->
+<div class="mt-space-lg pt-space-sm border-t-2 border-ink">
+<div class="flex items-center justify-between mb-1">
+<svg aria-hidden="true" class="h-6 w-48 text-ink" preserveaspectratio="none" viewbox="0 0 200 24">
+<rect fill="currentColor" height="24" width="3" x="0"></rect>
+<rect fill="currentColor" height="24" width="1" x="5"></rect>
+<rect fill="currentColor" height="24" width="4" x="8"></rect>
+<rect fill="currentColor" height="24" width="2" x="14"></rect>
+<rect fill="currentColor" height="24" width="6" x="18"></rect>
+<rect fill="currentColor" height="24" width="2" x="26"></rect>
+<rect fill="currentColor" height="24" width="1" x="30"></rect>
+<rect fill="currentColor" height="24" width="5" x="33"></rect>
+<rect fill="currentColor" height="24" width="3" x="40"></rect>
+<rect fill="currentColor" height="24" width="2" x="45"></rect>
+<rect fill="currentColor" height="24" width="4" x="49"></rect>
+<rect fill="currentColor" height="24" width="1" x="55"></rect>
+<rect fill="currentColor" height="24" width="7" x="58"></rect>
+<rect fill="currentColor" height="24" width="2" x="67"></rect>
+<rect fill="currentColor" height="24" width="3" x="71"></rect>
+<rect fill="currentColor" height="24" width="5" x="76"></rect>
+<rect fill="currentColor" height="24" width="2" x="83"></rect>
+<rect fill="currentColor" height="24" width="4" x="87"></rect>
+<rect fill="currentColor" height="24" width="1" x="93"></rect>
+<rect fill="currentColor" height="24" width="6" x="96"></rect>
+<rect fill="currentColor" height="24" width="2" x="104"></rect>
+<rect fill="currentColor" height="24" width="3" x="108"></rect>
+<rect fill="currentColor" height="24" width="5" x="113"></rect>
+<rect fill="currentColor" height="24" width="1" x="120"></rect>
+<rect fill="currentColor" height="24" width="4" x="123"></rect>
+<rect fill="currentColor" height="24" width="2" x="130"></rect>
+<rect fill="currentColor" height="24" width="6" x="134"></rect>
+<rect fill="currentColor" height="24" width="3" x="142"></rect>
+<rect fill="currentColor" height="24" width="2" x="147"></rect>
+<rect fill="currentColor" height="24" width="5" x="151"></rect>
+<rect fill="currentColor" height="24" width="1" x="158"></rect>
+<rect fill="currentColor" height="24" width="4" x="161"></rect>
+<rect fill="currentColor" height="24" width="7" x="167"></rect>
+<rect fill="currentColor" height="24" width="2" x="176"></rect>
+<rect fill="currentColor" height="24" width="3" x="180"></rect>
+<rect fill="currentColor" height="24" width="5" x="185"></rect>
+<rect fill="currentColor" height="24" width="2" x="192"></rect>
+<rect fill="currentColor" height="24" width="4" x="196"></rect>
+</svg>
+<span class="font-mono-meta text-mono-meta font-bold text-ink">PRS-2025-003</span>
+</div>
+<div class="font-mono-meta text-mono-meta text-muted-ink uppercase tracking-wider flex flex-wrap gap-x-2">
+<span>14 wks</span>
+<span>·</span>
+<span>4 ppl</span>
+<span>·</span>
+<span>Go · PostgreSQL · Kafka</span>
+<span>·</span>
+<span class="text-curtain-red font-bold">−93%</span>
+</div>
+</div>
+</article>
+<!-- ACT II: SUPPORTING ACT (FESTIVAL DOOR) -->
+<article class="p-space-lg flex flex-col justify-between bg-surface-performance hover:bg-surface-bright transition-colors">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink">
+<span class="bg-sunken px-2 py-0.5 border border-line-soft font-bold text-ink">Supporting · Act II</span>
+<span>Ref: PRS-2025-002</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md items-center">
+<div class="sm:col-span-5 aspect-[16/9] bg-sunken overflow-hidden border-2 border-ink">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Technical architectural overhead blueprint of festival logistics warehouse, staging yard, truck circulation routes, and dock loading zones rendered with precision ink line drafting and cardboard tone paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKqvQwpAzBdcFqcaJMWUWGT7PWw0ZwlxT9KfC1fIqsd9fkohoW2VxLT5r1w2x0upFxxsEoTz1PCoYJM8bxK83155pXZtOvw7PuDgtS80xe--2yVAybdDv2qTYPxtbL-ri3Nfz0FzSEeG92eNPwD-192-88EUd3_XhDyrRoCF9IPJ6udS90cs6nnLmA8wLU2hX6a8NkbZpFpjbEhHKdUibVLLLADujH7ei74vkjj0f0DtsfL2ZQO6HJGg"/>
+</div>
+<div class="sm:col-span-7">
+<h3 class="font-headline-md text-headline-md text-ink uppercase tracking-tight">
+                    Festival Door
+                  </h3>
+<p class="font-body-sm text-body-sm text-muted-ink mt-1">
+                    Load-in: 3 h to 58 min for 61 trucks with zero street spillover.
+                  </p>
+<div class="mt-2 font-mono-label text-mono-label font-bold text-curtain-red">
+                    58 min load-in clearing (was 3 h 05)
+                  </div>
+</div>
+</div>
+</div>
+<!-- Barcode strip -->
+<div class="mt-space-md pt-space-xs border-t border-line-soft flex items-center justify-between font-mono-meta text-mono-meta text-muted-ink uppercase">
+<span>PRS-2025-002 · 26 wks · 12 ppl</span>
+<span class="font-bold text-ink">Airtable · Scanners · −69%</span>
+</div>
+</article>
+<!-- ACT III: SUPPORTING ACT (PICKUP POINT FINDER) -->
+<article class="p-space-lg flex flex-col justify-between bg-surface-performance hover:bg-surface-bright transition-colors">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink">
+<span class="bg-sunken px-2 py-0.5 border border-line-soft font-bold text-ink">Supporting · Act III</span>
+<span>Ref: PRS-2025-001</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-ink uppercase tracking-tight">
+                  Pickup Point Finder
+                </h3>
+<p class="font-body-sm text-body-sm text-muted-ink mt-1">
+                  Support contacts dropped −45% after routing UX restructured around caller mental models.
+                </p>
+</div>
+<div class="p-space-sm bg-sunken border border-ink flex items-baseline justify-between">
+<span class="font-mono-label text-mono-label uppercase text-ink">Support Contact Deflection</span>
+<span class="font-headline-sm text-headline-sm text-curtain-red font-bold">−45%</span>
+</div>
+</div>
+<!-- Barcode strip -->
+<div class="mt-space-md pt-space-xs border-t border-line-soft flex items-center justify-between font-mono-meta text-mono-meta text-muted-ink uppercase">
+<span>PRS-2025-001 · 11 wks · 3 ppl</span>
+<span class="font-bold text-ink">Figma · Amplitude · −45%</span>
+</div>
+</article>
+</div>
+<!-- ============================================ -->
+<!-- RIGHT COLUMN: BEHIND THE CURTAIN (PROCESS)   -->
+<!-- ============================================ -->
+<div class="relative flex flex-col divide-y-2 divide-ink bg-surface-backstage overflow-hidden">
+<!-- INTERACTIVE PLEATED DRAPE OVERLAY (CURTAIN) -->
+<div class="absolute inset-0 z-30 flex flex-col justify-between bg-curtain-red cursor-pointer transition-transform duration-700 ease-out shadow-2xl" id="curtain-drape" style="background-image: repeating-linear-gradient(90deg, #8E1B26, #8E1B26 54px, #78151f 54px, #78151f 56px);">
+<!-- Drape Upper Graphic / Callout -->
+<div class="p-space-lg lg:p-space-xl flex flex-col items-center justify-center text-center my-auto">
+<div class="w-16 h-16 rounded-full bg-ink border-2 border-curtain-text flex items-center justify-center mb-space-md shadow-lg">
+<span class="material-symbols-outlined text-curtain-text text-[32px]">theater_comedy</span>
+</div>
+<span class="font-mono-label text-mono-label text-curtain-text tracking-widest uppercase bg-ink/80 px-space-sm py-1 border border-curtain-text/40 mb-space-sm">
+                Curtain Down · Performance Active
+              </span>
+<p class="font-display-hero-mobile text-headline-lg-mobile lg:text-headline-md text-curtain-text uppercase max-w-sm">
+                Process is veiled behind the proscenium
+              </p>
+<p class="font-mono-meta text-mono-meta text-curtain-text/80 max-w-xs mt-space-sm">
+                Curtain down. Raise it with the toggle in the red bar above or click here to raise.
+              </p>
+<button class="mt-space-lg px-space-lg py-space-sm bg-ink text-curtain-text font-mono-label text-mono-label uppercase tracking-widest border-2 border-curtain-text hover:bg-curtain-hem transition-colors shadow-[3px_3px_0_0_#FFF7EC]" id="raise-curtain-btn" type="button">
+                ▲ Lift The Velvet Drape
+              </button>
+</div>
+<!-- Deep 12px Drapery Hem -->
+<div class="w-full h-3 bg-curtain-hem border-t-2 border-ink"></div>
+</div>
+<!-- ACT I BACKSTAGE CARD: LEDGER CUTOVER -->
+<div class="p-space-lg lg:p-space-xl flex flex-col justify-between bg-surface-backstage border-2 border-dashed border-ink m-2">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between border-b border-ink/40 pb-space-xs">
+<span class="font-mono-label text-mono-label uppercase text-ink font-bold">Backstage Manifest</span>
+<span class="font-mono-meta text-mono-meta bg-bg-backstage px-1.5 py-0.5 border border-ink text-ink font-bold">PRS-2025-003</span>
+</div>
+<!-- Problem & Turning Point Callouts -->
+<div class="space-y-space-sm">
+<div class="p-space-sm bg-bg-backstage border border-ink">
+<div class="font-mono-label text-[11px] uppercase tracking-wider text-curtain-red font-bold">[01 // PROBLEM]</div>
+<p class="font-mono-meta text-mono-meta text-ink mt-0.5 font-bold">
+                    A nightly batch was the only source of truth and paid twice 11x a quarter.
+                  </p>
+</div>
+<div class="p-space-sm bg-sunken border border-ink">
+<div class="font-mono-label text-[11px] uppercase tracking-wider text-ink font-bold">[02 // TURNING POINT]</div>
+<p class="font-mono-meta text-mono-meta text-ink mt-0.5">
+                    A shadow ledger ran beside the batch for six weeks before it could disagree out loud.
+                  </p>
+</div>
+</div>
+<!-- Metrics Summary Line -->
+<div class="font-mono-meta text-mono-meta uppercase tracking-wider text-muted-ink border-l-2 border-curtain-red pl-2">
+                6 steps · 3 constraints · 3 rejected options
+              </div>
+<!-- Step Chips Sequence -->
+<div class="space-y-1">
+<span class="font-mono-meta text-[10px] uppercase tracking-widest text-muted-ink">Step Index Run:</span>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">01 PRB</span>
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">02 CON</span>
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">03 HYP</span>
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">04 REJ</span>
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">05 IMP</span>
+<span class="px-2 py-1 bg-ink text-curtain-text font-mono-label text-[11px] font-bold">06 RES</span>
+<a class="px-2 py-1 bg-curtain-red text-curtain-text font-mono-label text-[11px] font-bold border border-ink hover:bg-curtain-hem transition-colors" href="#">TRAPDOOR 1</a>
+</div>
+</div>
+</div>
+<!-- Action Link -->
+<div class="mt-space-lg pt-space-sm border-t border-ink/40 flex items-center justify-between">
+<span class="font-mono-meta text-mono-meta text-muted-ink uppercase">Deconstructed Code &amp; Diffs</span>
+<a class="font-mono-label text-mono-label uppercase font-bold text-curtain-red hover:underline flex items-center gap-1" href="#">
+<span>Open Backstage</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- ACT II BACKSTAGE CARD: FESTIVAL DOOR -->
+<div class="p-space-lg flex flex-col justify-between bg-surface-backstage border-2 border-dashed border-ink m-2">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between border-b border-ink/40 pb-space-xs">
+<span class="font-mono-label text-mono-label uppercase text-ink font-bold">Backstage Manifest</span>
+<span class="font-mono-meta text-mono-meta bg-bg-backstage px-1.5 py-0.5 border border-ink text-ink font-bold">PRS-2025-002</span>
+</div>
+<div>
+<div class="font-mono-label text-[11px] uppercase tracking-wider text-curtain-red font-bold">[01 // PROBLEM]</div>
+<p class="font-mono-meta text-mono-meta text-ink mt-0.5">
+                  Sixty-one trucks arrived in the same three hours, queued on a public road, and the road authority was about to close the site.
+                </p>
+</div>
+<div>
+<div class="font-mono-label text-[11px] uppercase tracking-wider text-ink font-bold">[02 // TURNING POINT]</div>
+<p class="font-mono-meta text-mono-meta text-muted-ink mt-0.5">
+                  The dock was never the bottleneck; the gate was, and the gate was fixed with a holding field and a scanner.
+                </p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex gap-1 font-mono-label text-[10px]">
+<span class="bg-ink text-curtain-text px-1.5 py-0.5">01–06 STEPS</span>
+<span class="bg-bg-backstage border border-ink px-1.5 py-0.5">4 CONSTRAINTS</span>
+</div>
+<a class="font-mono-label text-mono-label uppercase font-bold text-curtain-red hover:underline" href="#">
+                  Open Backstage →
+                </a>
+</div>
+</div>
+</div>
+<!-- ACT III BACKSTAGE CARD: PICKUP POINT FINDER (PERFORMANCE-ONLY NOTICE) -->
+<div class="p-space-lg flex flex-col justify-between bg-surface-backstage border-2 border-dashed border-ink m-2">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between border-b border-ink/40 pb-space-xs">
+<span class="font-mono-label text-mono-label uppercase text-ink font-bold">Backstage Notice</span>
+<span class="font-mono-meta text-mono-meta bg-bg-backstage px-1.5 py-0.5 border border-ink text-ink font-bold">PRS-2025-001</span>
+</div>
+<div>
+<div class="font-mono-label text-[11px] uppercase tracking-wider text-muted-ink font-bold">[BRIEF]</div>
+<p class="font-mono-meta text-mono-meta text-ink mt-0.5">
+                  People could not tell which pickup point held their parcel, so they wrote to support instead.
+                </p>
+</div>
+<div class="p-space-sm bg-sunken border border-ink text-center">
+<p class="font-mono-meta text-mono-meta text-muted-ink uppercase">Walkthrough on request.</p>
+<a class="inline-block mt-2 px-space-md py-1 bg-ink text-curtain-text font-mono-label text-mono-label uppercase tracking-widest border border-ink hover:bg-curtain-red transition-colors" href="mailto:hello@prestige-demo.example.org?subject=Walkthrough%20Request:%20Pickup%20Point%20Finder">
+                  [ Ask for it → ]
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRAPDOOR FAILURE REPORTING STRIP -->
+<section class="w-full my-space-lg border-2 border-ink bg-surface-performance shadow-[4px_4px_0_0_#14100D] overflow-hidden">
+<!-- Repeating 135deg diagonal hazard edge detailing -->
+<div class="w-full h-3 bg-sunken" style="background-image: repeating-linear-gradient(135deg, #14100D, #14100D 8px, transparent 8px, transparent 16px);"></div>
+<div class="p-space-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="font-mono-label text-mono-label bg-curtain-red text-curtain-text px-2 py-1 font-bold">
+          ///// TRAPDOOR TD-001
+        </span>
+<span class="font-headline-sm text-headline-sm text-ink">
+          The cohort that posted twice
+        </span>
+<span class="font-mono-meta text-mono-meta uppercase tracking-wider bg-sunken px-2 py-0.5 border border-line-soft font-bold">
+          Severity: MINOR ■□□
+        </span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-mono-meta text-mono-meta uppercase text-muted-ink">Cost: 3 h lost</span>
+<a class="px-space-md py-1 bg-ink text-curtain-text font-mono-label text-mono-label uppercase tracking-widest hover:bg-curtain-red transition-colors inline-flex items-center gap-1" data-path="trapdoor" href="#">
+<span>Read the report</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- STAGE MANAGER'S CLOSING ACCORD (Used for portfolios n <= 3) -->
+<section class="w-full my-space-lg p-space-lg lg:p-space-xl bg-sunken border-2 border-ink flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg">
+<div class="max-w-2xl space-y-space-xs">
+<span class="font-mono-meta text-mono-meta uppercase tracking-widest text-muted-ink">[STAGE MANAGER'S NOTE]</span>
+<h3 class="font-headline-md text-headline-md text-ink uppercase">
+        I am called in when a system is correct on paper and wrong on the day.
+      </h3>
+<p class="font-body-md text-body-md text-muted-ink">
+        Looking for zero-downtime cutover orchestration, high-concurrency event admission, or architecture reviews? Backstage is one toggle away.
+      </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-sm shrink-0">
+<a class="px-space-md py-space-sm bg-surface-performance text-ink border-2 border-ink font-mono-label text-mono-label uppercase tracking-widest text-center hover:bg-ink hover:text-curtain-text transition-colors" data-path="about" href="#">
+        Read Method &amp; About
+      </a>
+<a class="px-space-md py-space-sm bg-curtain-red text-curtain-text border-2 border-ink font-mono-label text-mono-label uppercase tracking-widest text-center hover:bg-curtain-hem transition-colors shadow-[2px_2px_0_0_#14100D]" href="mailto:hello@prestige-demo.example.org">
+        Inquire Availability
+      </a>
+</div>
+</section>
+<!-- INTERACTION SCRIPT FOR CURTAIN TOGGLE -->
+<script>
+    (function() {
+      const drape = document.getElementById('curtain-drape');
+      const raiseBtn = document.getElementById('raise-curtain-btn');
+      const valanceButtons = document.querySelectorAll('[aria-label="Stage Layer Toggle"] button');
+      let isBackstageOpen = false;
+
+      function updateCurtain(open) {
+        isBackstageOpen = open;
+        if (open) {
+          drape.style.transform = 'translateY(-100%)';
+          if (valanceButtons.length >= 2) {
+            valanceButtons[0].classList.replace('bg-ink', 'bg-transparent');
+            valanceButtons[0].classList.replace('text-curtain-text', 'text-curtain-text/70');
+            valanceButtons[0].querySelector('span').classList.remove('bg-curtain-red', 'border-curtain-text');
+            valanceButtons[0].querySelector('span').classList.add('border-curtain-text/60');
+
+            valanceButtons[1].classList.replace('bg-transparent', 'bg-ink');
+            valanceButtons[1].classList.replace('text-curtain-text/70', 'text-curtain-text');
+            valanceButtons[1].querySelector('span').classList.add('bg-curtain-red', 'border-curtain-text');
+            valanceButtons[1].querySelector('span').classList.remove('border-curtain-text/60');
+          }
+        } else {
+          drape.style.transform = 'translateY(0%)';
+          if (valanceButtons.length >= 2) {
+            valanceButtons[1].classList.replace('bg-ink', 'bg-transparent');
+            valanceButtons[1].classList.replace('text-curtain-text', 'text-curtain-text/70');
+            valanceButtons[1].querySelector('span').classList.remove('bg-curtain-red', 'border-curtain-text');
+            valanceButtons[1].querySelector('span').classList.add('border-curtain-text/60');
+
+            valanceButtons[0].classList.replace('bg-transparent', 'bg-ink');
+            valanceButtons[0].classList.replace('text-curtain-text/70', 'text-curtain-text');
+            valanceButtons[0].querySelector('span').classList.add('bg-curtain-red', 'border-curtain-text');
+            valanceButtons[0].querySelector('span').classList.remove('border-curtain-text/60');
+          }
+        }
+      }
+
+      if (raiseBtn) {
+        raiseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          updateCurtain(true);
+        });
+      }
+
+      if (drape) {
+        drape.addEventListener('click', function() {
+          updateCurtain(true);
+        });
+      }
+
+      if (valanceButtons.length >= 2) {
+        valanceButtons[0].addEventListener('click', function() { updateCurtain(false); });
+        valanceButtons[1].addEventListener('click', function() { updateCurtain(true); });
+      }
+    })();
+  </script>
+</div></main><div class="w-full h-3 bg-curtain-red border-y-[2px] border-ink"></div><footer class="w-full bg-surface-backstage border-t-[3px] border-ink"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin py-space-xl grid grid-cols-1 md:grid-cols-3 gap-space-xl"><div class="flex flex-col gap-space-sm border-b md:border-b-0 md:border-r border-line-soft pb-space-lg md:pb-0 md:pr-space-lg"><div class="font-mono-label text-mono-label uppercase tracking-widest text-muted-ink">[01 // CONTACT &amp; STATUS]</div><div class="font-headline-sm text-headline-sm text-ink">Tomás Reyes</div><p class="font-mono-meta text-mono-meta text-muted-ink uppercase">Booking from March 2027</p><a class="font-mono-label text-mono-label underline hover:text-primary transition-colors text-ink" href="mailto:hello@prestige-demo.example.org">hello@prestige-demo.example.org</a><div class="pt-space-sm flex gap-space-md font-mono-meta text-mono-meta"><a class="underline text-muted-ink hover:text-ink uppercase" href="#">Code Repositories</a><a class="underline text-muted-ink hover:text-ink uppercase" href="#">Write-ups</a></div></div><div class="flex flex-col gap-space-sm border-b md:border-b-0 md:border-r border-line-soft pb-space-lg md:pb-0 md:pr-space-lg"><div class="font-mono-label text-mono-label uppercase tracking-widest text-muted-ink">[02 // BROWSE]</div><nav class="flex flex-col gap-space-xs font-mono-label text-mono-label uppercase"><a class="text-ink hover:text-primary transition-colors py-0.5" data-path="work" href="#">→ Act I: Primary Works</a><a class="text-ink hover:text-primary transition-colors py-0.5" data-path="trapdoor" href="#">→ Act II: Trapdoors &amp; Postmortems</a><a class="text-ink hover:text-primary transition-colors py-0.5" data-path="about" href="#">→ Act III: Backstage &amp; About</a><a class="text-muted-ink hover:text-ink transition-colors py-0.5" href="#">→ Syndication / RSS Feed</a></nav></div><div class="flex flex-col justify-between gap-space-md"><div class="space-y-space-sm"><div class="font-mono-label text-mono-label uppercase tracking-widest text-muted-ink">[03 // SCHEME SWITCHER]</div><div class="inline-flex border-2 border-ink bg-sunken p-0.5"><button class="px-space-sm py-1 font-mono-meta text-mono-meta uppercase bg-ink text-curtain-text" type="button">Auto</button><button class="px-space-sm py-1 font-mono-meta text-mono-meta uppercase text-muted-ink hover:text-ink" type="button">Light</button><button class="px-space-sm py-1 font-mono-meta text-mono-meta uppercase text-muted-ink hover:text-ink" type="button">Dark</button></div></div><div class="border-t border-line-soft pt-space-md"><div class="font-mono-meta text-mono-meta text-muted-ink leading-relaxed uppercase">Colophon: Built with Prestige Portfolio Architecture.<br/>© Tomás Reyes. Set in Domine, Space Mono &amp; Libre Franklin.</div></div></div></div></footer></body></html>
