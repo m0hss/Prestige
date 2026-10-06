@@ -1,11 +1,16 @@
 baseURL      = "https://prestige-demo.example.org/"
 locale       = "en"
 title        = "Tomás Reyes"
-theme        = "prestige"
 enableRobotsTXT = true
 
-[module.hugoVersion]
-  min = "0.146.0"
+# The theme is this repository, imported as a Hugo Module and resolved from the local
+# checkout, so `cd exampleSite && hugo server` works whatever the folder is called.
+[module]
+  replacements = "github.com/m0hss/Prestige -> ../.."
+  [module.hugoVersion]
+    min = "0.146.0"
+  [[module.imports]]
+    path = "github.com/m0hss/Prestige"
 
 [taxonomies]
   discipline = "disciplines"

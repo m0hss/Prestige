@@ -23,7 +23,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-The repository's `.claude/launch.json` starts `hugo server -D` on port 1313 when launched from a Hugo site. To work on the theme itself, build `exampleSite/` with the theme symlinked as `prestige` in a themes directory (see README, Development), and run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
+The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
 
 ## Content vocabulary
 
@@ -41,7 +41,7 @@ Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shor
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 
-Theme author and repository/demo URLs in `theme.toml` and the README are provisional FixByte Studio placeholders. Replace them when verified project details are provided.
+The module path and repository URLs are `github.com/m0hss/Prestige`. The `demosite` URL and author details in `theme.toml` are provisional FixByte Studio placeholders; replace them when verified project details are provided.
 
 ## Safety and accuracy
 

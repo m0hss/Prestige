@@ -2,11 +2,11 @@
 
 A Hugo theme for case-study portfolios: every project is shown as its polished result (**Performance**) and as a numbered account of how it was made (**Backstage**), with failures filed in their own section (**Trapdoor**).
 
-![Prestige: the split-stage homepage with the curtain caught mid-raise](https://raw.githubusercontent.com/fixbyte-studio/hugo-theme-prestige/main/images/screenshot.png)
+![Prestige: the split-stage homepage with the curtain caught mid-raise](https://raw.githubusercontent.com/m0hss/Prestige/master/images/screenshot.png)
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
 
-> The repository and demo URLs are provisional and will change when the theme is published. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
+> The demo URL in `theme.toml` is provisional until a demo is deployed. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
 
 ## Requirements
 
@@ -23,13 +23,13 @@ hugo mod init github.com/you/your-site
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/fixbyte-studio/hugo-theme-prestige"
+    path = "github.com/m0hss/Prestige"
 ```
 
 Or as a git submodule:
 
 ```bash
-git submodule add https://github.com/fixbyte-studio/hugo-theme-prestige.git themes/prestige
+git submodule add https://github.com/m0hss/Prestige.git themes/prestige
 ```
 
 ```toml
@@ -201,11 +201,12 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 `exampleSite/` is a demo for a fictional person; every name, client, figure and failure in it is invented, and its images are original illustrations dedicated to the public domain (CC0).
 
 ```bash
-mkdir -p /tmp/themes && ln -s "$PWD" /tmp/themes/prestige
-hugo server --source exampleSite --themesDir /tmp/themes
-tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
+cd exampleSite && hugo server     # http://localhost:1313/
+cd .. && tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
 node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and ImageMagick)
 ```
+
+The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
 
 The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md).
 

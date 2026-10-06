@@ -15,11 +15,8 @@ import { fileURLToPath } from "node:url";
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "prestige-shots-"));
-const themes = path.join(tmp, "themes");
 const out = path.join(tmp, "public");
-fs.mkdirSync(themes);
-fs.symlinkSync(repo, path.join(themes, "prestige"));
-execFileSync(process.env.HUGO || "hugo", ["--source", path.join(repo, "exampleSite"), "--themesDir", themes, "--destination", out, "--baseURL", "/"], { stdio: "inherit" });
+execFileSync(process.env.HUGO || "hugo", ["--source", path.join(repo, "exampleSite"), "--destination", out, "--baseURL", "/"], { stdio: "inherit" });
 
 const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".woff2": "font/woff2", ".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" };
 const server = http.createServer((req, res) => {

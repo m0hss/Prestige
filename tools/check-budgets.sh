@@ -10,14 +10,13 @@ CSS_CAP=51200
 JS_CAP=30720
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
-mkdir -p "$TMP/themes" && ln -s "$REPO" "$TMP/themes/prestige"
 fail=0
 
 src=$(cat "$REPO"/assets/css/*.css "$REPO"/assets/css/*/*.css | wc -c | tr -d ' ')
 echo "CSS source (all files):      $src bytes (cap $CSS_CAP)"
 [ "$src" -le "$CSS_CAP" ] || fail=1
 
-build() { "$HUGO" --quiet --source "$REPO/exampleSite" --themesDir "$TMP/themes" --destination "$1" --baseURL / "$2"; }
+build() { "$HUGO" --quiet --source "$REPO/exampleSite" --destination "$1" --baseURL / "$2"; }
 build "$TMP/min" --minify
 for f in "$TMP"/min/css/*.css; do
   n=$(wc -c < "$f" | tr -d ' ')
