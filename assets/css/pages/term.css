@@ -1,4 +1,3 @@
 .term-head__counts{margin-top:var(--space-3)}
 .term-index{list-style:none;padding:0;display:grid;gap:var(--space-2)}
 .term-index a{display:inline-flex;align-items:center;min-height:var(--target);font-size:var(--t-heading)}
-.term-back{margin-top:var(--space-6)}

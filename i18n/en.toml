@@ -67,8 +67,8 @@ more_about = "More about how I work"
 draft = "Draft"
 
 # Case study
-back_to_work = "Work"
 backstage_title = "Backstage: {{ .Title }}"
+backstage_headline = "Here is how each result was made."
 layer_divider = "Backstage: how it was made"
 how_measured = "How this was measured"
 step_short = "step {{ .N }}"

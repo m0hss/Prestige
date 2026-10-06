@@ -12,6 +12,9 @@ a{color:var(--color-accent);text-decoration:underline;text-decoration-thickness:
 a:active{position:relative;top:1px}
 /* Arrows are drawn, not typed: none of the bundled fonts has ← → ↗, so the glyphs fell back to a system font that sat low and small. */
 :root{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 7h10V3l5 5-5 5V9H1z'/%3E%3C/svg%3E")}
+.title-b{display:none}
+html.js[data-mode=backstage] .title-p{display:none}
+html.js[data-mode=backstage] .title-b{display:inline}
 .arrow{display:inline-block;flex:none;width:1em;height:1em;vertical-align:-.125em;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
 .arrow--left{transform:scaleX(-1)}
 .arrow--ne{width:.9em;height:.9em;margin-inline-start:.2em;transform:rotate(-45deg)}

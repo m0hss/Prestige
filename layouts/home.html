@@ -4,7 +4,7 @@
   {{- $failures := (where site.RegularPages "Section" "trapdoor").ByDate.Reverse }}
 <div class="intro container">
   <div class="intro__main">
-    <h1 class="intro__headline">{{ .Params.headline | default site.Title }}</h1>
+    <h1 class="intro__headline"><span class="title-p">{{ .Params.headline | default site.Title }}</span><span class="title-b">{{ .Params.backstage_headline | default (i18n "backstage_headline") }}</span></h1>
     {{- with .Params.lede }}<p class="intro__lede t-body-l">{{ . }}</p>{{ end }}
     {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
     <p class="intro__keyline label"><span><span class="key__sw" data-mode="performance"></span> {{ i18n "key_front_short" }}</span> <span><span class="key__sw" data-mode="backstage"></span> {{ i18n "key_back_short" }}</span></p>
