@@ -1,0 +1,19 @@
+# Builds exampleSite/ against this checkout of the theme and deploys it to Netlify.
+# exampleSite/hugo.toml imports the theme as a module replaced by ../.., so every
+# build, production or preview, uses the same commit's theme. Its placeholder
+# baseURL is overridden with the URL Netlify gives each deploy.
+[build]
+  base    = "exampleSite"
+  publish = "public"
+  command = "hugo --gc --minify --baseURL \"$URL/\""
+
+[build.environment]
+  HUGO_VERSION     = "0.151.0"
+  HUGO_ENVIRONMENT = "production"
+  TZ               = "UTC"
+
+[context.deploy-preview]
+  command = "hugo --gc --minify --baseURL \"$DEPLOY_PRIME_URL/\""
+
+[context.branch-deploy]
+  command = "hugo --gc --minify --baseURL \"$DEPLOY_PRIME_URL/\""
