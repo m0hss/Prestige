@@ -23,7 +23,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
+The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes). CI (`.github/workflows/ci.yml`) runs that script and an `--panicOnWarning` build of `exampleSite/` on Hugo 0.146.0, 0.151.0 and latest, plus `tools/check-a11y.mjs` (axe, WCAG 2.2 AA) on the built pages.
 
 ## Content vocabulary
 

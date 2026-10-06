@@ -1,0 +1,82 @@
+name: CI
+
+# Builds exampleSite against this checkout of the theme (exampleSite/hugo.toml imports
+# the repository as a module replaced by ../..) on the minimum supported Hugo, the version
+# Netlify deploys (netlify.toml) and the latest release, then runs axe on the built pages.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TZ: UTC
+
+jobs:
+  build:
+    name: Hugo ${{ matrix.hugo }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 0.146.0 is `min_version` in theme.toml; 0.151.0 is HUGO_VERSION in netlify.toml.
+        hugo: ["0.146.0", "0.151.0", "latest"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Hugo extended
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ matrix.hugo }}
+          extended: true
+
+      - name: Show Hugo version
+        run: hugo version
+
+      # Spec 11.5: CSS <= 51,200 bytes, JS <= 30,720 bytes. Builds the site itself.
+      - name: Size budgets
+        run: tools/check-budgets.sh
+
+      # Spec 14: zero warnings and zero errors, so any warning stops the build.
+      - name: Build exampleSite
+        run: hugo --source exampleSite --destination "$RUNNER_TEMP/public" --gc --minify --baseURL / --panicOnWarning
+
+  axe:
+    name: axe (Hugo 0.151.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The version Netlify deploys the demo with, so axe checks what visitors get.
+      - name: Install Hugo extended
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.151.0"
+          extended: true
+
+      - name: Build exampleSite
+        run: hugo --source exampleSite --destination "$RUNNER_TEMP/public" --gc --minify --baseURL / --panicOnWarning
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install axe and Chromium
+        working-directory: tools
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      # Spec 10.8 and 14.10: each page type in both modes and both schemes, zero violations.
+      - name: axe on the built pages
+        run: node tools/check-a11y.mjs "$RUNNER_TEMP/public"

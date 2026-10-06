@@ -10,7 +10,7 @@ A Hugo theme for case-study portfolios: every project is shown as its polished r
 
 ## Requirements
 
-Hugo **extended 0.146.0 or later**. Builds are tested on 0.146.0 and 0.167.0. On Hugo 0.158 and later the stylesheet is bundled with `css.Build`; on older releases the theme assembles the same bundle itself.
+Hugo **extended 0.146.0 or later**. CI builds the example site on 0.146.0, 0.151.0 and the latest release. On Hugo 0.158 and later the stylesheet is bundled with `css.Build`; on older releases the theme assembles the same bundle itself.
 
 ## Installation
 
@@ -207,7 +207,11 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 cd exampleSite && hugo server     # http://localhost:1313/
 cd .. && tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
 node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and ImageMagick)
+(cd tools && npm ci && npx playwright install chromium)   # once, for the axe check
+hugo --source exampleSite --destination /tmp/prestige --baseURL / && node tools/check-a11y.mjs /tmp/prestige
 ```
+
+`.github/workflows/ci.yml` runs on every push to `master` and every pull request. For Hugo 0.146.0, 0.151.0 and the latest release it runs `tools/check-budgets.sh` and builds `exampleSite/` with `--panicOnWarning`. It then builds on 0.151.0 (the version `netlify.toml` deploys) and runs `tools/check-a11y.mjs`: axe-core against the WCAG 2.2 A and AA rules on the homepage, both lists, a case study, a failure report, About, a taxonomy page, a term page and the 404, each in both modes and both schemes. Pass `--best-practice` to add axe's advisory best-practice rules.
 
 The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
 
