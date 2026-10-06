@@ -6,7 +6,9 @@ A Hugo theme for case-study portfolios: every project is shown as its polished r
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
 
-> The demo URL in `theme.toml` is provisional until a demo is deployed. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
+**Demo:** <https://m0hss.github.io/Prestige/>
+
+> The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
 
 ## Requirements
 
@@ -207,6 +209,8 @@ node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and Ima
 ```
 
 The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
+
+The demo is published to GitHub Pages by `.github/workflows/pages.yml` on every push to `master`. It builds `exampleSite/` against the same commit's theme and overrides the demo's placeholder `baseURL` with the Pages URL. The repository's Pages source must be set to **GitHub Actions** (Settings → Pages).
 
 The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md).
 

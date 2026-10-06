@@ -41,7 +41,7 @@ Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shor
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 
-The module path and repository URLs are `github.com/m0hss/Prestige`. The `demosite` URL and author details in `theme.toml` are provisional FixByte Studio placeholders; replace them when verified project details are provided.
+The module path and repository URLs are `github.com/m0hss/Prestige`. The `demosite` in `theme.toml` is the GitHub Pages demo at `https://m0hss.github.io/Prestige/`, deployed by `.github/workflows/pages.yml`. The author details there are provisional FixByte Studio placeholders; replace them when verified project details are provided.
 
 ## Safety and accuracy
 
