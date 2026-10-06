@@ -37,7 +37,7 @@ See the `issue-to-case-study` and `incident-to-trapdoor` skills in `.claude/skil
 
 ## Implementation notes
 
-Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shortcodes/`, `layouts/_markup/`). Every user-visible string lives in `i18n/en.toml`. Only `assets/css/tokens.css` may contain colour values. Both modes share one size scale (the Backstage values in `tokens.css`): a mode changes typeface, colour, border style, radius and shadow, never a size. Do not size `:root` by mode, and write font-relative widths in `em`, not `ch`. Content is never put in JavaScript, and nothing is hidden except under `html.js` gating.
+Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shortcodes/`, `layouts/_markup/`). Every user-visible string lives in `i18n/en.toml`. Only `assets/css/tokens.css` may contain colour values. Both modes share one size scale (the Backstage values in `tokens.css`): a mode changes colour, border style, radius and shadow, never a typeface or a size (Backstage uses the Performance type: same families, weights, line heights and tracking). Do not size `:root` by mode, and write font-relative widths in `em`, not `ch`. Content is never put in JavaScript, and nothing is hidden except under `html.js` gating.
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 

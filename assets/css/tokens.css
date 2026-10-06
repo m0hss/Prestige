@@ -146,10 +146,18 @@
   @media (min-width: 60rem) { :root { --gutter: 2rem; } }
   @media (min-width: 80rem) { :root { --gutter: 2.5rem; } }
 
-  /* ---------- Size scale: one scale for both modes ---------- */
-  /* Switching mode changes typeface, colour, border style, radius and shadow, never size. */
+  /* ---------- Type and size scale: one for both modes ---------- */
+  /* Switching mode changes colour, border style, radius and shadow, never typeface or size. */
   :root,
   [data-mode] {
+    --font-display: var(--ff-slab);
+    --font-heading: var(--ff-sans);
+    --font-body: var(--ff-sans);
+    --font-label: var(--ff-mono);
+    --fw-display: 400;
+    --fw-heading: 800;
+    --fw-body: 400;
+    --track-display: -0.005em;
     --lh-display: 1.12;
     --lh-heading: 1.3;
     --lh-body: 1.65;
@@ -163,7 +171,7 @@
     --t-code: 0.9375rem;
     --t-metric-xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
     --t-metric-l: clamp(2rem, 1.4rem + 2vw, 2.75rem);
-    --measure: 43.2em; /* 72ch of IBM Plex Mono, so the column is the same width in both typefaces */
+    --measure: 43.2em; /* 72ch of IBM Plex Mono */
     --elev-0: none;
     --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
   }
@@ -171,14 +179,6 @@
   /* ---------- Mode: Performance ---------- */
   :root,
   [data-mode="performance"] {
-    --font-display: var(--ff-slab);
-    --font-heading: var(--ff-sans);
-    --font-body: var(--ff-sans);
-    --font-label: var(--ff-mono);
-    --fw-display: 400;
-    --fw-heading: 800;
-    --fw-body: 400;
-    --track-display: -0.005em;
     --radius: 0;
     --card-border: var(--bw-2) solid var(--color-line);
     --elev-1: 3px 3px 0 0 var(--color-shadow);
@@ -187,14 +187,6 @@
 
   /* ---------- Mode: Backstage ---------- */
   [data-mode="backstage"] {
-    --font-display: var(--ff-mono);
-    --font-heading: var(--ff-mono);
-    --font-body: var(--ff-mono);
-    --font-label: var(--ff-mono);
-    --fw-display: 700;
-    --fw-heading: 700;
-    --fw-body: 400;
-    --track-display: -0.02em;
     --radius: 4px;
     --card-border: var(--bw-2) dashed var(--color-line);
     --elev-1: none;
