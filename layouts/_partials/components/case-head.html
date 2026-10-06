@@ -1,5 +1,6 @@
 {{- /* Case-study head (5.2): back link, discipline chips, meta line, H1, summary. Context: page. */ -}}
 {{- $work := site.GetPage "/work" -}}
+{{- $has := gt (len (partial "lib/steps.html" .)) 0 -}}
 <header class="case-head container">
   <div class="case-head__top">
     {{- with $work }}
@@ -14,6 +15,10 @@
       {{- with .Params.client }}{{ . }} · {{ end }}{{ .Params.role }} · <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Year }}</time>
     </p>
   </div>
+  {{- if $has }}
+  <h1 class="case-head__title"><span class="case-head__title-p">{{ .Title }}</span><span class="case-head__title-b">{{ with .Params.backstage_title }}{{ . }}{{ else }}{{ i18n "backstage_title" (dict "Title" $.Title) }}{{ end }}</span></h1>
+  {{- else }}
   <h1 class="case-head__title">{{ .Title }}</h1>
+  {{- end }}
   <p class="case-head__summary t-body-l">{{ .Params.summary }}</p>
 </header>
