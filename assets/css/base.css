@@ -1,6 +1,6 @@
 html{scroll-padding-top:4rem;scroll-behavior:auto;background:var(--color-bg)}
 body,[data-mode]:not(:root){color:var(--color-fg);font-family:var(--font-body);font-weight:var(--fw-body);font-size:var(--t-body);line-height:var(--lh-body)}
-body{background:var(--color-bg);min-height:100vh;display:flex;flex-direction:column;font-kerning:normal}
+body{overflow-x:clip;background:var(--color-bg);min-height:100vh;display:flex;flex-direction:column;font-kerning:normal}
 main{flex:1 0 auto;outline:0}
 h1,h2,h3,h4{font-family:var(--font-heading);font-weight:var(--fw-heading);line-height:var(--lh-heading);font-size:var(--t-heading)}
 h1,.t-display-xl{font-family:var(--font-display);font-weight:var(--fw-display);font-size:var(--t-display-xl);line-height:var(--lh-display);letter-spacing:var(--track-display)}

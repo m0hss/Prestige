@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $pag := .Paginate .Pages.ByWeight }}
+{{- $pag := .Paginate (partial "lib/cases.html" .) }}
 <div class="container list-page">
   <header class="page-head">
     <h1>{{ .Title }}</h1>

@@ -27,7 +27,8 @@
 .figure img,.case__cover img,.ba__pane img{width:100%;background:var(--color-sunken);color:var(--color-fg-muted)}
 .figure__caption,.ba__caption{display:block;margin-top:var(--space-2);font-size:.9375rem;color:var(--color-fg-muted)}
 .prose .figure--wide,.prose .figure--bleed{max-width:none}
-.figure--bleed{width:100vw;margin-inline:calc(50% - 50vw)}
+/* Full-viewport figure: pull back to the viewport edge from wherever the container content starts. */
+.figure--bleed{width:100vw;margin-inline:calc(-1 * (max(0px,(100vw - var(--container) - 2 * var(--gutter)) / 2) + var(--gutter))) 0}
 .code,.table-scroll{margin-block:var(--space-5)}
 .code__title{margin-bottom:var(--space-2)}
 .code__scroll,.table-scroll{overflow-x:auto;border:var(--card-border);border-radius:var(--radius)}
