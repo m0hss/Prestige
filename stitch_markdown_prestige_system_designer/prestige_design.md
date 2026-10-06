@@ -605,7 +605,7 @@ enableRobotsTXT = true
     availability = "Booking from March 2027"
     [[params.contact.links]]
       label = "Code"
-      url = "https://github.com/prestige-demo"
+      url = "https://github.com/m0hss/Prestige"
     [[params.contact.links]]
       label = "Write-ups"
       url = "https://prestige-demo.example.org/writeups/"
@@ -1526,20 +1526,22 @@ The label face is identical in both modes on purpose: it is the printer on the s
 
 **Scale** (fluid values are `clamp(min, preferred, max)`; the preferred part scales between 360 and about 1015 px of viewport)
 
-| Role | Token | Performance | Backstage | Used for |
-|---|---|---|---|---|
-| Display XL | `--t-display-xl` | `clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem)` (40 → 72 px), lh 1.04, tracking −0.005 em | `clamp(1.75rem, 1rem + 2.6vw, 2.75rem)` (28 → 44 px), lh 1.12, tracking −0.02 em | H1 |
-| Display L | `--t-display-l` | `clamp(1.75rem, 1.1rem + 2vw, 2.5rem)` (28 → 40 px), lh 1.1 | `clamp(1.375rem, 1rem + 1.2vw, 1.75rem)` (22 → 28 px), lh 1.2 | H2 |
-| Heading | `--t-heading` | 1.375 rem (22 px), lh 1.2 | 1.125 rem (18 px), lh 1.3 | H3, step titles |
-| Body large | `--t-body-l` | 1.3125 rem (21 px), lh 1.5 | 1.125 rem (18 px), lh 1.55 | Lede, summary |
-| Body | `--t-body` | 1.125 rem (18 px), lh 1.6 | 1 rem (16 px), lh 1.65 | Running text |
-| Body small | `--t-body-s` | 0.9375 rem (15 px), lh 1.5 | 0.875 rem (14 px), lh 1.55 | Captions, context |
-| Label | `--t-label` | 0.8125 rem (13 px), lh 1.3 | 0.8125 rem (13 px), lh 1.3 | Chips, field labels, step codes, nav |
-| Metric XL | `--t-metric-xl` | `clamp(3rem, 1.8rem + 5vw, 6rem)` (48 → 96 px), lh 1 | `clamp(2.5rem, 1.5rem + 4vw, 4.5rem)` (40 → 72 px), lh 1 | First result metric |
-| Metric L | `--t-metric-l` | `clamp(2.25rem, 1.5rem + 2.4vw, 3.25rem)` (36 → 52 px), lh 1 | `clamp(2rem, 1.4rem + 2vw, 2.75rem)` (32 → 44 px), lh 1 | Other metrics |
-| Code | `--t-code` | 0.9375 rem (15 px), lh 1.55 | 0.9375 rem (15 px), lh 1.55 | Code blocks, inline code |
+| Role | Token | Both modes | Used for |
+|---|---|---|---|
+| Display XL | `--t-display-xl` | `clamp(1.75rem, 1rem + 2.6vw, 2.75rem)` (28 → 44 px), lh 1.12 | H1 |
+| Display L | `--t-display-l` | `clamp(1.375rem, 1rem + 1.2vw, 1.75rem)` (22 → 28 px), lh 1.12 | H2 |
+| Heading | `--t-heading` | 1.125 rem (18 px), lh 1.3 | H3, step titles |
+| Body large | `--t-body-l` | 1.125 rem (18 px), lh 1.5 | Lede, summary |
+| Body | `--t-body` | 1 rem (16 px), lh 1.65 | Running text |
+| Body small | `--t-body-s` | 0.875 rem (14 px), lh 1.5 | Captions, context |
+| Label | `--t-label` | 0.8125 rem (13 px), lh 1.3 | Chips, field labels, step codes, nav |
+| Metric XL | `--t-metric-xl` | `clamp(2.5rem, 1.5rem + 4vw, 4.5rem)` (40 → 72 px), lh 1 | First result metric |
+| Metric L | `--t-metric-l` | `clamp(2rem, 1.4rem + 2vw, 2.75rem)` (32 → 44 px), lh 1 | Other metrics |
+| Code | `--t-code` | 0.9375 rem (15 px), lh 1.55 | Code blocks, inline code |
 
-- Measure: 66 ch in Performance, 72 ch in Backstage; both land near 680 to 690 px, so switching mode does not reflow columns.
+**One size scale (revised 2026-10-06).** Both modes use the Backstage scale above, so switching mode never changes the size of anything: type, line heights, measure, container and border widths stay put. A mode changes typeface, weight, tracking, colour, border style, radius and shadow only. The root font size is never set by mode (`[data-mode]` sizing excludes `:root`), so `rem` values are identical in both modes. Widths that would depend on a typeface's `ch` are written in `em` (0.6 em = 1 ch of IBM Plex Mono).
+
+- Measure: `43.2em` in both modes (72 ch of IBM Plex Mono, about 690 px of body text), so switching mode does not change the column width.
 - Numerals in metrics, barcode cells, refs and tables use `font-variant-numeric: tabular-nums`.
 - No text below 13 px; no italic body text; emphasis is weight, not italic.
 - Text spacing overrides (WCAG 1.4.12) must not break layout: no fixed heights on text containers; step headers use `min-height`, never `height`.
@@ -1571,7 +1573,7 @@ Block rhythm: `--space-7` below 960 px, `--space-8` from 960 px.
 | `--bw-2` | 2 px | Backstage panel borders, underlines, error panels |
 | `--bw-3` | 3 px | Performance card borders, focus ring, current-page underline |
 | `--bw-4` | 4 px | Diff gutter border, hazard-strip edge |
-| `--card-border` (Performance) | `3px solid var(--color-line)` | Stage faces, metric blocks, result block |
+| `--card-border` (Performance) | `2px solid var(--color-line)` | Stage faces, metric blocks, result block |
 | `--card-border` (Backstage) | `2px dashed var(--color-line)` | Steps, labels, panels (a perforated label edge) |
 | `--radius` (Performance) | `0` | Printed bills have square corners |
 | `--radius` (Backstage) | `4px` | Labels have slightly softened corners |
@@ -1803,49 +1805,10 @@ Media queries cannot read custom properties, so the stylesheet uses the literal 
   @media (min-width: 60rem) { :root { --gutter: 2rem; } }
   @media (min-width: 80rem) { :root { --gutter: 2.5rem; } }
 
-  /* ---------- Mode: Performance ---------- */
+  /* ---------- Size scale: one scale for both modes ---------- */
+  /* Switching mode changes typeface, colour, border style, radius and shadow, never size. */
   :root,
-  [data-mode="performance"] {
-    --font-display: var(--ff-slab);
-    --font-heading: var(--ff-sans);
-    --font-body: var(--ff-sans);
-    --font-label: var(--ff-mono);
-    --fw-display: 400;
-    --fw-heading: 800;
-    --fw-body: 400;
-    --track-display: -0.005em;
-    --lh-display: 1.04;
-    --lh-heading: 1.2;
-    --lh-body: 1.6;
-    --t-display-xl: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem);
-    --t-display-l: clamp(1.75rem, 1.1rem + 2vw, 2.5rem);
-    --t-heading: 1.375rem;
-    --t-body-l: 1.3125rem;
-    --t-body: 1.125rem;
-    --t-body-s: 0.9375rem;
-    --t-label: 0.8125rem;
-    --t-code: 0.9375rem;
-    --t-metric-xl: clamp(3rem, 1.8rem + 5vw, 6rem);
-    --t-metric-l: clamp(2.25rem, 1.5rem + 2.4vw, 3.25rem);
-    --measure: 66ch;
-    --radius: 0;
-    --card-border: var(--bw-3) solid var(--color-line);
-    --elev-0: none;
-    --elev-1: 3px 3px 0 0 var(--color-shadow);
-    --elev-2: 6px 6px 0 0 var(--color-shadow);
-    --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
-  }
-
-  /* ---------- Mode: Backstage ---------- */
-  [data-mode="backstage"] {
-    --font-display: var(--ff-mono);
-    --font-heading: var(--ff-mono);
-    --font-body: var(--ff-mono);
-    --font-label: var(--ff-mono);
-    --fw-display: 700;
-    --fw-heading: 700;
-    --fw-body: 400;
-    --track-display: -0.02em;
+  [data-mode] {
     --lh-display: 1.12;
     --lh-heading: 1.3;
     --lh-body: 1.65;
@@ -1859,13 +1822,42 @@ Media queries cannot read custom properties, so the stylesheet uses the literal 
     --t-code: 0.9375rem;
     --t-metric-xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
     --t-metric-l: clamp(2rem, 1.4rem + 2vw, 2.75rem);
-    --measure: 72ch;
+    --measure: 43.2em; /* 72ch of IBM Plex Mono, so the column is the same width in both typefaces */
+    --elev-0: none;
+    --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
+  }
+
+  /* ---------- Mode: Performance ---------- */
+  :root,
+  [data-mode="performance"] {
+    --font-display: var(--ff-slab);
+    --font-heading: var(--ff-sans);
+    --font-body: var(--ff-sans);
+    --font-label: var(--ff-mono);
+    --fw-display: 400;
+    --fw-heading: 800;
+    --fw-body: 400;
+    --track-display: -0.005em;
+    --radius: 0;
+    --card-border: var(--bw-2) solid var(--color-line);
+    --elev-1: 3px 3px 0 0 var(--color-shadow);
+    --elev-2: 6px 6px 0 0 var(--color-shadow);
+  }
+
+  /* ---------- Mode: Backstage ---------- */
+  [data-mode="backstage"] {
+    --font-display: var(--ff-mono);
+    --font-heading: var(--ff-mono);
+    --font-body: var(--ff-mono);
+    --font-label: var(--ff-mono);
+    --fw-display: 700;
+    --fw-heading: 700;
+    --fw-body: 400;
+    --track-display: -0.02em;
     --radius: 4px;
     --card-border: var(--bw-2) dashed var(--color-line);
-    --elev-0: none;
     --elev-1: none;
     --elev-2: none;
-    --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
   }
 
   /* ---------- Reduced motion ---------- */
@@ -3002,10 +2994,10 @@ All user-visible strings live here; v1 ships English only (15). Plural keys use 
 ```toml
 name = "Prestige"
 license = "MIT"
-licenselink = "https://github.com/fixbyte-studio/hugo-theme-prestige/blob/main/LICENSE"
+licenselink = "https://github.com/m0hss/Prestige/blob/master/LICENSE"
 description = "A case-study portfolio theme with two authored layers per project: Performance (the result) and Backstage (the process), plus a Trapdoor for failures."
-homepage = "https://github.com/fixbyte-studio/hugo-theme-prestige"
-demosite = "https://fixbyte-studio.github.io/hugo-theme-prestige/"
+homepage = "https://github.com/m0hss/Prestige"
+demosite = "https://m0hss.github.io/Prestige/"
 tags = ["portfolio", "personal", "responsive", "dark", "light", "accessibility"]
 features = [
   "Case-study page bundles with Performance and Backstage layers",
@@ -3021,7 +3013,7 @@ min_version = "0.146.0"
 
 [author]
   name = "FixByte Studio"
-  homepage = "https://github.com/fixbyte-studio"
+  homepage = "https://github.com/m0hss/Prestige"
 ```
 
 **Theme `hugo.toml`** (defaults; the site overrides)
@@ -3070,7 +3062,7 @@ min_version = "0.146.0"
   credit = true
 ```
 
-**`README.md`** contains, in this order: title and one-line description; the screenshot as an absolute `https://raw.githubusercontent.com/fixbyte-studio/hugo-theme-prestige/main/images/screenshot.png` URL; Requirements (Hugo extended ≥ 0.146.0); Installation (Hugo Modules: `hugo mod init`, `[module] imports path`; or git submodule into `themes/prestige` with `theme = "prestige"`); Minimal configuration (the `exampleSite/hugo.toml` excerpt for taxonomies, permalinks and params); Writing a case study (`hugo new content work/my-project`, the bundle tree of 3.3, the step kinds of 3.6, the shortcode table of 3.8); Accessibility statement (WCAG 2.2 AA, no-JS behaviour, how to report issues); Browser support (Chrome and Edge 123+, Firefox 120+, Safari 17.5+; older browsers get the Performance palette in light scheme only); Fonts and licences (the three OFL families, self-hosted); Licence (MIT). No marketing copy, no badges beyond licence and Hugo version.
+**`README.md`** contains, in this order: title and one-line description; the screenshot as an absolute `https://raw.githubusercontent.com/m0hss/Prestige/master/images/screenshot.png` URL; Requirements (Hugo extended ≥ 0.146.0); Installation (Hugo Modules: `hugo mod init`, `[module] imports path`; or git submodule into `themes/prestige` with `theme = "prestige"`); Minimal configuration (the `exampleSite/hugo.toml` excerpt for taxonomies, permalinks and params); Writing a case study (`hugo new content work/my-project`, the bundle tree of 3.3, the step kinds of 3.6, the shortcode table of 3.8); Accessibility statement (WCAG 2.2 AA, no-JS behaviour, how to report issues); Browser support (Chrome and Edge 123+, Firefox 120+, Safari 17.5+; older browsers get the Performance palette in light scheme only); Fonts and licences (the three OFL families, self-hosted); Licence (MIT). No marketing copy, no badges beyond licence and Hugo version.
 
 **`LICENSE`**: the MIT licence, "Copyright (c) 2026 FixByte Studio". Font licences are in `assets/fonts/OFL-*.txt`.
 
@@ -3412,7 +3404,7 @@ Every judgment call made while writing this specification is recorded here so th
 16. **Count-driven stage titles.** "Solo performance", "Double bill", "Triple bill" and "The season" are the stage titles for 1, 2, 3, and 4 or more case studies. They are theatre vocabulary, are in `i18n`, and are the only place the count changes copy. The Programme list appears from 5 case studies (`params.stage.programme_from = 5`) and lists case studies in rows, not cards.
 17. **Barcode is a signature of the reference number, not of the outcome.** The bars derive from the SHA-256 of `barcode.ref`, so a reference always looks the same and different references look different. The strip's text carries the data (duration, team, stack count, outcome); the bars carry none, are `aria-hidden`, and are the only decoration in the theme that is allowed to carry no information, because the strip's identity is its recognisability.
 18. **Pagination is 12.** Taxonomy and Programme lists paginate at 12 items (`pagination.pagerSize = 12`). No demo content reaches it; the setting exists so a long portfolio does not produce an unbounded page.
-19. **Author and URLs are assumptions.** The demo author is the fictional "Tomás Reyes". The theme author is shown as "FixByte Studio", and the repository, homepage and demo URLs in `theme.toml` (`github.com/fixbyte-studio/hugo-theme-prestige` and the matching GitHub Pages address) are derived from the account the work was done under. They are not verified to exist and must be changed to the real repository before submission to the catalogue.
+19. **Author and URLs.** The demo author is the fictional "Tomás Reyes". The theme author is shown as "FixByte Studio". The repository is `github.com/m0hss/Prestige` (also the Hugo Module path), and the demo URL is its GitHub Pages address, `https://m0hss.github.io/Prestige/`, live once the exampleSite is deployed there.
 20. **Contact is `mailto:` only.** There is no form, no backend and no third-party embed. The contact block shows the address in text, a mailto link and, with JavaScript, a copy button.
 
 ### 15.3 Visual design and tokens
@@ -3424,7 +3416,7 @@ Every judgment call made while writing this specification is recorded here so th
 25. **Every image is WebP with a JPEG fallback.** `lib/img.html` writes a WebP `srcset` and a JPEG `<img src>` for every image, so the page works in any browser and in link-preview scrapers that do not read WebP. AVIF is not produced because encoder availability and build time vary by installation.
 26. **No gradients, blur, glow, texture or parallax.** Pleat lines and the hazard stripe are hard-stop `repeating-linear-gradient`s. Depth is a hard-offset shadow (6 px, no blur). This is a style decision and an anti-pattern rule (13) at the same time.
 27. **Cover crop is 16:9 on the stage and 1200 × 630 on the case page.** The stage covers are 568 × 320 (headliner) and 200 × 112 (others); the case-study cover is the Open Graph ratio so the same file serves as the social image.
-28. **Typography is fluid between 360 and about 1015 px and fixed above.** The headliner title is 48 px at desktop; other stage titles are 32 px (28 px at 360 px). Display XL on the home page is 72 px in Performance and 44 px in Backstage, because the Backstage face is a monospace and 72 px mono would not fit the 8-column intro.
+28. **Typography is fluid between 360 and about 1015 px and fixed above.** The headliner title is 48 px at desktop; other stage titles are 32 px (28 px at 360 px). Display XL reaches 44 px in both modes. (Revised 2026-10-06: Performance originally reached 72 px; both modes now share the Backstage scale so a mode switch never resizes the page. See 6.3.)
 29. **Home page chrome follows the mode.** In Backstage mode the header, valance, intro and footer adopt the Backstage skin; the left (Performance) column of the stage keeps the Performance skin so a visitor can still see what the front of the curtain looks like. The catalogue screenshot is captured in this state.
 
 ### 15.4 Interaction and accessibility

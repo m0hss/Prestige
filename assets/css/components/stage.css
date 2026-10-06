@@ -69,7 +69,7 @@
   html:not(.js) .drape-wrap{display:none}
   .drape{height:100%;display:flex;align-items:center;justify-content:center;padding:var(--space-6);pointer-events:auto;cursor:pointer;background:var(--color-curtain) repeating-linear-gradient(90deg,rgba(0,0,0,.14) 0 2px,transparent 2px 56px);color:var(--color-on-curtain);border-bottom:12px solid var(--color-curtain-hem);transform:translateY(var(--curtain-lift,0%))}
   .drape.is-moving{will-change:transform}
-  .drape__text{max-width:22ch;text-align:center}
+  .drape__text{max-width:13.2em;text-align:center}
   html.js[data-mode=performance]{--curtain-lift:0%}
   html.js[data-mode=backstage]{--curtain-lift:calc(-100% + 12px)}
   html.js[data-mode=backstage] .drape{pointer-events:none}
