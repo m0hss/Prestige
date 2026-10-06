@@ -1,8 +1,11 @@
+{{- /* Footer scheme switch (7.x footer, 8.6): a native radio group drawn as the Stitch segmented control. Shown only with JavaScript. */ -}}
 {{- if ne site.Params.scheme.switch false }}
 <fieldset class="scheme" hidden>
   <legend class="scheme__legend label">{{ i18n "scheme_legend" }}</legend>
-  {{- range slice "auto" "light" "dark" }}
-  <label class="scheme__opt"><input class="scheme__input" type="radio" name="scheme" value="{{ . }}"> <span>{{ i18n (printf "scheme_%s" .) }}</span></label>
-  {{- end }}
+  <div class="scheme__track">
+    {{- range slice "auto" "light" "dark" }}
+    <label class="scheme__seg"><input class="scheme__input sr-only" type="radio" name="scheme" value="{{ . }}"><span class="scheme__glyph" aria-hidden="true"></span><span>{{ i18n (printf "scheme_%s" .) }}</span></label>
+    {{- end }}
+  </div>
 </fieldset>
 {{- end -}}
