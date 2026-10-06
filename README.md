@@ -122,6 +122,7 @@ content/work/my-project/
 |---|---|---|
 | `title` | yes | ≤ 48 characters |
 | `summary` | yes | The result as one sentence, ≤ 140 characters |
+| `backstage_title` | no | H1 shown in Backstage view; defaults to “Backstage: <title>” (`i18n` key `backstage_title`). Only used when the case has steps |
 | `brief` | yes | The problem as one sentence, ≤ 160 characters |
 | `date` | yes | Project end date; its year feeds the `PRS-<year>-<NNN>` reference |
 | `weight`, `headliner` | no | Lower weight sorts first (default 100). One `headliner: true` per site |

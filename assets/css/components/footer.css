@@ -3,6 +3,7 @@
 .footer__head{margin-bottom:var(--space-2);color:var(--color-fg-muted)}
 .footer__list{display:flex;flex-direction:column}
 .footer__list a,.footer__credit a{display:inline-flex;align-items:center;min-height:var(--target)}
+.footer .contact__links a{color:var(--color-fg)}
 .footer__note{font-size:var(--t-body-s);margin-top:var(--space-3)}
 .footer__credit{margin-top:var(--space-3)}
 .scheme{border:0;padding:0;margin:0;min-width:0}
