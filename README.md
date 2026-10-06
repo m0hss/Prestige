@@ -203,6 +203,8 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 
 `exampleSite/` is a demo for a fictional person; every name, client, figure and failure in it is invented, and its images are original illustrations dedicated to the public domain (CC0).
 
+`exampleSite/content/work/stress-fixture/` is a draft layout stress test (full-bleed images, wide tables, awkward code fences, repeated step titles and headings). It builds only with `-D`, so `hugo server` shows it and the deployed demo does not.
+
 ```bash
 cd exampleSite && hugo server     # http://localhost:1313/
 cd .. && tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
