@@ -1,6 +1,6 @@
 baseURL      = "https://prestige-demo.example.org/"
 locale       = "en"
-title        = "Tomás Reyes"
+title        = "Prestige"
 enableRobotsTXT = true
 
 # The theme is this repository, imported as a Hugo Module and resolved from the local
@@ -56,9 +56,9 @@ enableRobotsTXT = true
   weight = 30
 
 [params]
-  description = "Tomás Reyes: backend systems and live-event logistics, shown as results and as the working behind them."
+  description = "Prestige: backend systems and live-event logistics, shown as results and as the working behind them."
   [params.author]
-    name = "Tomás Reyes"
+    name = "Prestige"
     role = "Backend engineer and production lead"
     location = "Ghent, Belgium"
   [params.contact]
@@ -69,7 +69,7 @@ enableRobotsTXT = true
       url = "https://github.com/m0hss/Prestige"
     [[params.contact.links]]
       label = "Write-ups"
-      url = "https://prestige-demo.example.org/writeups/"
+      url = "#"
   [params.stage]
     default_mode = "performance"
     programme_from = 5

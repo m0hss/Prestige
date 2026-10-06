@@ -42,7 +42,7 @@ result:
     ledger unavailable during a close window.
 links:
   - label: "Engineering write-up (PDF)"
-    url: "https://example.org/writeups/ledger-cutover.pdf"
+    url: "#"
     kind: "writeup"
 backstage:
   teaser: "The turning point was a shadow ledger that ran beside the batch for six weeks before it was allowed to disagree out loud."
@@ -69,4 +69,4 @@ before the ledger was allowed to write. Accounts then moved across in eight coho
 
 ![Batch path and shadow-ledger path side by side, with the cohort boundary](shots/shadow-ledger.svg "The shadow ledger read the same events as the batch and reported every disagreement.")
 
-*Tomás Reyes, Meridian Freight and every figure on this page are fictional; they demonstrate the theme.*
+*Prestige, Meridian Freight and every figure on this page are fictional; they demonstrate the theme.*
