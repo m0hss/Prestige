@@ -1,0 +1,10 @@
+<fieldset class="curtain" hidden>
+  <legend class="sr-only">{{ i18n "toggle_legend" }}</legend>
+  {{- range slice "performance" "backstage" }}
+  <label class="curtain__seg">
+    <input class="curtain__input sr-only" type="radio" name="mode" value="{{ . }}">
+    <span class="curtain__glyph" aria-hidden="true"></span>
+    <span class="curtain__text">{{ i18n (printf "toggle_%s" .) }}</span>
+  </label>
+  {{- end }}
+</fieldset>

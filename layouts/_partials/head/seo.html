@@ -1,0 +1,34 @@
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- if eq .Kind "404" }}{{ $title = printf "%s · %s" (i18n "err_404_title") site.Title }}{{ end -}}
+{{- $desc := .Params.summary | default .Params.what | default .Params.lede | default site.Params.description -}}
+<title>{{ $title }}</title>
+{{- with $desc }}
+<meta name="description" content="{{ . | plainify }}">
+{{- end }}
+{{- if ne .Kind "404" }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- end }}
+{{- /* Open Graph image: og_image, then cover.image (bundle-relative), then params.seo.og_image (assets/). */ -}}
+{{- $img := false -}}
+{{- with .Params.og_image | default .Params.cover.image -}}
+  {{- $img = $.Resources.Get . -}}
+{{- end -}}
+{{- if not $img }}{{ $img = resources.Get (site.Params.seo.og_image | default "img/og-default.png") }}{{ end -}}
+{{- with $img }}{{ if ne .MediaType.SubType "svg+xml" }}{{ $img = .Fill "1200x630 jpg q85 Smart" }}{{ else }}{{ $img = false }}{{ end }}{{ end }}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+{{- with $desc }}
+<meta property="og:description" content="{{ . | plainify }}">
+{{- end }}
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $img }}
+<meta property="og:image" content="{{ .Permalink }}">
+<meta property="og:image:width" content="{{ .Width }}">
+<meta property="og:image:height" content="{{ .Height }}">
+{{- with $.Params.cover.alt }}
+<meta property="og:image:alt" content="{{ . }}">
+{{- end }}
+<meta name="twitter:card" content="summary_large_image">
+{{- end }}

@@ -1,0 +1,20 @@
+{{- /* Computed reference: PRS-<year>-<NNN> for case studies, TD-<NNN> for failures (3.7, 3.13). */ -}}
+{{- $ref := "" -}}
+{{- if eq .Section "trapdoor" -}}
+  {{- $i := 0 -}}
+  {{- range $n, $p := (where site.RegularPages "Section" "trapdoor").ByDate -}}
+    {{- if eq $p $ }}{{ $i = add $n 1 }}{{ end -}}
+  {{- end -}}
+  {{- $ref = printf "TD-%03d" $i -}}
+{{- else -}}
+  {{- with .Params.barcode.ref -}}
+    {{- $ref = . -}}
+  {{- else -}}
+    {{- $i := 0 -}}
+    {{- range $n, $p := (where site.RegularPages "Section" "work").ByDate -}}
+      {{- if eq $p $ }}{{ $i = add $n 1 }}{{ end -}}
+    {{- end -}}
+    {{- $ref = printf "PRS-%d-%03d" .Date.Year $i -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ref -}}

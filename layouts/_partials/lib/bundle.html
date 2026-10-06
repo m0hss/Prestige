@@ -1,0 +1,8 @@
+{{- /* Returns the case-study bundle that owns a page or a step resource (11.7). */ -}}
+{{- $p := . -}}
+{{- with .File -}}
+  {{- $dir := replace .Dir "\\" "/" | strings.TrimSuffix "/" -}}
+  {{- if strings.HasSuffix $dir "/steps" }}{{ $dir = path.Dir $dir }}{{ end -}}
+  {{- with site.GetPage (printf "/%s" $dir) }}{{ $p = . }}{{ end -}}
+{{- end -}}
+{{- return $p -}}

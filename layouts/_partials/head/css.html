@@ -1,0 +1,31 @@
+{{- /*
+  One fingerprinted stylesheet from assets/css/main.css (11.5).
+  css.Build exists from Hugo 0.158.0. On older releases the same bundle is assembled here:
+  each `@import "./file.css" layer(name);` line of main.css is replaced by that file wrapped in `@layer name { }`.
+*/ -}}
+{{- $entry := resources.Get "css/main.css" -}}
+{{- $css := false -}}
+{{- if ge hugo.Version "0.158.0" -}}
+  {{- $css = $entry | css.Build (dict "minify" hugo.IsProduction) -}}
+{{- else -}}
+  {{- $out := "" -}}
+  {{- range split $entry.Content "\n" -}}
+    {{- $line := . -}}
+    {{- with findRESubmatch `^@import "\./([^"]+)"(?: layer\(([a-z-]+)\))?;` $line 1 -}}
+      {{- $m := index . 0 -}}
+      {{- $src := (resources.Get (printf "css/%s" (index $m 1))).Content -}}
+      {{- with index $m 2 -}}
+        {{- $out = printf "%s@layer %s{\n%s\n}\n" $out . $src -}}
+      {{- else -}}
+        {{- $out = printf "%s%s\n" $out $src -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $out = printf "%s%s\n" $out $line -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $css = resources.FromString "css/main.css" $out -}}
+  {{- if hugo.IsProduction }}{{ $css = $css | minify }}{{ end -}}
+{{- end -}}
+{{- with $css | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{- end -}}

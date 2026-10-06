@@ -1,0 +1,43 @@
+{{- /* Contact block (7.8). Context: dict "variant" (full|compact|cta) "page". */ -}}
+{{- $v := .variant | default "compact" -}}
+{{- $c := site.Params.contact -}}
+{{- $email := $c.email -}}
+{{- $links := $c.links -}}
+{{- $subject := "" -}}
+{{- if and (eq $v "cta") .page }}{{ $subject = i18n "walkthrough_subject" (dict "Title" .page.Title) }}{{ end -}}
+{{- if or $email $links (eq $v "cta") hugo.IsServer }}
+<section class="contact contact--{{ $v }}"{{ if ne $v "compact" }} aria-labelledby="contact-{{ $v }}"{{ else }} aria-label="{{ i18n "contact_title" }}"{{ end }}>
+  {{- if eq $v "cta" }}
+  <h2 class="contact__title" id="contact-{{ $v }}">{{ i18n "contact_cta_title" }}</h2>
+  <p class="contact__body">{{ i18n "contact_cta_body" }}</p>
+  {{- else if eq $v "full" }}
+  <h2 class="contact__title label" id="contact-{{ $v }}">{{ i18n "contact_title" }}</h2>
+  {{- end }}
+  {{- with $email }}
+  <p class="contact__line">
+    <a class="contact__email" href="mailto:{{ . }}{{ with $subject }}?subject={{ . | urlquery }}{{ end }}">{{ . }}</a>
+    {{- if ne $v "compact" }}
+    <button type="button" class="btn contact__copy" data-copy="{{ . }}" aria-label="{{ i18n "copy_label" }}" hidden
+      data-t-idle="{{ i18n "copy_address" }}" data-t-busy="{{ i18n "copy_copying" }}" data-t-done="{{ i18n "copy_done" }}" data-t-fail="{{ i18n "copy_failed" }}" data-t-announce="{{ i18n "copy_announce" }}">{{ i18n "copy_address" }}</button>
+    {{- end }}
+  </p>
+  {{- if ne $v "compact" }}
+  <p class="error-panel contact__error" hidden><span aria-hidden="true">⚠</span> <strong>{{ i18n "error_prefix" }}</strong> {{ i18n "copy_error" }}</p>
+  {{- end }}
+  {{- else }}
+    {{- if hugo.IsServer }}
+  <p class="error-panel"><span aria-hidden="true">⚠</span> <strong>{{ i18n "error_prefix" }}</strong> {{ i18n "dev_no_email" }}</p>
+    {{- end }}
+  {{- end }}
+  {{- if ne $v "compact" }}{{ with $c.availability }}
+  <p class="contact__availability">{{ . }}</p>
+  {{- end }}{{ end }}
+  {{- with $links }}
+  <ul class="contact__links">
+    {{- range . }}
+    <li><a href="{{ .url }}">{{ .label }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</section>
+{{- end -}}

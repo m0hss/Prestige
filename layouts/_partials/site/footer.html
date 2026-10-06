@@ -1,0 +1,34 @@
+{{- $failures := where site.RegularPages "Section" "trapdoor" -}}
+<footer class="footer" data-chrome>
+  <div class="container footer__grid">
+    <div class="footer__col">
+      {{ partial "components/contact-block.html" (dict "variant" "compact" "page" .) }}
+      {{- with site.Params.author }}
+      <p class="footer__byline">{{ .name }}{{ with .role }} · {{ . }}{{ end }}{{ with .location }} · {{ . }}{{ end }}</p>
+      {{- end }}
+    </div>
+    <nav class="footer__col" aria-label="{{ i18n "nav_browse" }}">
+      <p class="label footer__head">{{ i18n "nav_browse" }}</p>
+      <ul class="footer__list">
+        {{- range site.Menus.main }}
+          {{- if not .Page }}{{ continue }}{{ end }}
+          {{- if and (eq .Page.Section "trapdoor") (eq .Page.Kind "section") (not $failures) }}{{ continue }}{{ end }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+        {{- with site.Home.OutputFormats.Get "rss" }}
+        <li><a href="{{ .RelPermalink }}">{{ i18n "rss" }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+    <div class="footer__col">
+      {{ partial "site/scheme-switch.html" . }}
+      {{- with site.Params.footer.note }}
+      <p class="footer__note">{{ . }}</p>
+      {{- end }}
+      {{- if ne site.Params.credit false }}
+      <p class="footer__credit label"><a href="https://github.com/fixbyte-studio/hugo-theme-prestige">{{ i18n "credit" }}</a></p>
+      {{- end }}
+    </div>
+  </div>
+  <div id="live" class="sr-only" aria-live="polite"></div>
+</footer>

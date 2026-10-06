@@ -1,11 +1,44 @@
 [module.hugoVersion]
   min = "0.146.0"
+  extended = true
 
 [taxonomies]
   discipline = "disciplines"
-  stack = "stack"
-  lesson = "lessons"
+  stack      = "stack"
+  lesson     = "lessons"
 
 [permalinks.page]
-  work = "/work/:slug/"
+  work     = "/work/:slug/"
   trapdoor = "/trapdoor/:slug/"
+
+[pagination]
+  pagerSize = 12
+
+[markup.highlight]
+  noClasses   = false
+  lineNos     = false
+  guessSyntax = false
+  tabWidth    = 2
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[imaging]
+  resampleFilter = "CatmullRom"
+  anchor         = "Smart"
+  [imaging.exif]
+    disableLatLong = true
+
+[outputs]
+  home = ["html", "rss"]
+
+[params]
+  credit = true
+  [params.stage]
+    default_mode     = "performance"
+    programme_from   = 5
+    trapdoor_on_home = true
+  [params.scheme]
+    switch = true
+  [params.seo]
+    og_image = "img/og-default.png"
