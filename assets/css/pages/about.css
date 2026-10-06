@@ -1,5 +1,5 @@
 .about{display:grid;gap:var(--space-7);padding-block:var(--space-7)}
-.about__statement{max-width:18ch}
+.about__statement{max-width:10.8em}
 .about__byline{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-5)}
 .about__portrait{width:96px;height:96px;border:var(--card-border)}
 .method{list-style:none;padding:0;display:grid;gap:var(--space-4);margin-top:var(--space-3)}

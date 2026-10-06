@@ -7,7 +7,7 @@ html.js[data-mode=performance] .trapdoor-strip,.home-strip .trapdoor-strip{displ
 .case-head{padding-block:var(--space-6) var(--space-5)}
 .case-head__top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-5)}
 .case-head__back{display:inline-flex;align-items:center;gap:var(--space-2);min-height:var(--target);color:var(--color-fg);text-decoration:none}
-.case-head__title{margin-top:var(--space-4);max-width:16ch}
+.case-head__title{margin-top:var(--space-4);max-width:9.6em}
 .case-head__summary{margin-top:var(--space-4);max-width:var(--measure)}
 .case__barcode{margin-block:var(--space-5)}
 .layer{scroll-margin-top:4rem}

@@ -1,6 +1,6 @@
 .intro{display:grid;gap:var(--space-5);padding-block:var(--space-7) var(--space-5)}
-.intro__headline{max-width:14ch}
-.intro__lede{margin-top:var(--space-4);max-width:52ch}
+.intro__headline{max-width:8.4em}
+.intro__lede{margin-top:var(--space-4);max-width:31.2em}
 .intro__key{display:none}
 .intro__keyline{margin-top:var(--space-4);display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4)}
 .intro__keyline>span{display:inline-flex;align-items:center;gap:var(--space-2)}
@@ -11,7 +11,7 @@
 .programme{margin-block:var(--space-7)}
 .stage-note{margin-block:var(--space-8)}
 .stage-note__grid{display:grid;gap:var(--space-6);margin-top:var(--space-3)}
-.stage-note__lede{margin-bottom:var(--space-3);max-width:24ch}
+.stage-note__lede{margin-bottom:var(--space-3);max-width:14.4em}
 .stage-note .contact{margin:0}
 @media (min-width:60rem){
   .intro{grid-template-columns:8fr 4fr;column-gap:var(--space-8);align-items:start}

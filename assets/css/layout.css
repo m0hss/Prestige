@@ -6,8 +6,8 @@ html.js .no-js-only{display:none!important}
 .skip-link:focus{transform:none}
 .block{margin-block:var(--space-7)}
 .page-head{padding-block:var(--space-7) var(--space-6)}
-.page-head .lede{margin-top:var(--space-4);max-width:52ch}
-.page-title{max-width:20ch}
+.page-head .lede{margin-top:var(--space-4);max-width:31.2em}
+.page-title{max-width:12em}
 .prose-page{padding-block:var(--space-7)}
 .prose-page .prose{margin-top:var(--space-6)}
 .grid{display:grid;gap:var(--space-6)}
