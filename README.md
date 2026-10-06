@@ -6,7 +6,7 @@ A Hugo theme for case-study portfolios: every project is shown as its polished r
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
 
-> The demo URL in `theme.toml` is provisional until a demo is deployed. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
+> The demo URL in `theme.toml` (https://m0hss.github.io/Prestige/) goes live once the exampleSite is deployed to GitHub Pages. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
 
 ## Requirements
 
