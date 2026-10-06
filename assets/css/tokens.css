@@ -57,6 +57,9 @@
     --color-shadow: light-dark(#1E140C, #000000);
   }
 
+  /* Pleat lines on the drape: a translucent shade, so it reads on either curtain colour. */
+  :root { --color-pleat: rgb(0 0 0 / 0.14); }
+
   @supports not (color: light-dark(#000, #fff)) {
     :root,
     [data-mode="performance"] {
@@ -171,7 +174,7 @@
     --t-code: 0.9375rem;
     --t-metric-xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
     --t-metric-l: clamp(2rem, 1.4rem + 2vw, 2.75rem);
-    --measure: 43.2em; /* 72ch of IBM Plex Mono */
+    --measure: 33em; /* about 68 characters per line of Libre Franklin; 43.2em ran to about 90 */
     --elev-0: none;
     --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
   }

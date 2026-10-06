@@ -7,6 +7,7 @@ rss = "RSS"
 
 # Curtain toggle and valance
 toggle_legend = "View"
+valance_label = "Page view"
 toggle_performance = "Performance"
 toggle_backstage = "Backstage"
 jump_label = "Layers on this page"

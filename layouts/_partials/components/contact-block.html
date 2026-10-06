@@ -6,7 +6,8 @@
 {{- $subject := "" -}}
 {{- if and (eq $v "cta") .page }}{{ $subject = i18n "walkthrough_subject" (dict "Title" .page.Title) }}{{ end -}}
 {{- if or $email $links (eq $v "cta") hugo.IsServer }}
-<section class="contact contact--{{ $v }}"{{ if ne $v "compact" }} aria-labelledby="contact-{{ $v }}"{{ else }} aria-label="{{ i18n "contact_title" }}"{{ end }}>
+{{- /* The footer is already a landmark, so the compact variant is not a second "Contact" region. */ -}}
+<{{ if ne $v "compact" }}section{{ else }}div{{ end }} class="contact contact--{{ $v }}"{{ if ne $v "compact" }} aria-labelledby="contact-{{ $v }}"{{ end }}>
   {{- if eq $v "cta" }}
   <h2 class="contact__title" id="contact-{{ $v }}">{{ i18n "contact_cta_title" }}</h2>
   <p class="contact__body">{{ i18n "contact_cta_body" }}</p>
@@ -32,5 +33,5 @@
     {{- end }}
   </ul>
   {{- end }}
-</section>
+</{{ if ne $v "compact" }}section{{ else }}div{{ end }}>
 {{- end -}}

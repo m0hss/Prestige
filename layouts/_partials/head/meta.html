@@ -1,7 +1,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#8E1B26">
+{{- /* Browser chrome takes the curtain colour of the Performance palette; read from tokens.css so colours live in one file. */ -}}
+{{- with resources.Get "css/tokens.css" }}
+  {{- with findRESubmatch `--color-curtain:\s*light-dark\((#[0-9A-Fa-f]{6}),\s*(#[0-9A-Fa-f]{6})\)` .Content 1 }}
+    {{- $c := index . 0 }}
+<meta name="theme-color" content="{{ index $c 1 }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ index $c 2 }}" media="(prefers-color-scheme: dark)">
+  {{- end }}
+{{- end }}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 {{- with site.Home.OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">

@@ -8,7 +8,7 @@
 {{- $decorative := eq $frag "decorative" -}}
 {{- if and (not .PlainText) (not $decorative) }}{{ errorf "prestige: image %q needs alt text in %s (or add #decorative)" $u.Path $page.File.Path }}{{ end -}}
 {{- $layer := partial "lib/layer.html" $page -}}
-{{- $mod := "" -}}{{- $widths := slice 480 800 1200 1600 -}}{{- $sizes := "(min-width: 48rem) 680px, 100vw" -}}
+{{- $mod := "" -}}{{- $widths := slice 480 800 1200 1600 -}}{{- $sizes := "(min-width: 48rem) 528px, 100vw" -}}
 {{- if eq $frag "wide" -}}
   {{- $mod = "wide" -}}{{- $sizes = "(min-width: 75rem) 1200px, 100vw" -}}
 {{- else if and (eq $frag "bleed") (eq $layer "performance") -}}
