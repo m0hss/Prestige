@@ -3,9 +3,6 @@
   <div class="container footer__grid">
     <div class="footer__col">
       {{ partial "components/contact-block.html" (dict "variant" "compact" "page" .) }}
-      {{- with site.Params.author }}
-      <p class="footer__byline">{{ .name }}{{ with .role }} · {{ . }}{{ end }}{{ with .location }} · {{ . }}{{ end }}</p>
-      {{- end }}
     </div>
     <nav class="footer__col" aria-label="{{ i18n "nav_browse" }}">
       <p class="label footer__head">{{ i18n "nav_browse" }}</p>

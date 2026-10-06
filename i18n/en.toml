@@ -193,12 +193,6 @@ contact_title = "Contact"
 contact_cta_title = "Want the walkthrough?"
 contact_cta_body = "Backstage is one toggle away on every case study. If it isn't written up, ask."
 walkthrough_subject = "Walkthrough: {{ .Title }}"
-copy_address = "Copy address"
-copy_copying = "Copying…"
-copy_done = "Copied"
-copy_failed = "Copy failed"
-copy_announce = "Email address copied."
-copy_error = "Couldn't copy. The address is selected: press Ctrl+C."
 dev_no_email = "params.contact.email is not set, so the contact block has no address. This message only shows under hugo server."
 
 # Footer

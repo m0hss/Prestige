@@ -16,14 +16,7 @@
   {{- with $email }}
   <p class="contact__line">
     <a class="contact__email" href="mailto:{{ . }}{{ with $subject }}?subject={{ . | urlquery }}{{ end }}">{{ . }}</a>
-    {{- if ne $v "compact" }}
-    <button type="button" class="btn contact__copy" data-copy="{{ . }}" hidden
-      data-t-idle="{{ i18n "copy_address" }}" data-t-busy="{{ i18n "copy_copying" }}" data-t-done="{{ i18n "copy_done" }}" data-t-fail="{{ i18n "copy_failed" }}" data-t-announce="{{ i18n "copy_announce" }}">{{ i18n "copy_address" }}</button>
-    {{- end }}
   </p>
-  {{- if ne $v "compact" }}
-  <p class="error-panel contact__error" hidden><span aria-hidden="true">⚠</span> <strong>{{ i18n "error_prefix" }}</strong> {{ i18n "copy_error" }}</p>
-  {{- end }}
   {{- else }}
     {{- if hugo.IsServer }}
   <p class="error-panel"><span aria-hidden="true">⚠</span> <strong>{{ i18n "error_prefix" }}</strong> {{ i18n "dev_no_email" }}</p>

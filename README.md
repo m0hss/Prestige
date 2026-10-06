@@ -74,7 +74,7 @@ Hugo does not merge a theme's `[markup]` or `[taxonomies]` into your site, so co
   [params.author]
     name = "Your Name"
     role = "What you do"
-    location = ""            # optional, shown in the footer
+    location = ""            # optional, shown on the About page
     portrait = ""            # optional, a path under assets/; 96 px, About page only
   [params.contact]
     email = "you@example.org"

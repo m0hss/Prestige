@@ -2,7 +2,7 @@
   @page{margin:18mm}
   :root,[data-mode]{--color-bg:white;--color-surface:white;--color-sunken:white;--color-fg:black;--color-fg-muted:black;--color-accent:black;--color-line:black;--elev-1:none;--elev-2:none}
   body,[data-mode]{background:white;color:black}
-  .valance,.drape,.skip-link,.curtain,.scheme,.contact__copy,.step__nav,.steps-controls,.step__chev,.pager,.footer,.stage-row__ticks{display:none!important}
+  .valance,.drape,.skip-link,.curtain,.scheme,.step__nav,.steps-controls,.step__chev,.pager,.footer,.stage-row__ticks{display:none!important}
   html.js .layer,html.js .stage-row__front,html.js .stage-row__back{display:block!important;visibility:visible!important;opacity:1!important}
   html.js .trapdoor-strip{display:none!important}
   .steps .step__panel{grid-template-rows:1fr!important}
