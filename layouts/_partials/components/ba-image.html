@@ -8,7 +8,7 @@
       {{ partial "lib/img.html" (dict "res" (index $ $side) "alt" (index $ (printf "%s_alt" $side)) "widths" (slice 480 800 1200) "sizes" "(min-width: 60rem) 340px, (min-width: 40rem) 45vw, 100vw") }}
     </div>
     {{- if eq $side "before" }}
-    <p class="ba__link" aria-hidden="true"><span class="ba__arrow">→</span><span class="ba__then">{{ i18n "ba_then" }} ↓</span></p>
+    <p class="ba__link" aria-hidden="true"><span class="ba__arrow arrow arrow--right"></span><span class="ba__then">{{ i18n "ba_then" }} ↓</span></p>
     {{- end }}
     {{- end }}
   </div>

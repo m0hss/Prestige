@@ -12,7 +12,7 @@
   <div class="notice">
     <p class="notice__title">{{ i18n "failures_empty_title" }}</p>
     <p>{{ i18n "failures_empty_body" }}</p>
-    {{- with site.GetPage "/work" }}<p><a href="{{ .RelPermalink }}">{{ i18n "see_work" }} <span aria-hidden="true">→</span></a></p>{{ end }}
+    {{- with site.GetPage "/work" }}<p><a href="{{ .RelPermalink }}">{{ i18n "see_work" }} <span class="arrow arrow--right" aria-hidden="true"></span></a></p>{{ end }}
   </div>
   {{- end }}
   {{ partial "components/pagination.html" $pag }}

@@ -51,12 +51,12 @@
       </ol>
       <p class="stage-row__actions">
         {{- with $c.failures }}<a class="chip chip--link chip--trap" href="{{ $p.RelPermalink }}#trapdoor">{{ i18n "trapdoor" }} {{ . }}</a>{{ end }}
-        <a class="btn" href="{{ $p.RelPermalink }}#backstage">{{ i18n "open_backstage" }} <span aria-hidden="true">→</span></a>
+        <a class="btn" href="{{ $p.RelPermalink }}#backstage">{{ i18n "open_backstage" }} <span class="arrow arrow--right" aria-hidden="true"></span></a>
       </p>
       {{- else }}
       <p class="stage-row__field stage-row__request">{{ i18n "walkthrough_on_request" }}</p>
       {{- with site.Params.contact.email }}
-      <p class="stage-row__actions"><a class="btn" href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $p.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span aria-hidden="true">→</span></a></p>
+      <p class="stage-row__actions"><a class="btn" href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $p.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span class="arrow arrow--right" aria-hidden="true"></span></a></p>
       {{- end }}
       {{- end }}
     </div>

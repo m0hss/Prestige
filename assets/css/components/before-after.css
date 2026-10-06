@@ -16,11 +16,11 @@
 @container (min-width:40rem){
   .ba__grid{grid-template-columns:minmax(0,1fr) 3rem minmax(0,1fr);gap:0}
   .ba__link{align-self:center}
-  .ba__arrow{display:inline}
+  .ba__arrow{display:inline-block}
   .ba__then{display:none}
   .ba__metric{grid-template-columns:minmax(0,1fr) auto auto;align-items:center;column-gap:var(--space-5)}
   .ba__dl{grid-template-columns:auto auto;column-gap:var(--space-6)}
   .ba__dl [data-side=before]{position:relative}
-  .ba__dl [data-side=before]::after{content:"→";position:absolute;right:calc(-1 * var(--space-5));bottom:.2em}
+  .ba__dl [data-side=before]::after{content:"";width:1.25rem;height:1.25rem;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;position:absolute;right:calc(-1 * var(--space-5));bottom:.2em}
 }
 .prose>.ba{max-width:none}

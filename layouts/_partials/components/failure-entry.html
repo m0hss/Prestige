@@ -25,7 +25,7 @@
     <a class="failure__title failure__stretch" href="{{ $href }}">{{ $title }}</a>
     {{ $sevHTML | safeHTML }}
     <span class="failure__cost">{{ $p.Params.cost }}</span>
-    <span class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} →</span>
+    <span class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} <span class="arrow arrow--right" aria-hidden="true"></span></span>
   </p>
 </aside>
 {{- else }}
@@ -35,7 +35,7 @@
     <p class="label"><span class="failure__ref">{{ $ref }}</span>{{ with $date }} · <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006-01-02" }}</time>{{ end }}</p>
     <p>{{ $sevHTML | safeHTML }}</p>
     {{- with $case }}
-    <p class="failure__case"><span class="sr-only">{{ i18n "related_case" }}: </span><a href="{{ .RelPermalink }}">{{ .Title }} <span aria-hidden="true">→</span></a></p>
+    <p class="failure__case"><span class="sr-only">{{ i18n "related_case" }}: </span><a href="{{ .RelPermalink }}">{{ .Title }} <span class="arrow arrow--right" aria-hidden="true"></span></a></p>
     {{- end }}
   </div>
   <div class="failure__report">
@@ -57,7 +57,7 @@
     </ul>
     {{- end }}{{ end }}
     {{- if and (eq $v "row") $href }}
-    <p class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} →</p>
+    <p class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} <span class="arrow arrow--right" aria-hidden="true"></span></p>
     {{- end }}
     {{- if and (eq $v "full") $p }}
     <div class="failure__body prose">{{ $p.Content }}</div>

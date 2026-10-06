@@ -4,7 +4,7 @@
 <header class="case-head container">
   <div class="case-head__top">
     {{- with $work }}
-    <a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">← </span>{{ i18n "back_to_work" }}</a>
+    <a class="case-head__back label" href="{{ .RelPermalink }}"><span class="arrow arrow--left" aria-hidden="true"></span>{{ i18n "back_to_work" }}</a>
     {{- end }}
     <ul class="chips">
       {{- range .GetTerms "disciplines" }}

@@ -28,7 +28,7 @@
           <li><a href="{{ .url }}"{{ with .kind }} data-kind="{{ . }}"{{ end }}>{{ .label }}</a></li>
           {{- end }}
           {{- with $resultStep }}
-          <li><a href="#step-{{ .Params.n }}" data-stepref="{{ .Params.n }}">{{ i18n "how_measured" }} <span aria-hidden="true">→</span> {{ i18n "step_short" (dict "N" .Params.n) }}</a></li>
+          <li><a href="#step-{{ .Params.n }}" data-stepref="{{ .Params.n }}">{{ i18n "how_measured" }} <span class="arrow arrow--right" aria-hidden="true"></span> {{ i18n "step_short" (dict "N" .Params.n) }}</a></li>
           {{- end }}
         </ul>
       </aside>
