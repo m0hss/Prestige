@@ -24,8 +24,5 @@
   {{- end }}
   {{ partial "components/pagination.html" $pag }}
   {{- if ne $tax "lessons" }}{{ partial "components/related-failures.html" $cases }}{{ end }}
-  {{- with .Parent }}
-  <p class="term-back"><a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "all_terms" (dict "Name" (lower .Title)) }}</a></p>
-  {{- end }}
 </div>
 {{ end }}

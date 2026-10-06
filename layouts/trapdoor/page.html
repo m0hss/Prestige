@@ -1,9 +1,6 @@
 {{ define "main" }}
 {{- partial "lib/validate-failure.html" . }}
 <div class="container report-page">
-  {{- with .Parent }}
-  <p class="report-page__back"><a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ .Title }}</a></p>
-  {{- end }}
   {{ partial "components/failure-entry.html" (dict "page" . "variant" "full" "h" 1) }}
 </div>
 {{ end }}

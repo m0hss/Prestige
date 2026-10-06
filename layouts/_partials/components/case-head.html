@@ -1,11 +1,7 @@
-{{- /* Case-study head (5.2): back link, discipline chips, meta line, H1, summary. Context: page. */ -}}
-{{- $work := site.GetPage "/work" -}}
+{{- /* Case-study head (5.2): discipline chips, meta line, H1, summary. Context: page. */ -}}
 {{- $has := gt (len (partial "lib/steps.html" .)) 0 -}}
 <header class="case-head container">
   <div class="case-head__top">
-    {{- with $work }}
-    <a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">← </span>{{ i18n "back_to_work" }}</a>
-    {{- end }}
     <ul class="chips">
       {{- range .GetTerms "disciplines" }}
       <li>{{ partial "components/chip.html" (dict "text" .LinkTitle "href" .RelPermalink) }}</li>
@@ -16,7 +12,7 @@
     </p>
   </div>
   {{- if $has }}
-  <h1 class="case-head__title"><span class="case-head__title-p">{{ .Title }}</span><span class="case-head__title-b">{{ with .Params.backstage_title }}{{ . }}{{ else }}{{ i18n "backstage_title" (dict "Title" $.Title) }}{{ end }}</span></h1>
+  <h1 class="case-head__title"><span class="title-p">{{ .Title }}</span><span class="title-b">{{ with .Params.backstage_title }}{{ . }}{{ else }}{{ i18n "backstage_title" (dict "Title" $.Title) }}{{ end }}</span></h1>
   {{- else }}
   <h1 class="case-head__title">{{ .Title }}</h1>
   {{- end }}

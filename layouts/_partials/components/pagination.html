@@ -1,8 +1,8 @@
 {{- /* Previous / next page links for paginated lists (12 per page). Context: the paginator. */ -}}
 {{- if gt .TotalPages 1 }}
 <nav class="pagination" aria-label="{{ i18n "pager_next_page" }}">
-  {{- with .Prev }}<a class="btn" href="{{ .URL }}"><span aria-hidden="true">← </span>{{ i18n "pager_prev_page" }}</a>{{ end }}
+  {{- with .Prev }}<a class="btn" href="{{ .URL }}"><span class="arrow arrow--left" aria-hidden="true"></span>{{ i18n "pager_prev_page" }}</a>{{ end }}
   <span class="label">{{ .PageNumber }} / {{ .TotalPages }}</span>
-  {{- with .Next }}<a class="btn" href="{{ .URL }}">{{ i18n "pager_next_page" }}<span aria-hidden="true"> →</span></a>{{ end }}
+  {{- with .Next }}<a class="btn" href="{{ .URL }}">{{ i18n "pager_next_page" }}<span class="arrow arrow--right" aria-hidden="true"></span></a>{{ end }}
 </nav>
 {{- end -}}

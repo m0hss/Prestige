@@ -29,10 +29,10 @@
       {{- end }}
       <div class="step__nav" hidden>
         {{- if gt .i 0 }}{{ $prev := index $all (sub .i 1) }}
-        <button type="button" class="btn step__prev" data-goto="{{ $prev.Params.n }}"><span aria-hidden="true">← </span>{{ i18n "step_prev" (dict "N" $prev.Params.n "Title" (i18n (printf "kind_%s" $prev.Params.kind))) }}</button>
+        <button type="button" class="btn step__prev" data-goto="{{ $prev.Params.n }}"><span class="arrow arrow--left" aria-hidden="true"></span>{{ i18n "step_prev" (dict "N" $prev.Params.n "Title" (i18n (printf "kind_%s" $prev.Params.kind))) }}</button>
         {{- end }}
         {{- if lt (add .i 1) $total }}{{ $next := index $all (add .i 1) }}
-        <button type="button" class="btn step__next" data-goto="{{ $next.Params.n }}">{{ i18n "step_next" (dict "N" $next.Params.n "Title" (i18n (printf "kind_%s" $next.Params.kind))) }}<span aria-hidden="true"> →</span></button>
+        <button type="button" class="btn step__next" data-goto="{{ $next.Params.n }}">{{ i18n "step_next" (dict "N" $next.Params.n "Title" (i18n (printf "kind_%s" $next.Params.kind))) }}<span class="arrow arrow--right" aria-hidden="true"></span></button>
         {{- end }}
       </div>
     </div>

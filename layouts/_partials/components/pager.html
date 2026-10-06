@@ -5,6 +5,6 @@
   {{- range $n, $p := $cases }}{{ if eq $p $ }}{{ $i = $n }}{{ end }}{{ end -}}
   {{- $next := index $cases (mod (add $i 1) (len $cases)) -}}
 <nav class="pager container" aria-label="{{ i18n "pager_next" }}">
-  <a class="pager__link" href="{{ $next.RelPermalink }}"><span class="label">{{ i18n "pager_next" }}</span> <span aria-hidden="true">→</span> <span class="pager__title">{{ $next.Title }}</span></a>
+  <a class="pager__link" href="{{ $next.RelPermalink }}"><span class="label">{{ i18n "pager_next" }}</span> <span class="arrow arrow--right" aria-hidden="true"></span> <span class="pager__title">{{ $next.Title }}</span></a>
 </nav>
 {{- end -}}

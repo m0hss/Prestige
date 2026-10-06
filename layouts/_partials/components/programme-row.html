@@ -25,5 +25,5 @@
     <p>{{ $bc.duration }} · {{ $team }} · <strong>{{ $bc.outcome.value }}{{ $bc.outcome.unit }}</strong></p>
     {{- with $counts }}<p class="label">{{ delimit . " · " }}</p>{{ end }}
   </div>
-  <span class="prow__chev" aria-hidden="true">→</span>
+  <span class="prow__chev arrow arrow--right" aria-hidden="true"></span>
 </article>

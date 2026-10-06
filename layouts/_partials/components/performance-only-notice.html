@@ -5,6 +5,6 @@
   <p>{{ .Params.backstage.note | default (i18n "performance_only_body") }}</p>
   <p class="po-notice__problem"><span class="label">{{ i18n "problem" }}</span> {{ .Params.brief }}</p>
   {{- with $email }}
-  <p><a href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span aria-hidden="true">→</span></a></p>
+  <p><a href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span class="arrow arrow--right" aria-hidden="true"></span></a></p>
   {{- end }}
 </div>

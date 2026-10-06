@@ -1,5 +1,5 @@
 .metric{border:var(--card-border);border-radius:var(--radius);box-shadow:var(--elev-1);background:var(--color-surface);padding:var(--space-5)}
-.metric__value{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em;font:var(--fw-display) var(--t-metric-l)/1 var(--font-display);font-variant-numeric:tabular-nums}
+.metric__value{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15em;font:700 var(--t-metric-l)/1 var(--font-heading);font-variant-numeric:tabular-nums}
 .metric--xl .metric__value{font-size:var(--t-metric-xl)}
 .metric__unit{font-size:.6em}
 .metric__label{margin-top:var(--space-2)}

@@ -10,5 +10,5 @@
   {{- if $page }}{{ $dest = printf "%s%s" $page.RelPermalink (cond (ne $u.Fragment "") (printf "#%s" $u.Fragment) "") }}
   {{- else if and $target (not (strings.HasPrefix $target ".")) (not (path.Ext $target)) }}{{ warnf "prestige: link %q in %s does not match any page; check the path (links to static files, aliases and ./ or ../ paths are not checked)" .Destination $path }}{{ end -}}
 {{- end -}}
-<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} rel="noopener"{{ end }}>{{ .Text }}{{ if $external }}<span aria-hidden="true"> ↗</span><span class="sr-only"> {{ i18n "external" }}</span>{{ end }}</a>
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} rel="noopener"{{ end }}>{{ .Text }}{{ if $external }}<span class="arrow arrow--ne" aria-hidden="true"></span><span class="sr-only"> {{ i18n "external" }}</span>{{ end }}</a>
 {{- /**/ -}}
