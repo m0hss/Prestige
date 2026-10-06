@@ -1,7 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#8E1B26">
+{{- /* One colour source: the --color-theme token in assets/css/tokens.css. */ -}}
+{{- $theme := "" -}}
+{{- with resources.Get "css/tokens.css" }}{{ with findRESubmatch `--color-theme:\s*(#[0-9A-Fa-f]{3,8})\s*;` .Content 1 }}{{ $theme = index (index . 0) 1 }}{{ end }}{{ end -}}
+{{- if not $theme }}{{ errorf "prestige: --color-theme not found in assets/css/tokens.css" }}{{ end }}
+<meta name="theme-color" content="{{ $theme }}">
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 {{- with site.Home.OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
