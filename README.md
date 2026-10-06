@@ -166,7 +166,7 @@ The build checks this schema and stops with the file path when something require
 
 ### Trapdoor entries
 
-`content/trapdoor/<slug>.md` with `title`, `date`, `severity` (`minor`, `major`, `critical`), `what`, `cause`, `cost`, `changed`, `lessons` (at least one) and an optional `case` naming a case-study folder. The `TD-<NNN>` reference is computed from the date.
+`content/trapdoor/<slug>.md` with `title`, `date`, `severity` (`minor`, `major`, `critical`), `what`, `cause`, `cost`, `changed`, `lessons` (at least one) and an optional `case` naming a case-study folder. The `TD-<NNN>` reference is the entry's position by date, so it moves when an earlier entry is added or a draft is published. Add `ref: "TD-007"` to pin it once it has been cited anywhere; the build stops if two entries share a reference. (Case studies pin theirs with `barcode.ref`.)
 
 ### Shortcodes
 
@@ -178,6 +178,8 @@ The build checks this schema and stops with the file path when something require
 | `{{< ba-code before="snippets/a.sql" after="snippets/b.sql" lang="sql" hl_before="4-9" hl_after="2-6" >}}` | Two code snippets compared |
 | `{{< aside label="Cost of being wrong" >}}…{{< /aside >}}` | A margin note |
 | `{{< stepref n="5" text="How the cutover ran" >}}` | A link to a Backstage step |
+
+Markdown links may use `http`, `https`, `mailto` and `tel`; any other scheme (such as `javascript:`) stops the build. A site path such as `/work/missing/` that matches no page prints a warning with the file name.
 
 Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer; `#decorative` allows empty alt text.
 

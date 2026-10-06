@@ -3,16 +3,20 @@
 {{- $level := .Level -}}
 {{- if lt $level 2 }}{{ $level = 2 }}{{ end -}}
 {{- $base := 1 -}}
+{{- $shift := 0 -}}
 {{- $id := .Anchor -}}
 {{- if eq (partial "lib/layer.html" $page) "backstage" -}}
   {{- /* Every file of a bundle renders into one page, so anchors are scoped per file to stay unique. */ -}}
   {{- with $page.File }}
-    {{- if ne .LogicalName "backstage.md" }}{{ $level = add $level 1 }}{{ $base = 2 }}{{ $id = printf "step-%v-h-%s" $page.Params.n $id }}{{ else }}{{ $id = printf "backstage-h-%s" $id }}{{ end }}
+    {{- if ne .LogicalName "backstage.md" }}{{ $level = add $level 1 }}{{ $base = 2 }}{{ $shift = 1 }}{{ $id = printf "step-%v-h-%s" $page.Params.n $id }}{{ else }}{{ $id = printf "backstage-h-%s" $id }}{{ end }}
   {{- end -}}
 {{- end -}}
 {{- if gt $level 6 }}{{ $level = 6 }}{{ end -}}
 {{- $last := $page.Store.Get "prestige.hlevel" | default $base -}}
-{{- if gt $level (add $last 1) }}{{ errorf "prestige: heading %q skips a level (h%d after h%d) in %s" .PlainText $level $last $page.File.Path }}{{ end -}}
+{{- if gt $level (add $last 1) -}}
+  {{- $allowed := math.Max 1 (sub (add $last 1) $shift) | int -}}
+  {{- errorf "prestige: heading %q is written %s, which renders as h%d and skips a level after h%d, in %s. Write at most %s here%s" .PlainText (strings.Repeat .Level "#") $level $last $page.File.Path (strings.Repeat $allowed "#") (cond (gt $shift 0) " (headings inside a step render one level lower: the first sub-heading is ##, then ###)." ".") -}}
+{{- end -}}
 {{- $page.Store.Set "prestige.hlevel" $level -}}
 <h{{ $level }} id="{{ $id }}">{{ .Text }}</h{{ $level }}>
 {{- /**/ -}}

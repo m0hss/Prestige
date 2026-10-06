@@ -1,11 +1,20 @@
-{{- /* Computed reference: PRS-<year>-<NNN> for case studies, TD-<NNN> for failures (3.7, 3.13). */ -}}
+{{- /*
+  Reference: PRS-<year>-<NNN> for case studies, TD-<NNN> for failures (3.7, 3.13).
+  The number is the position by date unless the page pins it (`barcode.ref` on a case study, `ref` on a
+  failure). A computed number moves when an earlier entry is added or a draft is published or shown with -D,
+  so pin any reference that has been cited elsewhere.
+*/ -}}
 {{- $ref := "" -}}
 {{- if eq .Section "trapdoor" -}}
-  {{- $i := 0 -}}
-  {{- range $n, $p := (where site.RegularPages "Section" "trapdoor").ByDate -}}
-    {{- if eq $p $ }}{{ $i = add $n 1 }}{{ end -}}
+  {{- with .Params.ref -}}
+    {{- $ref = . -}}
+  {{- else -}}
+    {{- $i := 0 -}}
+    {{- range $n, $p := (where site.RegularPages "Section" "trapdoor").ByDate -}}
+      {{- if eq $p $ }}{{ $i = add $n 1 }}{{ end -}}
+    {{- end -}}
+    {{- $ref = printf "TD-%03d" $i -}}
   {{- end -}}
-  {{- $ref = printf "TD-%03d" $i -}}
 {{- else -}}
   {{- with .Params.barcode.ref -}}
     {{- $ref = . -}}

@@ -11,3 +11,10 @@
 {{- with .Params.case -}}
   {{- if not (site.GetPage (printf "/work/%s" .)) }}{{ warnf "prestige: case %q in %s matches no case study; the entry is shown without a link" . $path }}{{ end -}}
 {{- end -}}
+{{- with .Params.ref -}}
+  {{- if not (findRE `^TD-[0-9]+$` (printf "%v" .)) }}{{ errorf "prestige: \"ref\" must look like TD-001 in %s" $path }}{{ end -}}
+{{- end -}}
+{{- $mine := partial "lib/ref.html" $p -}}
+{{- range where site.RegularPages "Section" "trapdoor" -}}
+  {{- if and (ne . $p) (eq (partial "lib/ref.html" .) $mine) (lt $path .File.Path) }}{{ errorf "prestige: reference %s is used by both %s and %s; pin one with \"ref\"" $mine $path .File.Path }}{{ end -}}
+{{- end -}}

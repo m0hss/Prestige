@@ -1,9 +1,14 @@
 {{- $u := urls.Parse .Destination -}}
 {{- $site := urls.Parse site.BaseURL -}}
-{{- $external := and $u.IsAbs (ne $u.Host $site.Host) (in (slice "http" "https") $u.Scheme) -}}
+{{- $path := .PageInner.Path -}}{{- with .PageInner.File }}{{ $path = .Path }}{{ end -}}
+{{- if and $u.Scheme (not (in (slice "http" "https" "mailto" "tel") $u.Scheme)) }}{{ errorf "prestige: link %q uses the %q scheme, which is not allowed (use http, https, mailto or tel) in %s" .Destination $u.Scheme $path }}{{ end -}}
+{{- $external := and $u.Host (ne $u.Host $site.Host) (in (slice "" "http" "https") $u.Scheme) -}}
 {{- $dest := .Destination -}}
-{{- if and (not $u.IsAbs) (not (strings.HasPrefix $dest "#")) (not (strings.HasPrefix $dest "mailto:")) -}}
-  {{- with .PageInner.GetPage (strings.TrimSuffix (printf "#%s" $u.Fragment) $dest) }}{{ $dest = printf "%s%s" .RelPermalink (cond (ne $u.Fragment "") (printf "#%s" $u.Fragment) "") }}{{ end -}}
+{{- if and (not $u.IsAbs) (not $u.Host) (not (strings.HasPrefix $dest "#")) -}}
+  {{- $target := strings.TrimSuffix (printf "#%s" $u.Fragment) $dest -}}
+  {{- $page := cond (ne $target "") (.PageInner.GetPage $target) false -}}
+  {{- if $page }}{{ $dest = printf "%s%s" $page.RelPermalink (cond (ne $u.Fragment "") (printf "#%s" $u.Fragment) "") }}
+  {{- else if and $target (not (strings.HasPrefix $target ".")) (not (path.Ext $target)) }}{{ warnf "prestige: link %q in %s does not match any page; check the path (links to static files, aliases and ./ or ../ paths are not checked)" .Destination $path }}{{ end -}}
 {{- end -}}
 <a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} rel="noopener"{{ end }}>{{ .Text }}{{ if $external }}<span aria-hidden="true"> ↗</span><span class="sr-only"> {{ i18n "external" }}</span>{{ end }}</a>
 {{- /**/ -}}

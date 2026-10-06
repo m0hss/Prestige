@@ -24,7 +24,7 @@
   {{- if not (or (eq $t "string") (strings.HasPrefix $t "int") (strings.HasPrefix $t "uint")) }}{{ errorf "prestige: \"barcode.team\" must be a whole number or a string in %s" $path }}{{ end -}}
 {{- end -}}
 {{- $oc := $bc.outcome | default dict -}}
-{{- if not $oc.value }}{{ errorf "prestige: \"barcode.outcome.value\" is required in %s" $path }}{{ end -}}
+{{- if not (partial "lib/present.html" $oc.value) }}{{ errorf "prestige: \"barcode.outcome.value\" is required in %s" $path }}{{ end -}}
 {{- if not $oc.label }}{{ errorf "prestige: \"barcode.outcome.label\" is required in %s" $path }}{{ end -}}
 
 {{- $res := .Params.result | default dict -}}
@@ -33,7 +33,7 @@
 {{- $nm := len ($res.metrics | default slice) -}}
 {{- if or (lt $nm 1) (gt $nm 3) }}{{ errorf "prestige: \"result.metrics\" needs 1 to 3 entries, found %d in %s" $nm $path }}{{ end -}}
 {{- range $i, $m := $res.metrics -}}
-  {{- if not (and $m.value $m.label) }}{{ errorf "prestige: result.metrics[%d] needs \"value\" and \"label\" in %s" $i $path }}{{ end -}}
+  {{- if not (and (partial "lib/present.html" $m.value) $m.label) }}{{ errorf "prestige: result.metrics[%d] needs \"value\" and \"label\" in %s" $i $path }}{{ end -}}
 {{- end -}}
 {{- range $i, $l := .Params.links -}}
   {{- if not (and $l.label $l.url) }}{{ errorf "prestige: links[%d] needs \"label\" and \"url\" in %s" $i $path }}{{ end -}}
