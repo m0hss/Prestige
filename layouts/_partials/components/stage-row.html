@@ -1,0 +1,64 @@
+{{- /* Stage card (7.2): Performance face then Backstage face. Context: dict "page" "headliner" (bool) "n" (case count) "first" (bool). */ -}}
+{{- $p := .page -}}
+{{- $n := .n -}}
+{{- $ref := partial "lib/ref.html" $p -}}
+{{- $steps := partial "lib/steps.html" $p -}}
+{{- $c := partial "lib/counts.html" $p -}}
+{{- $has := gt (len $steps) 0 -}}
+{{- $variant := cond .headliner "headliner" "standard" -}}
+{{- $cover := $p.Resources.Get $p.Params.cover.image -}}
+{{- $metrics := first 1 $p.Params.result.metrics -}}
+{{- if eq $n 1 }}{{ $metrics = $p.Params.result.metrics }}{{ else if and (eq $n 2) (not .headliner) }}{{ $metrics = first 2 $p.Params.result.metrics }}{{ end -}}
+{{- $imgOpts := dict "res" $cover "alt" $p.Params.cover.alt "ratio" 0.5625 "anchor" ($p.Params.cover.focus | default "Smart") -}}
+{{- if .headliner -}}
+  {{- $imgOpts = merge $imgOpts (dict "widths" (slice 480 800 1136) "sizes" "(min-width: 60rem) 568px, 100vw" "eager" .first) -}}
+{{- else -}}
+  {{- $imgOpts = merge $imgOpts (dict "widths" (slice 400 640 960) "sizes" "(min-width: 30rem) 200px, 100vw") -}}
+{{- end -}}
+<article class="stage-row stage-row--{{ $variant }}{{ if eq $n 1 }} stage-row--solo{{ end }}" data-backstage="{{ $has }}"{{ if .headliner }} data-headliner{{ end }}{{ if $p.Draft }} data-draft{{ end }} aria-labelledby="sr-{{ $p.File.ContentBaseName }}">
+  <div class="stage-row__front" data-mode="performance">
+    <p class="stage-row__bar label" aria-hidden="true">{{ i18n "front_of_curtain" }}</p>
+    <div class="stage-row__fbody">
+      <div class="stage-row__cover">{{ partial "lib/img.html" $imgOpts }}</div>
+      <div class="stage-row__text">
+        {{- if $p.Draft }}<span class="chip">{{ i18n "draft" }}</span>{{ end }}
+        <h3 class="stage-row__title" id="sr-{{ $p.File.ContentBaseName }}"><a class="stage-row__link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+        <p class="stage-row__summary">{{ $p.Params.summary }}</p>
+        <div class="stage-row__metrics">
+          {{- range $metrics }}
+          {{ partial "components/metric.html" (dict "value" .value "unit" .unit "label" .label "size" "l" "page" $p) }}
+          {{- end }}
+        </div>
+        {{ partial "components/barcode.html" (dict "page" $p "variant" "compact") }}
+      </div>
+    </div>
+  </div>
+  <div class="stage-row__back" data-mode="backstage">
+    <p class="stage-row__bar label" aria-hidden="true">{{ i18n "behind_the_curtain" }}</p>
+    <div class="stage-row__bbody">
+      <p class="stage-row__ref label">{{ $ref }} <span class="stage-row__btitle">{{ $p.Title }}</span></p>
+      <p class="stage-row__field"><span class="label">{{ i18n "problem" }}</span> {{ $p.Params.brief }}</p>
+      {{- if $has }}
+      <p class="stage-row__field"><span class="label">{{ i18n "turning_point" }}</span> {{ $p.Params.backstage.teaser }}</p>
+      {{- $parts := slice (i18n "steps_n" $c.steps) }}
+      {{- with $c.constraints }}{{ $parts = $parts | append (i18n "constraints_n" .) }}{{ end }}
+      {{- with $c.rejected }}{{ $parts = $parts | append (i18n "rejected_n" .) }}{{ end }}
+      <p class="stage-row__counts label">{{ delimit $parts " · " }}</p>
+      <ol class="ticks">
+        {{- range $steps }}
+        <li><a href="{{ $p.RelPermalink }}#step-{{ .Params.n }}" aria-label="{{ i18n "step_tick" (dict "N" .Params.n "Title" .Title) }}">{{ .Params.n }}</a></li>
+        {{- end }}
+      </ol>
+      <p class="stage-row__actions">
+        {{- with $c.failures }}<a class="chip chip--link chip--trap" href="{{ $p.RelPermalink }}#trapdoor">{{ i18n "trapdoor" }} {{ . }}</a>{{ end }}
+        <a class="btn" href="{{ $p.RelPermalink }}#backstage">{{ i18n "open_backstage" }} <span aria-hidden="true">→</span></a>
+      </p>
+      {{- else }}
+      <p class="stage-row__field stage-row__request">{{ i18n "walkthrough_on_request" }}</p>
+      {{- with site.Params.contact.email }}
+      <p class="stage-row__actions"><a class="btn" href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $p.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span aria-hidden="true">→</span></a></p>
+      {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</article>

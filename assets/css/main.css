@@ -15,7 +15,6 @@
 @import "./components/before-after.css" layer(components);
 @import "./components/failure.css" layer(components);
 @import "./components/contact.css" layer(components);
-@import "./components/programme-row.css" layer(components);
 @import "./components/misc.css" layer(components);
 @import "./pages/home.css" layer(pages);
 @import "./pages/case.css" layer(pages);

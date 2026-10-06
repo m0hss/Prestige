@@ -34,6 +34,8 @@ export function setMode(m, { persist = false, speak = true } = {}) {
     drape.classList.add("is-moving");
     drape.addEventListener("transitionend", () => drape.classList.remove("is-moving"), { once: true });
   }
+  root.classList.add("is-switching");
+  window.setTimeout(() => root.classList.remove("is-switching"), 400);
   root.setAttribute("data-mode", m);
   syncControls();
   if (speak) announceMode();
