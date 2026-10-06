@@ -53,7 +53,7 @@
   .stage__heads{display:grid;grid-template-columns:1fr 1fr}
   .stage__head{display:flex;align-items:center;min-height:var(--pelmet);padding-inline:var(--space-4);background:var(--color-fg);color:var(--color-bg)}
   .stage__pelmet{position:relative;z-index:var(--z-pelmet);background:var(--color-curtain);color:var(--color-on-curtain)}
-  .stage__body{gap:0;border-left:var(--bw-3) solid transparent}
+  .stage__body{gap:0}
   .stage-row{grid-template-columns:1fr 1fr;gap:0;border-bottom:var(--bw-1) solid var(--color-line-soft)}
   .stage-row__bar{display:none}
   .stage-row__front,.stage-row__back{margin:var(--space-4)}

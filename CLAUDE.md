@@ -4,9 +4,9 @@ Prestige is a Hugo theme for case-study portfolios. Each project can present a p
 
 ## Project status
 
-This repository is the standalone theme, not a site using the theme. It currently contains the starter scaffold only. The full theme behavior, page layouts, styles, scripts, and example site are not implemented yet.
+This repository is the standalone theme, not a site using the theme. The theme is implemented from the design specification: layouts, components, shortcodes, render hooks, styles, scripts, fonts, the `exampleSite/` demo and the `tools/` scripts.
 
-The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md). Its content model, templates, visual system, accessibility requirements, and acceptance checklist guide future implementation. Keep that specification unchanged unless asked to revise the design.
+The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md). Its content model, templates, visual system, accessibility requirements, and acceptance checklist govern changes. Keep that specification unchanged unless asked to revise the design. Where Hugo forced a different mechanism than the spec describes (stylesheet bundling before Hugo 0.158, SVG sizing, `params.kind`, `:contentbasename` permalinks, site-level `[markup]` and `[taxonomies]`), the code comments and README say so.
 
 ## Hugo requirements and local use
 
@@ -23,7 +23,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-The repository's `.claude/launch.json` starts `hugo server -D` on port 1313 when launched from a Hugo site.
+The repository's `.claude/launch.json` starts `hugo server -D` on port 1313 when launched from a Hugo site. To work on the theme itself, build `exampleSite/` with the theme symlinked as `prestige` in a themes directory (see README, Development), and run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
 
 ## Content vocabulary
 
@@ -35,13 +35,13 @@ The repository's `.claude/launch.json` starts `hugo server -D` on port 1313 when
 
 See the `issue-to-case-study` and `incident-to-trapdoor` skills in `.claude/skills/` for evidence-based drafting workflows. Keep new drafts marked `draft: true` unless the user explicitly asks otherwise.
 
-## Scaffold boundaries
+## Implementation notes
 
-The starter includes theme metadata, default Hugo settings, archetypes, and top-level theme directories. Do not treat placeholder archetype values as real project facts. Do not add finished components, visual styling, interactions, or demo content as part of scaffold-only work; implement those only when requested, following the design specification.
+Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shortcodes/`, `layouts/_markup/`). Every user-visible string lives in `i18n/en.toml`. Only `assets/css/tokens.css` may contain colour values. Content is never put in JavaScript, and nothing is hidden except under `html.js` gating.
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 
-Theme author and repository/demo URLs in `theme.toml` are provisional FixByte Studio placeholders. Replace them when verified project details are provided.
+Theme author and repository/demo URLs in `theme.toml` and the README are provisional FixByte Studio placeholders. Replace them when verified project details are provided.
 
 ## Safety and accuracy
 
