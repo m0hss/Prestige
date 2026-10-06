@@ -33,7 +33,7 @@
 .prose :is(li,blockquote,.aside) .figure--bleed{width:auto;margin-inline:0}
 .code,.table-scroll{margin-block:var(--space-5)}
 .code__title{margin-bottom:var(--space-2)}
-.code__scroll,.table-scroll{overflow-x:auto;border:var(--card-border);border-radius:var(--radius)}
+.code__scroll,.table-scroll{position:relative;overflow-x:auto;border:var(--card-border);border-radius:var(--radius)}
 .code__scroll{background:var(--color-sunken)}
 .code__scroll pre{padding:var(--space-4) 0;font-size:var(--t-code);line-height:1.55;tab-size:2}
 .code__scroll pre>code{display:block;min-width:max-content;padding-inline:var(--space-4)}
