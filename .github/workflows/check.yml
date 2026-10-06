@@ -1,0 +1,49 @@
+# Release gate (spec 14): runs tools/check.mjs on every push and pull request.
+# The build matrix covers the oldest supported Hugo and the latest release (14.1);
+# the browser job adds axe-core, overflow, no-JS and toggle checks in Chromium.
+name: check
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Gate (Hugo ${{ matrix.hugo }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        hugo: ["0.146.0", "latest"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ matrix.hugo }}
+          extended: true
+      - run: node tools/check.mjs
+
+  browser:
+    name: Gate with browser (Hugo 0.151.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.151.0"
+          extended: true
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/check.mjs --browser

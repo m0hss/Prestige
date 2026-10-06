@@ -23,7 +23,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
+The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `node tools/check.mjs` before committing: it is the release gate for the section 14 checklist. It runs the budgets (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes), the 3.6 validation fixtures, contrast, links and anti-patterns. Add `--browser` after `npm install` for axe-core and the layout checks. When a change adds a validation rule or a mechanical spec requirement, add a check or fixture for it there.
 
 ## Content vocabulary
 

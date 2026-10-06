@@ -204,10 +204,21 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 `exampleSite/` is a demo for a fictional person; every name, client, figure and failure in it is invented, and its images are original illustrations dedicated to the public domain (CC0).
 
 ```bash
-cd exampleSite && hugo server     # http://localhost:1313/
-cd .. && tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
+cd exampleSite && hugo server       # http://localhost:1313/
+node tools/check.mjs                # release gate: about 70 checks in 20 s
+npm install && node tools/check.mjs --browser   # adds axe-core and layout checks in Chromium
+tools/check-budgets.sh              # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes (also run by the gate)
 node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and ImageMagick)
 ```
+
+`tools/check.mjs` runs the mechanical items of the acceptance checklist in section 14 of the design specification. Each check prints the section number it enforces:
+
+- **Static:** `theme.toml` fields, catalogue image sizes, licences and font credits; the four palettes in `tokens.css` against the 6.2 table, including all 112 contrast ratios; no colour value outside `tokens.css`; the detection rules of section 13; every i18n key used and defined.
+- **Build:** the demo builds with zero warnings; budgets; no request to another origin; every internal link, image and fragment resolves; unique ids, `alt` on every image, skip link first; no control visible before the script runs; layer order; stable barcodes; taxonomy pages list only their own pages.
+- **Fixtures:** about 40 altered copies of the demo, one per row of the validation table in 3.6, each expected to stop the build with the file named or to warn; portfolios of one, two and zero case studies; a site under a sub-path; a scratch site that exercises every template.
+- **Browser** (`--browser`): axe-core (WCAG 2.2 A and AA rules) on six page types in both modes and both schemes; no horizontal scroll from 320 to 1920 px; every page readable with JavaScript off; the toggle, its fragment override, persistence and its behaviour without `localStorage`; the skip link.
+
+Pass `--grep <text>` to run only checks whose number or name contains the text, and set `HUGO` to choose the binary. The same gate runs in GitHub Actions on Hugo 0.146.0 and the latest release (`.github/workflows/check.yml`). The manual items of section 14 (screen readers, zoom, forced colours, visual review) are not covered and still go in the release notes.
 
 The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
 

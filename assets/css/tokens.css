@@ -111,6 +111,9 @@
     }
   }
 
+  /* Pleat lines of the drape: black at 14% over the curtain fill, in every palette (6.2). */
+  :root { --color-pleat: rgb(0 0 0 / 0.14); }
+
   /* ---------- Typefaces ---------- */
   :root {
     --ff-slab: "Alfa Slab One", Rockwell, "Rockwell Nova", "Roboto Slab", "Bookman Old Style", Georgia, serif;
