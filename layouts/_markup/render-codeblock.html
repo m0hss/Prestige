@@ -1,0 +1,10 @@
+{{- $lang := .Type | default "" -}}
+{{- $label := cond (ne $lang "") $lang (i18n "plain_text") -}}
+<div class="code"{{ with $lang }} data-lang="{{ . }}"{{ end }}>
+  {{- with .Attributes.title }}
+  <p class="code__title label">{{ . }}</p>
+  {{- end }}
+  <div class="code__scroll" tabindex="0" role="region" aria-label="{{ i18n "code_region" (dict "Lang" $label) }}">
+    {{- if $lang }}{{ replace (transform.HighlightCodeBlock .).Wrapped "<pre tabindex=\"0\"" "<pre" | safeHTML }}{{ else }}<pre><code>{{ .Inner }}</code></pre>{{ end -}}
+  </div>
+</div>

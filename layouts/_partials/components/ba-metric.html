@@ -1,0 +1,38 @@
+{{- /* Before/after metric (3.8, 7.4). Context: dict label before after unit before_text after_text better note. */ -}}
+{{- $b := float .before -}}
+{{- $a := float .after -}}
+{{- $unit := .unit | default "" -}}
+{{- $bt := .before_text | default (trim (printf "%v %s" .before $unit) " ") -}}
+{{- $at := .after_text | default (trim (printf "%v %s" .after $unit) " ") -}}
+{{- $better := .better | default "lower" -}}
+{{- $delta := "" -}}{{- $arrow := "" -}}{{- $worse := false -}}
+{{- if eq $b 0.0 -}}
+  {{- $delta = i18n "ba_from_zero" -}}
+  {{- $worse = and (eq $better "lower") (gt $a $b) -}}
+{{- else -}}
+  {{- $pct := math.Round (mul (div (sub $a $b) $b) 100) -}}
+  {{- if lt $pct 0.0 -}}
+    {{- $delta = printf "%d%% %s" (int (mul $pct -1)) (i18n "ba_lower") -}}{{- $arrow = "↓" -}}
+    {{- $worse = eq $better "higher" -}}
+  {{- else if gt $pct 0.0 -}}
+    {{- $delta = printf "%d%% %s" (int $pct) (i18n "ba_higher") -}}{{- $arrow = "↑" -}}
+    {{- $worse = eq $better "lower" -}}
+  {{- else -}}
+    {{- $delta = "0%" -}}
+  {{- end -}}
+{{- end -}}
+{{- if $worse }}{{ $delta = printf "%s %s" (i18n "ba_worse") $delta }}{{ end -}}
+<figure class="ba ba--metric">
+  <p class="sr-only">{{ i18n "ba_sentence" (dict "Label" .label "Before" $bt "After" $at "Delta" $delta) }}</p>
+  <div class="ba__metric" aria-hidden="true">
+    <p class="ba__mlabel label">{{ .label }}</p>
+    <dl class="ba__dl">
+      <div class="ba__pane" data-side="before"><dt class="chip chip--before">○ {{ i18n "ba_before" }}</dt><dd class="ba__val">{{ $bt }}</dd></div>
+      <div class="ba__pane" data-side="after"><dt class="chip chip--after">● {{ i18n "ba_after" }}</dt><dd class="ba__val">{{ $at }}</dd></div>
+    </dl>
+    <p class="ba__delta{{ if $worse }} ba__delta--worse{{ end }}">{{ with $arrow }}{{ . }} {{ end }}{{ $delta }}</p>
+  </div>
+  {{- with .note }}
+  <figcaption class="ba__caption">{{ . }}</figcaption>
+  {{- end }}
+</figure>

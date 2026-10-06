@@ -138,6 +138,9 @@ ba_worse = "Worse:"
 ba_from_zero = "from zero"
 ba_sentence = "{{ .Label }}: before {{ .Before }}, after {{ .After }}, {{ .Delta }}."
 ba_code_region = "{{ .Side }} code, scrollable"
+code_region = "{{ .Lang }} code, scrollable"
+plain_text = "Text"
+table_region = "Table, scrollable"
 aside_note = "Note"
 
 # Trapdoor

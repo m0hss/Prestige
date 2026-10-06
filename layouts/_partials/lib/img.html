@@ -1,0 +1,53 @@
+{{- /*
+  Responsive image. Context: dict
+    "res"    (resource, required)   "alt" (string, required)
+    "sizes"  (string)               "widths" (slice of int; default 480 800 1200 1600)
+    "ratio"  (float: height/width; when set the image is cropped with Fill)
+    "anchor" (string; default "Smart")
+    "eager"  (bool)                 "class" (string)
+*/ -}}
+{{- $res := .res -}}
+{{- $sub := $res.MediaType.SubType -}}
+{{- if in (slice "svg" "svg+xml" "gif") $sub -}}
+  {{- /* Hugo cannot measure SVG, so read the root element's width and height attributes; GIF is measured normally. */ -}}
+  {{- $w := 0 -}}{{- $h := 0 -}}
+  {{- if eq $sub "gif" -}}
+    {{- $w = $res.Width -}}{{- $h = $res.Height -}}
+  {{- else -}}
+    {{- $root := index (findRE `<svg[^>]*>` $res.Content 1) 0 | default "" -}}
+    {{- with findRESubmatch `\swidth="([0-9.]+)(px)?"` $root 1 }}{{ $w = int (float (index (index . 0) 1)) }}{{ end -}}
+    {{- with findRESubmatch `\sheight="([0-9.]+)(px)?"` $root 1 }}{{ $h = int (float (index (index . 0) 1)) }}{{ end -}}
+  {{- end -}}
+<img{{ with .class }} class="{{ . }}"{{ end }} src="{{ $res.RelPermalink }}" alt="{{ .alt }}"{{ if and $w $h }} width="{{ $w }}" height="{{ $h }}"{{ end }} loading="{{ cond .eager "eager" "lazy" }}" decoding="async">
+{{- else -}}
+  {{- $hint := cond (eq $sub "png") "text" "photo" -}}
+  {{- $anchor := .anchor | default "Smart" -}}
+  {{- $ratio := .ratio -}}
+  {{- $usable := slice -}}
+  {{- range (.widths | default (slice 480 800 1200 1600)) -}}{{- if le . $res.Width -}}{{- $usable = $usable | append . -}}{{- end -}}{{- end -}}
+  {{- if not $usable -}}{{- $usable = slice $res.Width -}}{{- end -}}
+  {{- $srcset := slice -}}
+  {{- $fallbackW := index $usable 0 -}}
+  {{- range $usable -}}
+    {{- $w := . -}}
+    {{- $v := "" -}}
+    {{- if $ratio -}}
+      {{- $h := int (math.Round (mul (float $w) $ratio)) -}}
+      {{- $v = $res.Fill (printf "%dx%d webp q80 %s %s" $w $h $hint $anchor) -}}
+    {{- else -}}
+      {{- $v = $res.Resize (printf "%dx webp q80 %s" $w $hint) -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $v.RelPermalink $w) -}}
+    {{- if le $w 1200 -}}{{- $fallbackW = $w -}}{{- end -}}
+  {{- end -}}
+  {{- $fb := "" -}}
+  {{- if $ratio -}}
+    {{- $fb = $res.Fill (printf "%dx%d jpg q82 %s" $fallbackW (int (math.Round (mul (float $fallbackW) $ratio))) $anchor) -}}
+  {{- else -}}
+    {{- $fb = $res.Resize (printf "%dx jpg q82" $fallbackW) -}}
+  {{- end -}}
+<picture>
+  <source type="image/webp" srcset="{{ delimit $srcset ", " }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}>
+  <img{{ with .class }} class="{{ . }}"{{ end }} src="{{ $fb.RelPermalink }}" width="{{ $fb.Width }}" height="{{ $fb.Height }}" alt="{{ .alt }}" loading="{{ cond .eager "eager" "lazy" }}"{{ if .eager }} fetchpriority="high"{{ end }} decoding="async">
+</picture>
+{{- end -}}

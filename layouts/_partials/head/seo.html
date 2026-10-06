@@ -15,7 +15,7 @@
   {{- $img = $.Resources.Get . -}}
 {{- end -}}
 {{- if not $img }}{{ $img = resources.Get (site.Params.seo.og_image | default "img/og-default.png") }}{{ end -}}
-{{- with $img }}{{ if ne .MediaType.SubType "svg+xml" }}{{ $img = .Fill "1200x630 jpg q85 Smart" }}{{ else }}{{ $img = false }}{{ end }}{{ end }}
+{{- with $img }}{{ if not (in (slice "svg" "svg+xml") .MediaType.SubType) }}{{ $img = .Fill "1200x630 jpg q85 Smart" }}{{ else }}{{ $img = false }}{{ end }}{{ end }}
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">

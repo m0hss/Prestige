@@ -1,0 +1,23 @@
+{{- /* Before/after code (7.4). Context: dict before after lang before_label after_label hl_before hl_after caption id. */ -}}
+<figure class="ba ba--code">
+  <div class="ba__grid">
+    {{- range $side := slice "before" "after" }}
+    {{- $id := printf "%s-%s" $.id $side }}
+    {{- $label := index $ (printf "%s_label" $side) }}
+    {{- $opts := dict "noClasses" false "lineNos" false }}
+    {{- with index $ (printf "hl_%s" $side) }}{{ $opts = merge $opts (dict "hl_lines" .) }}{{ end }}
+    <div class="ba__pane" data-side="{{ $side }}" role="group" aria-labelledby="{{ $id }}">
+      <p class="chip chip--{{ $side }}" id="{{ $id }}"><span aria-hidden="true">{{ cond (eq $side "before") "○" "●" }} </span>{{ $label }}</p>
+      <div class="code__scroll" tabindex="0" role="region" aria-label="{{ i18n "ba_code_region" (dict "Side" (i18n (printf "ba_%s" $side))) }}">
+        {{- replace (transform.Highlight (index $ $side).Content $.lang $opts) "<pre tabindex=\"0\"" "<pre" | safeHTML -}}
+      </div>
+    </div>
+    {{- if eq $side "before" }}
+    <p class="ba__link" aria-hidden="true"><span class="ba__arrow">→</span><span class="ba__then">{{ i18n "ba_then" }} ↓</span></p>
+    {{- end }}
+    {{- end }}
+  </div>
+  {{- with .caption }}
+  <figcaption class="ba__caption">{{ . }}</figcaption>
+  {{- end }}
+</figure>

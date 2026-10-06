@@ -1,0 +1,28 @@
+{{- /* Bundle-resolved responsive image (3.9, 11.3). Fragments: #wide, #bleed (Performance only), #decorative. */ -}}
+{{- $page := .PageInner -}}
+{{- $b := partial "lib/bundle.html" $page -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $frag := $u.Fragment -}}
+{{- $res := $b.Resources.Get $u.Path | default ($page.Resources.Get $u.Path) -}}
+{{- if not $res }}{{ errorf "prestige: image %q is not a file in the bundle of %s" $u.Path $page.File.Path }}{{ end -}}
+{{- $decorative := eq $frag "decorative" -}}
+{{- if and (not .PlainText) (not $decorative) }}{{ errorf "prestige: image %q needs alt text in %s (or add #decorative)" $u.Path $page.File.Path }}{{ end -}}
+{{- $layer := partial "lib/layer.html" $page -}}
+{{- $mod := "" -}}{{- $widths := slice 480 800 1200 1600 -}}{{- $sizes := "(min-width: 48rem) 680px, 100vw" -}}
+{{- if eq $frag "wide" -}}
+  {{- $mod = "wide" -}}{{- $sizes = "(min-width: 75rem) 1200px, 100vw" -}}
+{{- else if and (eq $frag "bleed") (eq $layer "performance") -}}
+  {{- $mod = "bleed" -}}{{- $widths = slice 800 1200 1600 2400 -}}{{- $sizes = "100vw" -}}
+{{- end -}}
+{{- $img := partial "lib/img.html" (dict "res" $res "alt" (cond $decorative "" .PlainText) "widths" $widths "sizes" $sizes) -}}
+{{- if .IsBlock -}}
+<figure class="figure{{ with $mod }} figure--{{ . }}{{ end }}">
+  {{ $img }}
+  {{- with .Title }}
+  <figcaption class="figure__caption">{{ . }}</figcaption>
+  {{- end }}
+</figure>
+{{- else -}}
+{{- /* Inline image (the site keeps wrapStandAloneImageWithinParagraph): stay valid inside <p>. */ -}}
+<span class="figure figure--inline{{ with $mod }} figure--{{ . }}{{ end }}">{{ $img }}{{ with .Title }}<span class="figure__caption">{{ . }}</span>{{ end }}</span>
+{{- end -}}

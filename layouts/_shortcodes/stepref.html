@@ -1,0 +1,7 @@
+{{- $n := .Get "n" -}}
+{{- if not $n }}{{ errorf "stepref: \"n\" is required (%s)" .Page.File.Path }}{{ end -}}
+{{- $b := partial "lib/bundle.html" .Page -}}
+{{- $total := len (partial "lib/steps.html" $b) -}}
+{{- if or (lt (int $n) 1) (gt (int $n) $total) }}{{ errorf "stepref: step %v does not exist in %s (it has %d steps)" $n .Page.File.Path $total }}{{ end -}}
+{{- $perf := eq (partial "lib/layer.html" .Page) "performance" -}}
+<a class="stepref" href="#step-{{ $n }}" data-stepref="{{ $n }}">{{ if $perf }}<span class="sr-only">{{ i18n "stepref_prefix" }} </span>{{ end }}{{ .Get "text" | default (i18n "step_short" (dict "N" $n)) }}</a>

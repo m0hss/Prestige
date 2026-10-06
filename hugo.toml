@@ -23,6 +23,10 @@
 [markup.goldmark.renderer]
   unsafe = false
 
+# Sites must set this too: Hugo does not merge [markup] from a theme.
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
 [imaging]
   resampleFilter = "CatmullRom"
   anchor         = "Smart"

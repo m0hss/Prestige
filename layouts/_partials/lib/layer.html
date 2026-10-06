@@ -1,0 +1,7 @@
+{{- /* "backstage" for step resources and backstage.md, else "performance". Context: a page. */ -}}
+{{- $l := "performance" -}}
+{{- with .File -}}
+  {{- $dir := replace .Dir "\\" "/" | strings.TrimSuffix "/" -}}
+  {{- if or (strings.HasSuffix $dir "/steps") (eq .LogicalName "backstage.md") }}{{ $l = "backstage" }}{{ end -}}
+{{- end -}}
+{{- return $l -}}

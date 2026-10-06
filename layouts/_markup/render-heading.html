@@ -1,0 +1,14 @@
+{{- /* Headings: the page owns the H1, so # becomes ##; inside a step (whose header is an h2) levels shift down one. A skipped level fails the build. */ -}}
+{{- $page := .PageInner -}}
+{{- $level := .Level -}}
+{{- if lt $level 2 }}{{ $level = 2 }}{{ end -}}
+{{- $base := 1 -}}
+{{- if eq (partial "lib/layer.html" $page) "backstage" -}}
+  {{- with $page.File }}{{ if ne .LogicalName "backstage.md" }}{{ $level = add $level 1 }}{{ $base = 2 }}{{ end }}{{ end -}}
+{{- end -}}
+{{- if gt $level 6 }}{{ $level = 6 }}{{ end -}}
+{{- $last := $page.Store.Get "prestige.hlevel" | default $base -}}
+{{- if gt $level (add $last 1) }}{{ errorf "prestige: heading %q skips a level (h%d after h%d) in %s" .PlainText $level $last $page.File.Path }}{{ end -}}
+{{- $page.Store.Set "prestige.hlevel" $level -}}
+<h{{ $level }} id="{{ .Anchor }}">{{ .Text }}</h{{ $level }}>
+{{- /**/ -}}

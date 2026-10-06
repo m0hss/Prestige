@@ -1,0 +1,5 @@
+{{- if not (trim .Inner " \n") }}{{ errorf "aside: inner content is required (%s)" .Page.File.Path }}{{ end -}}
+<aside class="aside">
+  <p class="aside__label label">{{ .Get "label" | default (i18n "aside_note") }}</p>
+  <div class="aside__body">{{ .InnerDeindent | .Page.RenderString (dict "display" "block") }}</div>
+</aside>

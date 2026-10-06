@@ -1,0 +1,12 @@
+{{- /* Metric block (7.5). Context: dict "value" "unit" "label" "context" "size" (l|xl) "page". */ -}}
+{{- if not .value -}}
+  {{- warnf "prestige: a metric without a value is not rendered (%s)" (cond (isset . "page") (printf "%v" .page.File) "unknown page") -}}
+{{- else -}}
+<div class="metric metric--{{ .size | default "l" }}">
+  <p class="metric__value"><span class="metric__num">{{ .value }}</span>{{ with .unit }}<span class="metric__unit">{{ . }}</span>{{ end }}</p>
+  <p class="metric__label label">{{ .label }}</p>
+  {{- with .context }}
+  <p class="metric__context">{{ . }}</p>
+  {{- end }}
+</div>
+{{- end -}}

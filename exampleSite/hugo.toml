@@ -25,6 +25,9 @@ enableRobotsTXT = true
 [markup.goldmark.renderer]
   unsafe = false
 
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
 [imaging]
   resampleFilter = "CatmullRom"
   anchor = "Smart"

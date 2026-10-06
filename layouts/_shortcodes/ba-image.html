@@ -1,0 +1,11 @@
+{{- $b := partial "lib/bundle.html" .Page -}}
+{{- $before := $b.Resources.Get (.Get "before") -}}
+{{- $after  := $b.Resources.Get (.Get "after") -}}
+{{- if not $before }}{{ errorf "ba-image: %q not found in bundle of %s" (.Get "before") .Page.File.Path }}{{ end -}}
+{{- if not $after  }}{{ errorf "ba-image: %q not found in bundle of %s" (.Get "after")  .Page.File.Path }}{{ end -}}
+{{- if not (and (.Get "before_alt") (.Get "after_alt")) }}{{ errorf "ba-image: before_alt and after_alt are required (%s)" .Page.File.Path }}{{ end -}}
+{{ partial "components/ba-image.html" (dict "before" $before "after" $after
+     "before_alt" (.Get "before_alt") "after_alt" (.Get "after_alt")
+     "before_label" (.Get "before_label" | default (i18n "ba_before"))
+     "after_label"  (.Get "after_label"  | default (i18n "ba_after"))
+     "caption" (.Get "caption") "id" (partial "lib/sc-id.html" .)) }}
