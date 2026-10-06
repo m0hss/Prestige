@@ -1,0 +1,12 @@
+{{- /* Failure rows whose `case` is one of the given case studies. Context: slice of case-study pages. */ -}}
+{{- $names := slice -}}
+{{- range . }}{{ with .File }}{{ $names = $names | append .ContentBaseName }}{{ end }}{{ end -}}
+{{- $fails := where (where site.RegularPages "Section" "trapdoor") "Params.case" "in" $names -}}
+{{- with $fails.ByDate.Reverse }}
+<section class="related" aria-labelledby="related-title">
+  <h2 class="related__title label" id="related-title">{{ i18n "related_failures" }}</h2>
+  {{- range . }}
+  {{ partial "components/failure-entry.html" (dict "page" . "variant" "row" "h" 3) }}
+  {{- end }}
+</section>
+{{- end -}}

@@ -13,8 +13,8 @@ enableRobotsTXT = true
   lesson     = "lessons"
 
 [permalinks.page]
-  work     = "/work/:slug/"
-  trapdoor = "/trapdoor/:slug/"
+  work     = "/work/:contentbasename/"
+  trapdoor = "/trapdoor/:contentbasename/"
 
 [markup.highlight]
   noClasses  = false

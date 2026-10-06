@@ -1,0 +1,12 @@
+{{- /* Links to every term of a taxonomy with counts. Context: dict "tax" (plural name) "current" (term page or false) "label". */ -}}
+{{- $cur := .current -}}
+{{- with index site.Taxonomies .tax }}
+<nav class="term-links" aria-label="{{ $.label }}">
+  <p class="label">{{ $.label }}:</p>
+  <ul class="chips">
+    {{- range .ByCount }}
+    <li><a class="chip chip--link" href="{{ .Page.RelPermalink }}"{{ if and $cur (eq .Page $cur) }} aria-current="page"{{ end }}>{{ .Page.LinkTitle }} <span class="num">({{ .Count }})</span></a></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end -}}

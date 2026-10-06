@@ -1,11 +1,30 @@
 {{ define "main" }}
-<div class="container prose-page">
-  <h1 class="page-title">{{ .Title }}</h1>
-  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
-  <ul class="plain-list">
-    {{- range .Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+{{- $tax := .Data.Plural }}
+{{- $label := i18n (printf "tax_%s" .Data.Singular) | default .Data.Singular }}
+{{- $pag := .Paginate .Pages.ByWeight }}
+{{- $cases := where .Pages "Section" "work" }}
+{{- $fails := where .Pages "Section" "trapdoor" }}
+<div class="container list-page">
+  <header class="page-head term-head">
+    <p class="label">{{ $label }}</p>
+    <h1>{{ .Title }}</h1>
+    {{- $parts := slice }}
+    {{- with len $cases }}{{ $parts = $parts | append (i18n "case_studies_n" .) }}{{ end }}
+    {{- with len (cond (eq $tax "lessons") $fails (where (where site.RegularPages "Section" "trapdoor") "Params.case" "in" (apply $cases "partial" "lib/basename.html" "."))) }}{{ $parts = $parts | append (i18n "trapdoors_n" .) }}{{ end }}
+    <p class="term-head__counts label">{{ delimit $parts " · " }}</p>
+    {{ partial "components/term-links.html" (dict "tax" $tax "current" . "label" (i18n "all_terms" (dict "Name" (lower (i18n (printf "tax_%s" $tax) | default $tax))))) }}
+  </header>
+  {{- range $pag.Pages }}
+    {{- if eq .Section "trapdoor" }}
+  {{ partial "components/failure-entry.html" (dict "page" . "variant" "row" "h" 2) }}
+    {{- else }}
+  {{ partial "components/programme-row.html" (dict "page" . "h" 2) }}
     {{- end }}
-  </ul>
+  {{- end }}
+  {{ partial "components/pagination.html" $pag }}
+  {{- if ne $tax "lessons" }}{{ partial "components/related-failures.html" $cases }}{{ end }}
+  {{- with .Parent }}
+  <p class="term-back"><a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ i18n "all_terms" (dict "Name" (lower .Title)) }}</a></p>
+  {{- end }}
 </div>
 {{ end }}

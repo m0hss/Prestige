@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{- $a := site.Params.author }}
+<div class="container about">
+  <div class="about__intro">
+    <h1 class="about__statement">{{ .Params.lede | default .Title }}</h1>
+    <div class="about__byline">
+      {{- with $a.portrait }}{{ with resources.Get . }}
+      {{- $img := .Fill "192x192 webp q80 Smart" }}
+      <img class="about__portrait" src="{{ $img.RelPermalink }}" width="96" height="96" alt="{{ $a.name }}">
+      {{- end }}{{ end }}
+      <p><strong>{{ $a.name }}</strong>{{ with $a.location }} · {{ . }}{{ end }}{{ with $a.role }}<br>{{ . }}{{ end }}</p>
+    </div>
+  </div>
+  {{- with .Params.method }}
+  <section class="about__method" aria-labelledby="method-title">
+    <h2 class="label" id="method-title">{{ i18n "method" }}</h2>
+    <ol class="method">
+      {{- range $i, $m := . }}
+      <li><span class="method__n label" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span><div><h3 class="method__label">{{ $m.label }}</h3><p>{{ $m.text }}</p></div></li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+  {{- with .Params.called_in_for }}
+  <section class="about__called" aria-labelledby="called-title">
+    <h2 class="label" id="called-title">{{ i18n "called_in_for" }}</h2>
+    <ul class="about__list">
+      {{- range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  </section>
+  {{- end }}
+  <div class="about__contact">{{ partial "components/contact-block.html" (dict "variant" "full" "page" .) }}</div>
+  {{- with .Content }}<div class="about__body prose">{{ . }}</div>{{ end }}
+</div>
+{{ end }}

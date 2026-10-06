@@ -1,10 +1,11 @@
 {{ define "main" }}
-<div class="container prose-page">
-  <h1 class="page-title">{{ .Title }}</h1>
-  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
-  <ul class="plain-list">
-    {{- range .Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+<div class="container list-page">
+  <header class="page-head">
+    <h1>{{ .Title }}</h1>
+  </header>
+  <ul class="term-index">
+    {{- range .Data.Terms.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> <span class="label num">{{ .Count }}</span></li>
     {{- end }}
   </ul>
 </div>
