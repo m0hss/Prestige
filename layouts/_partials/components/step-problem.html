@@ -1,0 +1,10 @@
+<div class="kb kb--problem">
+  <p class="kb__statement">{{ .Params.statement }}</p>
+  {{- with .Params.evidence }}
+  <dl class="kb__evidence">
+    {{- range . }}
+    <div><dt class="label">{{ .label }}</dt><dd class="num">{{ .value }}</dd></div>
+    {{- end }}
+  </dl>
+  {{- end }}
+</div>

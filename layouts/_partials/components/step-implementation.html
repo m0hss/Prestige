@@ -1,0 +1,10 @@
+{{- with .Params.decisions }}
+<div class="kb kb--implementation">
+  <p class="label kb__caption">{{ i18n "decision_ledger" }}</p>
+  <dl class="ledger">
+    {{- range . }}
+    <div class="ledger__row"><dt>{{ .decision }}</dt><dd>{{ .because }}</dd></div>
+    {{- end }}
+  </dl>
+</div>
+{{- end }}

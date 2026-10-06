@@ -1,0 +1,15 @@
+<div class="kb kb--constraints table-scroll" tabindex="0" role="region" aria-label="{{ i18n "kind_constraints" }}">
+  <table class="kb__table">
+    <thead><tr><th scope="col">{{ i18n "c_constraint" }}</th><th scope="col">{{ i18n "c_limit" }}</th><th scope="col">{{ i18n "c_type" }}</th><th scope="col">{{ i18n "c_source" }}</th></tr></thead>
+    <tbody>
+      {{- range .Params.constraints }}
+      <tr>
+        <th scope="row">{{ .name }}</th>
+        <td>{{ .limit }}</td>
+        <td><span class="chip chip--{{ .type }}">{{ i18n (printf "c_%s" .type) }}</span></td>
+        <td>{{ .source | default "—" }}</td>
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

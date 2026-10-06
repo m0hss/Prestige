@@ -1,0 +1,13 @@
+{{- /* Result block (5.2 items 8 and 9). Context: page. */ -}}
+{{- $r := .Params.result -}}
+<div class="result-block container" id="result">
+  <div class="result-block__text">
+    <p class="result-block__headline t-display-l">{{ $r.headline }}</p>
+    <div class="result-block__outcome prose">{{ $r.outcome | .RenderString (dict "display" "block") }}</div>
+  </div>
+  <div class="result-block__metrics">
+    {{- range $i, $m := $r.metrics }}
+    {{ partial "components/metric.html" (dict "value" $m.value "unit" $m.unit "label" $m.label "context" $m.context "size" (cond (eq $i 0) "xl" "l") "page" $) }}
+    {{- end }}
+  </div>
+</div>

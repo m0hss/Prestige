@@ -1,0 +1,10 @@
+{{- /* Call-sheet notice for a case study without Backstage (9.4). Context: page. */ -}}
+{{- $email := site.Params.contact.email -}}
+<div class="notice po-notice" role="note">
+  <p class="notice__title">{{ i18n "performance_only_title" }}</p>
+  <p>{{ .Params.backstage.note | default (i18n "performance_only_body") }}</p>
+  <p class="po-notice__problem"><span class="label">{{ i18n "problem" }}</span> {{ .Params.brief }}</p>
+  {{- with $email }}
+  <p><a href="mailto:{{ . }}?subject={{ i18n "walkthrough_subject" (dict "Title" $.Title) | urlquery }}">{{ i18n "ask_for_it" }} <span aria-hidden="true">→</span></a></p>
+  {{- end }}
+</div>

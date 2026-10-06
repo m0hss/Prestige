@@ -1,0 +1,67 @@
+{{- /* Failure entry (7.7). Context: dict "page" "variant" (row|full|strip) "h" (heading level, default 2) "fixed" (dict for the 404). */ -}}
+{{- $v := .variant | default "row" -}}
+{{- $h := .h | default 2 -}}
+{{- $f := .fixed -}}
+{{- $p := .page -}}
+{{- $ref := "" -}}{{- $title := "" -}}{{- $sev := "minor" -}}{{- $href := "" -}}{{- $date := false -}}
+{{- $fields := slice -}}
+{{- $case := false -}}
+{{- if $f -}}
+  {{- $ref = $f.ref -}}{{- $title = $f.title -}}{{- $sev = $f.severity -}}
+  {{- $fields = slice (slice "what" $f.what) (slice "cause" $f.cause) (slice "cost" $f.cost) (slice "changed" $f.changed) -}}
+{{- else -}}
+  {{- $ref = partial "lib/ref.html" $p -}}{{- $title = $p.Title -}}{{- $sev = $p.Params.severity -}}{{- $href = $p.RelPermalink -}}{{- $date = $p.Date -}}
+  {{- $fields = slice (slice "what" $p.Params.what) (slice "cause" $p.Params.cause) (slice "cost" $p.Params.cost) (slice "changed" $p.Params.changed) -}}
+  {{- with $p.Params.case }}{{ $case = site.GetPage (printf "/work/%s" .) }}{{ end -}}
+{{- end -}}
+{{- $squares := index (dict "minor" "■□□" "major" "■■□" "critical" "■■■") $sev -}}
+{{- $sevHTML := printf "<span class=\"failure__sev label\"><span class=\"sr-only\">%s: </span>%s <span aria-hidden=\"true\">%s</span></span>" (i18n "severity") (i18n (printf "severity_%s" $sev)) $squares -}}
+{{- if eq $v "strip" }}
+<aside class="failure failure--strip trapdoor-strip" aria-label="{{ i18n "trapdoor" }}">
+  <span class="hazard" aria-hidden="true"></span>
+  <p class="failure__line">
+    <span class="label failure__kicker">{{ i18n "trapdoor" }}</span>
+    <span class="label failure__ref">{{ $ref }}</span>
+    <a class="failure__title failure__stretch" href="{{ $href }}">{{ $title }}</a>
+    {{ $sevHTML | safeHTML }}
+    <span class="failure__cost">{{ $p.Params.cost }}</span>
+    <span class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} →</span>
+  </p>
+</aside>
+{{- else }}
+<article class="failure failure--{{ $v }}">
+  {{- if eq $v "full" }}<span class="hazard" aria-hidden="true"></span>{{ end }}
+  <div class="failure__meta">
+    <p class="label"><span class="failure__ref">{{ $ref }}</span>{{ with $date }} · <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2006-01-02" }}</time>{{ end }}</p>
+    <p>{{ $sevHTML | safeHTML }}</p>
+    {{- with $case }}
+    <p class="failure__case"><span class="sr-only">{{ i18n "related_case" }}: </span><a href="{{ .RelPermalink }}">{{ .Title }} <span aria-hidden="true">→</span></a></p>
+    {{- end }}
+  </div>
+  <div class="failure__report">
+    {{- if and (eq $v "row") $href }}
+    <h{{ $h }} class="failure__title"><a class="failure__stretch" href="{{ $href }}">{{ $title }}</a></h{{ $h }}>
+    {{- else }}
+    <h{{ $h }} class="failure__title{{ if eq $h 1 }} t-display-xl{{ end }}">{{ $title }}</h{{ $h }}>
+    {{- end }}
+    <dl class="failure__dl">
+      {{- range $fields }}
+      <div><dt class="label">{{ i18n (printf "failure_%s" (index . 0)) }}</dt><dd>{{ index . 1 }}</dd></div>
+      {{- end }}
+    </dl>
+    {{- with $p }}{{ with .GetTerms "lessons" }}
+    <ul class="chips">
+      {{- range . }}
+      <li>{{ partial "components/chip.html" (dict "text" .LinkTitle "href" .RelPermalink) }}</li>
+      {{- end }}
+    </ul>
+    {{- end }}{{ end }}
+    {{- if and (eq $v "row") $href }}
+    <p class="failure__more label" aria-hidden="true">{{ i18n "read_report" }} →</p>
+    {{- end }}
+    {{- if and (eq $v "full") $p }}
+    <div class="failure__body prose">{{ $p.Content }}</div>
+    {{- end }}
+  </div>
+</article>
+{{- end -}}

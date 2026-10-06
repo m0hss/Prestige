@@ -1,0 +1,9 @@
+<div class="kb kb--result">
+  {{- range .Params.metrics }}
+  {{ partial "components/ba-metric.html" (dict "label" .label "before" .before "after" .after "unit" .unit "before_text" .before_text "after_text" .after_text "better" .better) }}
+  {{- end }}
+  <p class="kb__verdict t-body-l"><span class="label">{{ i18n "verdict" }}</span> {{ .Params.verdict }}</p>
+  {{- with .Params.caveat }}
+  <p class="kb__caveat">{{ i18n "caveat" }} <strong>{{ . }}</strong></p>
+  {{- end }}
+</div>
