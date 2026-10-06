@@ -2,6 +2,7 @@
 title: "The cohort that posted twice"
 date: 2025-10-03
 case: "ledger-cutover"
+ref: "TD-001"
 severity: "minor"
 what: "Cohort 3 posted 212 ledger lines twice for nine minutes during the cutover."
 cause: "A consumer replayed an offset after a partition rebalance, and the posting call was not idempotent."

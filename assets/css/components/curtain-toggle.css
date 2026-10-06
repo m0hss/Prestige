@@ -5,7 +5,7 @@
 .curtain__seg:has(:checked){background:var(--color-on-curtain);color:var(--color-curtain);font-weight:700}
 .curtain__seg:has(:checked) .curtain__glyph::before{content:"●"}
 .curtain__seg:has(:focus-visible){outline:var(--focus-width) solid var(--color-focus-on-curtain);outline-offset:var(--focus-offset)}
-.curtain__seg:has(:not(:checked)):active{background:var(--color-curtain-hem);box-shadow:inset 0 0 0 2px var(--color-on-curtain);transition-duration:var(--dur-press)}
+.curtain__seg:not(:has(:checked)):active{background:var(--color-curtain-hem);box-shadow:inset 0 0 0 2px var(--color-on-curtain);transition-duration:var(--dur-press)}
 @media (hover:hover){.curtain__seg:not(:has(:checked)):hover{background:var(--color-curtain-hem)}}
 .curtain:disabled .curtain__seg{opacity:.5;cursor:not-allowed}
 @media (min-width:60rem){.curtain{flex:0 0 auto;max-width:none}.curtain__seg{width:144px;flex:0 0 144px}}

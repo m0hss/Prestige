@@ -1,5 +1,5 @@
 {{- /* Metric block (7.5). Context: dict "value" "unit" "label" "context" "size" (l|xl) "page". */ -}}
-{{- if not .value -}}
+{{- if not (partial "lib/present.html" .value) -}}
   {{- warnf "prestige: a metric without a value is not rendered (%s)" (cond (isset . "page") (printf "%v" .page.File) "unknown page") -}}
 {{- else -}}
 <div class="metric metric--{{ .size | default "l" }}">

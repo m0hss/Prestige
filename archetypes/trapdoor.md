@@ -4,6 +4,7 @@ title: "TODO: name the failure, not the lesson (60 characters max)"
 date: {{ .Date }}
 draft: true
 case: ""
+# ref: "TD-001"   # optional: pin the reference once it has been cited; otherwise it is the position by date
 severity: "TODO: minor | major | critical"
 what: "TODO: what happened (200 characters max)"
 cause: "TODO: the confirmed cause, or say it is under investigation (200 characters max)"

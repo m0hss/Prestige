@@ -1,0 +1,3 @@
+{{- /* True when a front-matter or shortcode value was supplied. Unlike a truthiness test it accepts the number 0. Context: any value. */ -}}
+{{- $s := printf "%v" . -}}
+{{- return (and (ne $s "") (ne $s "<nil>") (ne $s "<no value>")) -}}

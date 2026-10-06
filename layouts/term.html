@@ -1,9 +1,10 @@
 {{ define "main" }}
 {{- $tax := .Data.Plural }}
 {{- $label := i18n (printf "tax_%s" .Data.Singular) | default .Data.Singular }}
-{{- $pag := .Paginate .Pages.ByWeight }}
 {{- $cases := where .Pages "Section" "work" }}
 {{- $fails := where .Pages "Section" "trapdoor" }}
+{{- /* Case studies in programme order, as on the home page and the Work list, then failures newest first. */ -}}
+{{- $pag := .Paginate ((partial "lib/sort-cases.html" $cases) | append $fails.ByDate.Reverse) }}
 <div class="container list-page">
   <header class="page-head term-head">
     <p class="label">{{ $label }}</p>
