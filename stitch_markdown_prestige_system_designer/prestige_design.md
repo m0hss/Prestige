@@ -605,7 +605,7 @@ enableRobotsTXT = true
     availability = "Booking from March 2027"
     [[params.contact.links]]
       label = "Code"
-      url = "https://github.com/prestige-demo"
+      url = "https://github.com/m0hss/Prestige"
     [[params.contact.links]]
       label = "Write-ups"
       url = "https://prestige-demo.example.org/writeups/"
@@ -3002,10 +3002,10 @@ All user-visible strings live here; v1 ships English only (15). Plural keys use 
 ```toml
 name = "Prestige"
 license = "MIT"
-licenselink = "https://github.com/fixbyte-studio/hugo-theme-prestige/blob/main/LICENSE"
+licenselink = "https://github.com/m0hss/Prestige/blob/master/LICENSE"
 description = "A case-study portfolio theme with two authored layers per project: Performance (the result) and Backstage (the process), plus a Trapdoor for failures."
-homepage = "https://github.com/fixbyte-studio/hugo-theme-prestige"
-demosite = "https://fixbyte-studio.github.io/hugo-theme-prestige/"
+homepage = "https://github.com/m0hss/Prestige"
+demosite = "https://m0hss.github.io/Prestige/"
 tags = ["portfolio", "personal", "responsive", "dark", "light", "accessibility"]
 features = [
   "Case-study page bundles with Performance and Backstage layers",
@@ -3021,7 +3021,7 @@ min_version = "0.146.0"
 
 [author]
   name = "FixByte Studio"
-  homepage = "https://github.com/fixbyte-studio"
+  homepage = "https://github.com/m0hss/Prestige"
 ```
 
 **Theme `hugo.toml`** (defaults; the site overrides)
@@ -3070,7 +3070,7 @@ min_version = "0.146.0"
   credit = true
 ```
 
-**`README.md`** contains, in this order: title and one-line description; the screenshot as an absolute `https://raw.githubusercontent.com/fixbyte-studio/hugo-theme-prestige/main/images/screenshot.png` URL; Requirements (Hugo extended ≥ 0.146.0); Installation (Hugo Modules: `hugo mod init`, `[module] imports path`; or git submodule into `themes/prestige` with `theme = "prestige"`); Minimal configuration (the `exampleSite/hugo.toml` excerpt for taxonomies, permalinks and params); Writing a case study (`hugo new content work/my-project`, the bundle tree of 3.3, the step kinds of 3.6, the shortcode table of 3.8); Accessibility statement (WCAG 2.2 AA, no-JS behaviour, how to report issues); Browser support (Chrome and Edge 123+, Firefox 120+, Safari 17.5+; older browsers get the Performance palette in light scheme only); Fonts and licences (the three OFL families, self-hosted); Licence (MIT). No marketing copy, no badges beyond licence and Hugo version.
+**`README.md`** contains, in this order: title and one-line description; the screenshot as an absolute `https://raw.githubusercontent.com/m0hss/Prestige/master/images/screenshot.png` URL; Requirements (Hugo extended ≥ 0.146.0); Installation (Hugo Modules: `hugo mod init`, `[module] imports path`; or git submodule into `themes/prestige` with `theme = "prestige"`); Minimal configuration (the `exampleSite/hugo.toml` excerpt for taxonomies, permalinks and params); Writing a case study (`hugo new content work/my-project`, the bundle tree of 3.3, the step kinds of 3.6, the shortcode table of 3.8); Accessibility statement (WCAG 2.2 AA, no-JS behaviour, how to report issues); Browser support (Chrome and Edge 123+, Firefox 120+, Safari 17.5+; older browsers get the Performance palette in light scheme only); Fonts and licences (the three OFL families, self-hosted); Licence (MIT). No marketing copy, no badges beyond licence and Hugo version.
 
 **`LICENSE`**: the MIT licence, "Copyright (c) 2026 FixByte Studio". Font licences are in `assets/fonts/OFL-*.txt`.
 
@@ -3412,7 +3412,7 @@ Every judgment call made while writing this specification is recorded here so th
 16. **Count-driven stage titles.** "Solo performance", "Double bill", "Triple bill" and "The season" are the stage titles for 1, 2, 3, and 4 or more case studies. They are theatre vocabulary, are in `i18n`, and are the only place the count changes copy. The Programme list appears from 5 case studies (`params.stage.programme_from = 5`) and lists case studies in rows, not cards.
 17. **Barcode is a signature of the reference number, not of the outcome.** The bars derive from the SHA-256 of `barcode.ref`, so a reference always looks the same and different references look different. The strip's text carries the data (duration, team, stack count, outcome); the bars carry none, are `aria-hidden`, and are the only decoration in the theme that is allowed to carry no information, because the strip's identity is its recognisability.
 18. **Pagination is 12.** Taxonomy and Programme lists paginate at 12 items (`pagination.pagerSize = 12`). No demo content reaches it; the setting exists so a long portfolio does not produce an unbounded page.
-19. **Author and URLs are assumptions.** The demo author is the fictional "Tomás Reyes". The theme author is shown as "FixByte Studio", and the repository, homepage and demo URLs in `theme.toml` (`github.com/fixbyte-studio/hugo-theme-prestige` and the matching GitHub Pages address) are derived from the account the work was done under. They are not verified to exist and must be changed to the real repository before submission to the catalogue.
+19. **Author and URLs.** The demo author is the fictional "Tomás Reyes". The theme author is shown as "FixByte Studio". The repository is `github.com/m0hss/Prestige` (also the Hugo Module path), and the demo URL is its GitHub Pages address, `https://m0hss.github.io/Prestige/`, live once the exampleSite is deployed there.
 20. **Contact is `mailto:` only.** There is no form, no backend and no third-party embed. The contact block shows the address in text, a mailto link and, with JavaScript, a copy button.
 
 ### 15.3 Visual design and tokens
