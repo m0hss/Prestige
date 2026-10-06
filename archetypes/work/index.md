@@ -1,26 +1,40 @@
 ---
-title: "TODO: case-study title"
-summary: "TODO: one-sentence result"
-brief: "TODO: one-sentence problem"
+# Performance layer. Every value below is a prompt: replace it with verified facts before publishing.
+# The build validates this file (spec 3.4); paths are relative to this bundle folder.
+title: "TODO: case-study title (48 characters max)"
+summary: "TODO: the result as one sentence (140 characters max)"
+brief: "TODO: the problem as one sentence (160 characters max)"
 date: {{ .Date }}
 draft: true
-role: "TODO: role on the project"
-disciplines: []
+weight: 100
+headliner: false
+role: "TODO: your role on the project"
+client: ""
+disciplines: ["TODO-discipline"]
+stack: []
 cover:
-  image: "TODO: cover image path"
-  alt: "TODO: describe the image"
+  image: "cover.jpg"
+  alt: "TODO: describe what the cover image shows"
+  focus: "Smart"
 barcode:
   duration: "TODO"
   team: "TODO"
   outcome:
     value: "TODO"
-    label: "TODO"
+    unit: ""
+    label: "TODO: what the value measures"
 result:
-  headline: "TODO: measured outcome"
-  metrics: []
-  outcome: "TODO: describe the result and its limits"
+  headline: "TODO: the measured outcome as one sentence (100 characters max)"
+  metrics:
+    - value: "TODO"
+      unit: ""
+      label: "TODO: what was measured"
+      context: "TODO: the baseline and how it was measured"
+  outcome: |
+    TODO: one to three short paragraphs on the result and its limits.
+links: []
 backstage:
-  teaser: "TODO: describe the process turning point"
+  teaser: "TODO: the turning point of the process (140 characters max)"
 ---
 
-TODO: Write the Performance narrative. Replace all placeholders with verified information.
+TODO: Write the Performance narrative. Use ## headings; the page owns the H1.

@@ -21,7 +21,7 @@ Use the Hugo archetype when a site is available:
 hugo new content work/<short-slug>
 ```
 
-The bundle's `index.md` is the Performance layer. Add `backstage.md` and numbered resources under `steps/` for the process account. Follow the content schemas and step kinds in the Prestige design specification. Do not add ad hoc front-matter fields that the specification does not define.
+The bundle's `index.md` is the Performance layer. Add `backstage.md` and numbered resources under `steps/` for the process account. Follow the content schemas and step kinds in the Prestige design specification, writing each step's kind under `params:` (`params: { kind: problem }`) because Hugo reserves a top-level `kind`. Do not add ad hoc front-matter fields that the specification does not define.
 
 ## 3. Write the two layers
 

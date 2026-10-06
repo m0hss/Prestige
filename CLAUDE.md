@@ -39,7 +39,7 @@ See the `issue-to-case-study` and `incident-to-trapdoor` skills in `.claude/skil
 
 The starter includes theme metadata, default Hugo settings, archetypes, and top-level theme directories. Do not treat placeholder archetype values as real project facts. Do not add finished components, visual styling, interactions, or demo content as part of scaffold-only work; implement those only when requested, following the design specification.
 
-Hugo reserves `kind` as page metadata. The step archetype therefore temporarily uses `step_kind`; reconcile this with the design spec's step `kind` field when implementing and validating the step schema.
+Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 
 Theme author and repository/demo URLs in `theme.toml` are provisional FixByte Studio placeholders. Replace them when verified project details are provided.
 
