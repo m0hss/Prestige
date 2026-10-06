@@ -181,7 +181,7 @@ The build checks this schema and stops with the file path when something require
 
 Markdown links may use `http`, `https`, `mailto` and `tel`; any other scheme (such as `javascript:`) stops the build. A site path such as `/work/missing/` that matches no page prints a warning with the file name.
 
-Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer; `#decorative` allows empty alt text.
+Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer when the image stands on its own in the body (inside a list item, quote or aside, and in Backstage, it is an ordinary figure); `#decorative` allows empty alt text.
 
 ## Accessibility
 
