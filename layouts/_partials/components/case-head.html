@@ -1,0 +1,19 @@
+{{- /* Case-study head (5.2): back link, discipline chips, meta line, H1, summary. Context: page. */ -}}
+{{- $work := site.GetPage "/work" -}}
+<header class="case-head container">
+  <div class="case-head__top">
+    {{- with $work }}
+    <a class="case-head__back label" href="{{ .RelPermalink }}"><span aria-hidden="true">← </span>{{ i18n "back_to_work" }}</a>
+    {{- end }}
+    <ul class="chips">
+      {{- range .GetTerms "disciplines" }}
+      <li>{{ partial "components/chip.html" (dict "text" .LinkTitle "href" .RelPermalink) }}</li>
+      {{- end }}
+    </ul>
+    <p class="case-head__meta label">
+      {{- with .Params.client }}{{ . }} · {{ end }}{{ .Params.role }} · <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Year }}</time>
+    </p>
+  </div>
+  <h1 class="case-head__title">{{ .Title }}</h1>
+  <p class="case-head__summary t-body-l">{{ .Params.summary }}</p>
+</header>

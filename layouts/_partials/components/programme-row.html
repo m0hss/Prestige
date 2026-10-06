@@ -1,0 +1,29 @@
+{{- /* Programme row (5.6, 7.11): one stretched link per case study. Context: dict "page" "h" (heading level). */ -}}
+{{- $p := .page -}}
+{{- $ref := partial "lib/ref.html" $p -}}
+{{- $c := partial "lib/counts.html" $p -}}
+{{- $bc := $p.Params.barcode -}}
+{{- $team := $bc.team -}}
+{{- if ne (printf "%T" $team) "string" }}{{ $team = i18n "people_n" (int $team) }}{{ end -}}
+{{- $tags := slice -}}
+{{- range $p.GetTerms "disciplines" }}{{ $tags = $tags | append .LinkTitle }}{{ end -}}
+{{- $stack := $p.GetTerms "stack" -}}
+{{- range first 3 $stack }}{{ $tags = $tags | append .LinkTitle }}{{ end -}}
+{{- if gt (len $stack) 3 }}{{ $tags = $tags | append (printf "+%d" (sub (len $stack) 3)) }}{{ end -}}
+{{- $counts := slice -}}
+{{- with $c.steps }}{{ $counts = $counts | append (i18n "steps_n" .) }}{{ end -}}
+{{- with $c.failures }}{{ $counts = $counts | append (i18n "trapdoors_n" .) }}{{ end -}}
+{{- $h := .h | default 2 -}}
+<article class="prow"{{ if $p.Draft }} data-draft{{ end }}>
+  <div class="prow__sig">{{ partial "lib/barcode-bars.html" $ref }}<p class="label">{{ $ref }}</p></div>
+  <div class="prow__main">
+    <h{{ $h }} class="prow__title"><a class="prow__link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h{{ $h }}>
+    <p class="prow__summary">{{ $p.Params.summary }}</p>
+    <p class="prow__tags label">{{ delimit $tags " · " }}</p>
+  </div>
+  <div class="prow__facts">
+    <p>{{ $bc.duration }} · {{ $team }} · <strong>{{ $bc.outcome.value }}{{ $bc.outcome.unit }}</strong></p>
+    {{- with $counts }}<p class="label">{{ delimit . " · " }}</p>{{ end }}
+  </div>
+  <span class="prow__chev" aria-hidden="true">→</span>
+</article>

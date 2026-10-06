@@ -1,0 +1,2 @@
+{{- /* Unique id prefix for a shortcode instance, stable across the bundle's resources. Context: shortcode. */ -}}
+{{- return printf "%s-%s-%d" .Name (substr (md5 .Page.File.Path) 0 6) .Ordinal -}}

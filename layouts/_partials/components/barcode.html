@@ -1,0 +1,29 @@
+{{- /* Barcode metadata strip (7.6). Context: dict "page" "variant" (full|compact). */ -}}
+{{- $p := .page -}}
+{{- $v := .variant | default "full" -}}
+{{- $bc := $p.Params.barcode -}}
+{{- $ref := partial "lib/ref.html" $p -}}
+{{- $team := $bc.team -}}
+{{- if ne (printf "%T" $team) "string" }}{{ $team = i18n "people_n" (int $team) }}{{ end -}}
+<div class="barcode barcode--{{ $v }}">
+  <div class="barcode__sig">
+    {{ partial "lib/barcode-bars.html" $ref }}
+    <p class="barcode__ref label">{{ $ref }}</p>
+  </div>
+  <dl class="barcode__cells">
+    <div class="barcode__cell"><dt class="label">{{ i18n "bc_duration" }}</dt><dd>{{ $bc.duration }}</dd></div>
+    <div class="barcode__cell"><dt class="label">{{ i18n "bc_team" }}</dt><dd>{{ $team }}</dd></div>
+    {{- if eq $v "full" }}
+    {{- $terms := $p.GetTerms "stack" }}
+    <div class="barcode__cell"><dt class="label">{{ i18n "bc_stack" }}</dt><dd>
+      {{- with $terms -}}
+        {{- range $i, $t := first 3 . }}{{ if $i }} · {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end -}}
+        {{- if gt (len .) 3 }} · +{{ sub (len .) 3 }}{{ end -}}
+      {{- else -}}
+        <span aria-hidden="true">—</span><span class="sr-only">{{ i18n "bc_not_listed" }}</span>
+      {{- end -}}
+    </dd></div>
+    {{- end }}
+    <div class="barcode__cell"><dt class="label">{{ i18n "bc_outcome" }}</dt><dd><strong class="num">{{ $bc.outcome.value }}{{ $bc.outcome.unit }}</strong> {{ $bc.outcome.label }}</dd></div>
+  </dl>
+</div>

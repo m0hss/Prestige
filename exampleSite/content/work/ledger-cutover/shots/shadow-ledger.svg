@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace">
+  <rect width="1200" height="560" fill="#F5EEE2"/>
+  <text x="40" y="56" font-size="22" font-weight="700" fill="#14100D">INVOICE EVENTS</text>
+  <rect x="40" y="76" width="220" height="408" fill="#FFFBF3" stroke="#14100D" stroke-width="3"/>
+  <g font-size="17" fill="#14100D">
+    <text x="60" y="120">INV-25-61750</text><text x="60" y="160">INV-25-80239</text><text x="60" y="200">INV-25-17602</text>
+    <text x="60" y="240">INV-25-21265</text><text x="60" y="280">INV-25-41544</text><text x="60" y="320">INV-25-17747</text>
+    <text x="60" y="360">INV-25-39260</text><text x="60" y="400">INV-25-85642</text><text x="60" y="440">…</text>
+  </g>
+  <path d="M260 180 H420" stroke="#14100D" stroke-width="4" fill="none"/>
+  <path d="M260 380 H420" stroke="#14100D" stroke-width="4" fill="none" stroke-dasharray="12 8"/>
+  <rect x="420" y="120" width="300" height="120" fill="#14100D"/>
+  <text x="570" y="172" font-size="22" font-weight="700" fill="#F5EEE2" text-anchor="middle">NIGHTLY BATCH</text>
+  <text x="570" y="206" font-size="17" fill="#F5EEE2" text-anchor="middle">writes · 02:00</text>
+  <rect x="420" y="320" width="300" height="120" fill="#FFFBF3" stroke="#14100D" stroke-width="3" stroke-dasharray="12 8"/>
+  <text x="570" y="372" font-size="22" font-weight="700" fill="#14100D" text-anchor="middle">SHADOW LEDGER</text>
+  <text x="570" y="406" font-size="17" fill="#14100D" text-anchor="middle">reads · per event</text>
+  <path d="M720 180 H860 V250" stroke="#14100D" stroke-width="4" fill="none"/>
+  <path d="M720 380 H860 V310" stroke="#14100D" stroke-width="4" fill="none" stroke-dasharray="12 8"/>
+  <rect x="780" y="250" width="160" height="60" fill="#8E1B26"/>
+  <text x="860" y="288" font-size="20" font-weight="700" fill="#FFF7EC" text-anchor="middle">COMPARE</text>
+  <path d="M940 280 H1000" stroke="#14100D" stroke-width="4"/>
+  <rect x="1000" y="200" width="160" height="160" fill="#FFFBF3" stroke="#14100D" stroke-width="3"/>
+  <text x="1080" y="250" font-size="17" fill="#14100D" text-anchor="middle">DIFF REPORT</text>
+  <text x="1080" y="300" font-size="40" font-weight="700" fill="#14100D" text-anchor="middle">0</text>
+  <text x="1080" y="334" font-size="15" fill="#4F4338" text-anchor="middle">differences</text>
+  <line x1="40" y1="510" x2="1160" y2="510" stroke="#8E1B26" stroke-width="4" stroke-dasharray="4 10"/>
+  <text x="40" y="545" font-size="17" fill="#14100D">COHORT BOUNDARY · 1 OF 8 · accounts move only after six weeks of zero differences</text>
+</svg>

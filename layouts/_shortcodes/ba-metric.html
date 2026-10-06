@@ -1,0 +1,8 @@
+{{- $p := .Page.File.Path -}}
+{{- if not (.Get "label") }}{{ errorf "ba-metric: \"label\" is required (%s)" $p }}{{ end -}}
+{{- range slice "before" "after" -}}
+  {{- $v := $.Get . -}}
+  {{- if not (findRE `^-?[0-9]+(\.[0-9]+)?$` (printf "%v" $v)) }}{{ errorf "ba-metric: %q must be a number, got %q (%s)" . $v $p }}{{ end -}}
+{{- end -}}
+{{- with .Get "better" }}{{ if not (in (slice "lower" "higher") .) }}{{ errorf "ba-metric: better must be lower or higher (%s)" $p }}{{ end }}{{ end -}}
+{{ partial "components/ba-metric.html" (dict "label" (.Get "label") "before" (.Get "before") "after" (.Get "after") "unit" (.Get "unit") "before_text" (.Get "before_text") "after_text" (.Get "after_text") "better" (.Get "better") "note" (.Get "note")) }}

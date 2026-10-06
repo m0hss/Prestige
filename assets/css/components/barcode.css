@@ -1,0 +1,24 @@
+.barcode{display:grid;gap:var(--space-3);border-block:var(--bw-3) solid var(--color-line);padding-block:var(--space-3)}
+.barcode__bars{width:100%;height:28px;color:var(--color-fg)}
+.barcode__ref{margin-top:var(--space-1)}
+.barcode__cells{display:grid;gap:var(--space-2)}
+.barcode__cell{display:grid;grid-template-columns:7rem 1fr;gap:var(--space-3);align-items:baseline}
+.barcode__cell dt{color:var(--color-fg-muted)}
+.barcode__cell dd{font-weight:700}
+.barcode__cell dd strong{font-weight:700}
+.barcode--compact{gap:var(--space-2);border-block-width:var(--bw-2)}
+.barcode--compact .barcode__sig{display:flex;align-items:center;gap:var(--space-3)}
+.barcode--compact .barcode__bars{width:120px;flex:none}
+.barcode--compact .barcode__ref{margin:0}
+.barcode--compact .barcode__cells{display:flex;flex-wrap:wrap;gap:var(--space-1) var(--space-3)}
+.barcode--compact .barcode__cell{display:flex;gap:var(--space-2)}
+.barcode--compact dt{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.barcode--compact .barcode__cell+.barcode__cell{border-left:var(--bw-1) solid var(--color-line);padding-left:var(--space-3)}
+@media (min-width:48rem){
+  .barcode--full{grid-template-columns:auto 1fr;align-items:center;column-gap:var(--space-5)}
+  .barcode--full .barcode__bars{width:192px}
+  .barcode--full .barcode__cells{grid-template-columns:repeat(4,auto);justify-content:start}
+  .barcode--full .barcode__cell{display:block;padding-inline:var(--space-4);border-left:1px solid var(--color-line)}
+  .barcode--full .barcode__cell:nth-child(2){border-left-width:3px}
+  .barcode--full .barcode__cell:nth-child(4){border-left-width:2px}
+}

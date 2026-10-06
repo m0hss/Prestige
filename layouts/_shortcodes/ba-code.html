@@ -1,0 +1,11 @@
+{{- $b := partial "lib/bundle.html" .Page -}}
+{{- $before := $b.Resources.Get (.Get "before") -}}
+{{- $after  := $b.Resources.Get (.Get "after") -}}
+{{- if not $before }}{{ errorf "ba-code: %q not found in bundle of %s" (.Get "before") .Page.File.Path }}{{ end -}}
+{{- if not $after  }}{{ errorf "ba-code: %q not found in bundle of %s" (.Get "after")  .Page.File.Path }}{{ end -}}
+{{- if not (.Get "lang") }}{{ errorf "ba-code: \"lang\" is required (%s)" .Page.File.Path }}{{ end -}}
+{{ partial "components/ba-code.html" (dict "before" $before "after" $after "lang" (.Get "lang")
+     "before_label" (.Get "before_label" | default (i18n "ba_before"))
+     "after_label"  (.Get "after_label"  | default (i18n "ba_after"))
+     "hl_before" (.Get "hl_before") "hl_after" (.Get "hl_after")
+     "caption" (.Get "caption") "id" (partial "lib/sc-id.html" .)) }}

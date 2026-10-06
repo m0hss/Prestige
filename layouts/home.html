@@ -1,0 +1,35 @@
+{{ define "main" }}
+  {{- $cases := partial "lib/cases.html" . }}
+  {{- $n := len $cases }}
+  {{- $failures := (where site.RegularPages "Section" "trapdoor").ByDate.Reverse }}
+<div class="intro container">
+  <div class="intro__main">
+    <h1 class="intro__headline">{{ .Params.headline | default site.Title }}</h1>
+    {{- with .Params.lede }}<p class="intro__lede t-body-l">{{ . }}</p>{{ end }}
+    {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <p class="intro__keyline label"><span><span class="key__sw" data-mode="performance"></span> {{ i18n "key_front_short" }}</span> <span><span class="key__sw" data-mode="backstage"></span> {{ i18n "key_back_short" }}</span></p>
+  </div>
+  <div class="intro__key">
+    <p class="label">{{ i18n "key_title" }}</p>
+    <ul class="key">
+      <li><span class="key__sw" data-mode="performance"></span> {{ i18n "key_front" }}</li>
+      <li><span class="key__sw" data-mode="backstage"></span> {{ i18n "key_back" }}</li>
+    </ul>
+  </div>
+</div>
+{{ partial "components/stage.html" . }}
+  {{- if and $failures (ne site.Params.stage.trapdoor_on_home false) }}
+<div class="container home-strip">{{ partial "components/trapdoor-strip.html" (index $failures 0) }}</div>
+  {{- end }}
+  {{- if ge $n (site.Params.stage.programme_from | default 5) }}
+<section class="programme container" aria-labelledby="programme-title">
+  <h2 class="programme__title label" id="programme-title">{{ i18n "programme" }}</h2>
+  {{- range $cases }}
+  {{ partial "components/programme-row.html" (dict "page" . "h" 3) }}
+  {{- end }}
+</section>
+  {{- end }}
+  {{- if and $n (le $n 3) }}
+{{ partial "components/stage-note.html" . }}
+  {{- end }}
+{{ end }}

@@ -1,0 +1,3 @@
+{{- if not (and (.Get "value") (.Get "label")) }}{{ errorf "metric: \"value\" and \"label\" are required (%s)" .Page.File.Path }}{{ end -}}
+{{- with .Get "size" }}{{ if not (in (slice "l" "xl") .) }}{{ errorf "metric: size must be l or xl (%s)" $.Page.File.Path }}{{ end }}{{ end -}}
+{{ partial "components/metric.html" (dict "value" (.Get "value") "unit" (.Get "unit") "label" (.Get "label") "context" (.Get "context") "size" (.Get "size") "page" .Page) }}

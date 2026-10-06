@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{- $pag := .Paginate .Pages.ByWeight }}
+<div class="container list-page">
+  <header class="page-head">
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.lede }}<p class="lede t-body-l">{{ . }}</p>{{ end }}
+    {{ partial "components/term-links.html" (dict "tax" "disciplines" "current" false "label" (i18n "tax_disciplines")) }}
+  </header>
+  {{- range $pag.Pages }}
+  {{ partial "components/programme-row.html" (dict "page" . "h" 2) }}
+  {{- else }}
+  <div class="stage__empty"><p>{{ i18n "nothing_on_bill" }}</p>{{ if hugo.IsServer }}<p class="label">{{ i18n "dev_add_work" }}</p>{{ end }}</div>
+  {{- end }}
+  {{ partial "components/pagination.html" $pag }}
+  {{ partial "components/related-failures.html" $pag.Pages }}
+</div>
+{{ end }}

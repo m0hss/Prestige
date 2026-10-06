@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{- $failures := where site.RegularPages "Section" "trapdoor" }}
+{{- $latest := index (where site.RegularPages "Section" "work").ByDate.Reverse 0 }}
+<div class="container report-page notfound">
+  {{ partial "components/failure-entry.html" (dict "variant" "full" "h" 1 "fixed" (dict "ref" "TD-404" "severity" "minor" "title" (i18n "err_404_title") "what" (i18n "err_404_what") "cause" (i18n "err_404_cause") "cost" (i18n "err_404_cost") "changed" (i18n "err_404_changed"))) }}
+  <ul class="notfound__exits">
+    <li><a class="btn" href="{{ site.Home.RelPermalink }}">{{ i18n "err_home" }} <span aria-hidden="true">→</span></a></li>
+    {{- with site.GetPage "/work" }}<li><a class="btn" href="{{ .RelPermalink }}">{{ i18n "err_work" }} <span aria-hidden="true">→</span></a></li>{{ end }}
+    {{- if $failures }}{{ with site.GetPage "/trapdoor" }}<li><a class="btn" href="{{ .RelPermalink }}">{{ i18n "err_trapdoor" }} <span aria-hidden="true">→</span></a></li>{{ end }}{{ end }}
+  </ul>
+  {{- with $latest }}
+  <p class="notfound__latest"><span class="label">{{ i18n "latest_case" }}</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a> — {{ .Params.summary }}</p>
+  {{- end }}
+</div>
+{{ end }}

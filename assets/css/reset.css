@@ -1,0 +1,12 @@
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img,picture,svg,video{display:block;max-width:100%;height:auto}
+input,button,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+ul[class],ol[class]{list-style:none;padding:0}
+table{border-collapse:collapse}
+fieldset{border:0;padding:0;min-width:0}
+legend{padding:0}
+p,h1,h2,h3,h4,li,dd,dt{overflow-wrap:break-word}
+[hidden]:not([hidden="until-found"]){display:none!important}

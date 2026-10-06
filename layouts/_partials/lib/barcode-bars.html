@@ -1,0 +1,15 @@
+{{- /* Decorative bars derived from SHA-256 of the ref: stable per ref (7.6). Context: ref string. */ -}}
+{{- $h := crypto.SHA256 . -}}
+{{- $ws := slice -}}
+{{- range seq 0 47 -}}
+  {{- $n := int (printf "0x%s" (substr $h . 1)) -}}
+  {{- $ws = $ws | append (add 1 (mod $n 4)) -}}
+{{- end -}}
+{{- $total := 0 -}}{{- range $ws }}{{- $total = add $total . -}}{{- end -}}
+{{- $x := 0 -}}
+<svg class="barcode__bars" viewBox="0 0 {{ $total }} 28" width="{{ mul $total 2 }}" height="28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  {{- range $i, $w := $ws -}}
+    {{- if eq (mod $i 2) 0 }}<rect x="{{ $x }}" width="{{ $w }}" height="28" fill="currentColor"/>{{ end -}}
+    {{- $x = add $x $w -}}
+  {{- end -}}
+</svg>

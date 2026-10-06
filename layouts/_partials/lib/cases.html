@@ -1,0 +1,9 @@
+{{- /* Case studies sorted by weight (default 100) ascending, ties by date descending (3.4). */ -}}
+{{- $rows := slice -}}
+{{- range where site.RegularPages "Section" "work" -}}
+  {{- $w := .Params.weight | default 100 -}}
+  {{- $rows = $rows | append (dict "k" (printf "%09d-%012d" (int $w) (sub 999999999999 .Date.Unix)) "p" .) -}}
+{{- end -}}
+{{- $out := slice -}}
+{{- range sort $rows "k" }}{{ $out = $out | append .p }}{{ end -}}
+{{- return $out -}}

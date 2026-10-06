@@ -1,0 +1,9 @@
+{{- /* Derived counts for a case-study bundle (3.13). */ -}}
+{{- $steps := partial "lib/steps.html" . -}}
+{{- $c := dict "steps" (len $steps) "constraints" 0 "rejected" 0 "failures" 0 -}}
+{{- range $steps -}}
+  {{- if eq .Params.kind "constraints" -}}{{- $c = merge $c (dict "constraints" (len .Params.constraints)) -}}{{- end -}}
+  {{- if eq .Params.kind "rejected" -}}{{- $c = merge $c (dict "rejected" (len .Params.options)) -}}{{- end -}}
+{{- end -}}
+{{- $c = merge $c (dict "failures" (len (partial "lib/failures.html" .))) -}}
+{{- return $c -}}

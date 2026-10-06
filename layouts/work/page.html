@@ -1,0 +1,79 @@
+{{ define "main" }}
+  {{- partial "lib/validate.html" . }}
+  {{- $steps := partial "lib/steps.html" . }}
+  {{- $backstage := .Resources.GetMatch "backstage.md" }}
+  {{- $failures := partial "lib/failures.html" . }}
+  {{- $has := gt (len $steps) 0 }}
+  {{- $resultStep := index (where $steps "Params.kind" "result") 0 }}
+  {{- $cover := .Resources.Get .Params.cover.image }}
+
+<article class="case" data-has-backstage="{{ $has }}">
+  {{ partial "components/case-head.html" . }}
+  <div class="container case__barcode">{{ partial "components/barcode.html" (dict "page" . "variant" "full") }}</div>
+
+  <section class="layer layer--performance" id="performance" aria-label="{{ i18n "toggle_performance" }}" data-layer="performance"{{ if not $has }} data-always{{ end }}>
+    {{- if not $has }}<div class="container">{{ partial "components/performance-only-notice.html" . }}</div>{{ end }}
+    <div class="container case__cover">
+      {{ partial "lib/img.html" (dict "res" $cover "alt" .Params.cover.alt "ratio" 0.525 "widths" (slice 800 1200 1600) "sizes" "(min-width: 75rem) 1200px, 100vw" "anchor" (.Params.cover.focus | default "Smart") "eager" true "class" "case__cover-img") }}
+    </div>
+    {{ partial "components/result-block.html" . }}
+    <div class="container case__body">
+      <div class="case__prose prose flow">
+        {{ .Content }}
+      </div>
+      {{- if or .Params.links $resultStep }}
+      <aside class="case__margin" aria-label="{{ i18n "links" }}">
+        <ul class="case__links">
+          {{- range .Params.links }}
+          <li><a href="{{ .url }}"{{ with .kind }} data-kind="{{ . }}"{{ end }}>{{ .label }}</a></li>
+          {{- end }}
+          {{- with $resultStep }}
+          <li><a href="#step-{{ .Params.n }}" data-stepref="{{ .Params.n }}">{{ i18n "how_measured" }} <span aria-hidden="true">→</span> {{ i18n "step_short" (dict "N" .Params.n) }}</a></li>
+          {{- end }}
+        </ul>
+      </aside>
+      {{- end }}
+    </div>
+    {{- with $failures }}<div class="container">{{ partial "components/trapdoor-strip.html" (index . 0) }}</div>{{ end }}
+  </section>
+
+  {{- if $has }}
+  <section class="layer layer--backstage" id="backstage" aria-label="{{ i18n "toggle_backstage" }}" data-mode="backstage" data-layer="backstage">
+    <div class="layer__divider" aria-hidden="true"><span class="container label">{{ i18n "layer_divider" }}</span></div>
+    <div class="container">
+      {{- with $backstage }}{{ with .Content }}
+      <div class="backstage__preface prose">{{ . }}</div>
+      {{- end }}{{ end }}
+      <div class="steps-controls">
+        <button type="button" class="btn steps-controls__all" aria-pressed="false" hidden>{{ i18n "show_all_steps" }}</button>
+        {{- with $backstage }}{{ with .Params.updated }}
+        <p class="steps-controls__updated label">{{ i18n "backstage_updated" }} <time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format "2006-01-02" . }}</time></p>
+        {{- end }}{{ end }}
+      </div>
+      <ol class="steps" data-total="{{ len $steps }}" data-error-prefix="{{ i18n "error_prefix" }}" data-missing="{{ i18n "step_missing" (dict "N" "%N%") }}">
+        {{- range $i, $s := $steps }}
+        {{ partial "components/step.html" (dict "step" $s "steps" $steps "i" $i) }}
+        {{- end }}
+      </ol>
+      {{- with $backstage }}{{ if eq .Params.status "in-progress" }}
+      <p class="notice notice--progress">{{ i18n "in_progress_notice" (dict "Published" (len $steps) "Planned" .Params.planned) }}</p>
+      {{- end }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $failures }}
+  <section class="layer layer--trapdoor" id="trapdoor" aria-labelledby="trapdoor-title" data-mode="backstage" data-layer="trapdoor">
+    <div class="container">
+      <h2 class="layer__title" id="trapdoor-title">{{ i18n "trapdoor" }}</h2>
+      {{- range . }}
+      {{ partial "components/failure-entry.html" (dict "page" . "variant" "full" "h" 3) }}
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{ partial "components/pager.html" . }}
+  <div class="container">{{ partial "components/contact-block.html" (dict "variant" "cta" "page" .) }}</div>
+</article>
+{{ end }}

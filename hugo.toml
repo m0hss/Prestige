@@ -1,11 +1,48 @@
 [module.hugoVersion]
   min = "0.146.0"
+  extended = true
 
 [taxonomies]
   discipline = "disciplines"
-  stack = "stack"
-  lesson = "lessons"
+  stack      = "stack"
+  lesson     = "lessons"
 
 [permalinks.page]
-  work = "/work/:slug/"
-  trapdoor = "/trapdoor/:slug/"
+  work     = "/work/:contentbasename/"
+  trapdoor = "/trapdoor/:contentbasename/"
+
+[pagination]
+  pagerSize = 12
+
+[markup.highlight]
+  noClasses   = false
+  lineNos     = false
+  guessSyntax = false
+  tabWidth    = 2
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+# Sites must set this too: Hugo does not merge [markup] from a theme.
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[imaging]
+  resampleFilter = "CatmullRom"
+  anchor         = "Smart"
+  [imaging.exif]
+    disableLatLong = true
+
+[outputs]
+  home = ["html", "rss"]
+
+[params]
+  credit = true
+  [params.stage]
+    default_mode     = "performance"
+    programme_from   = 5
+    trapdoor_on_home = true
+  [params.scheme]
+    switch = true
+  [params.seo]
+    og_image = "img/og-default.png"

@@ -1,0 +1,13 @@
+{{- /* Stage manager's note: closes a short programme (9.7). Context: home page. */ -}}
+{{- $about := site.GetPage "/about" -}}
+<section class="stage-note container" aria-labelledby="stage-note-title">
+  <h2 class="stage-note__title label" id="stage-note-title">{{ i18n "stage_note_title" }}</h2>
+  <div class="stage-note__grid">
+    <div>
+      {{- with $about }}{{ with .Params.lede }}<p class="stage-note__lede t-display-l">{{ . }}</p>{{ end }}
+      <p><a href="{{ .RelPermalink }}">{{ i18n "more_about" }} <span aria-hidden="true">→</span></a></p>
+      {{- end }}
+    </div>
+    {{ partial "components/contact-block.html" (dict "variant" "cta" "page" false) }}
+  </div>
+</section>

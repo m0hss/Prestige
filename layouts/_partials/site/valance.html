@@ -1,0 +1,57 @@
+{{- /* Sticky valance: curtain toggle (JS), status strings rendered server-side (8.1, 11.6), no-JS jump nav. */ -}}
+{{- $kind := "other" -}}
+{{- $visP := i18n "view_performance" -}}
+{{- $visB := i18n "view_backstage" -}}
+{{- $msgP := i18n "status_other_p" -}}
+{{- $msgB := i18n "status_other_b" -}}
+{{- $narrowP := "" -}}{{- $narrowB := "" -}}
+{{- $jump := false -}}
+{{- if .IsHome -}}
+  {{- $kind = "home" -}}
+  {{- $n := len (where site.RegularPages "Section" "work") -}}
+  {{- if $n -}}
+    {{- $cases := i18n "case_studies_n" $n -}}
+    {{- $visP = printf "%s · %s" $visP $cases -}}
+    {{- $visB = i18n "view_curtain_raised" -}}
+    {{- $msgP = i18n "status_home_p" -}}
+    {{- $msgB = i18n "status_home_b" (dict "Cases" $cases) -}}
+    {{- $narrowP = i18n "status_home_p_narrow" (dict "Cases" $cases) -}}
+    {{- $narrowB = i18n "status_home_b_narrow" (dict "Cases" $cases) -}}
+  {{- else -}}
+    {{- $msgP = i18n "status_empty_p" -}}{{- $msgB = i18n "status_empty_b" -}}
+  {{- end -}}
+{{- else if and .IsPage (eq .Section "work") -}}
+  {{- $kind = "case" -}}
+  {{- $c := partial "lib/counts.html" . -}}
+  {{- $jump = dict "backstage" (gt $c.steps 0) "trapdoor" (gt $c.failures 0) -}}
+  {{- $msgP = i18n "status_case_p" -}}
+  {{- if $c.steps -}}
+    {{- $visB = printf "%s · %s" $visB (i18n "steps_n" $c.steps) -}}
+    {{- with $c.failures }}{{ $visB = printf "%s · %s" $visB (i18n "trapdoors_n" .) }}{{ end -}}
+    {{- $msgB = i18n "status_case_b" (dict "Steps" (i18n "steps_n" $c.steps) "Trapdoors" (i18n "trapdoors_n" $c.failures)) -}}
+  {{- else -}}
+    {{- $msgB = i18n "status_case_only_b" -}}
+  {{- end -}}
+{{- end -}}
+<div class="valance" data-mode-follow data-kind="{{ $kind }}"
+  data-vis-p="{{ $visP }}" data-vis-b="{{ $visB }}"
+  data-msg-p="{{ $msgP }}" data-msg-b="{{ $msgB }}"
+  {{- with $narrowP }} data-msg-p-narrow="{{ . }}"{{ end }}{{ with $narrowB }} data-msg-b-narrow="{{ . }}"{{ end }}>
+  <div class="container valance__inner">
+    {{ partial "components/curtain-toggle.html" . }}
+    <p class="valance__status" aria-hidden="true" hidden></p>
+    <p id="mode-status" class="sr-only" role="status" aria-live="polite"></p>
+    <div class="valance__nojs no-js-only">
+      <p class="valance__note">{{ i18n "layers_both_shown" }}</p>
+      {{- with $jump }}
+      <nav class="valance__jump" aria-label="{{ i18n "jump_label" }}">
+        <ul>
+          <li><a href="#performance">{{ i18n "toggle_performance" }}</a></li>
+          {{- if .backstage }}<li><a href="#backstage">{{ i18n "toggle_backstage" }}</a></li>{{ end }}
+          {{- if .trapdoor }}<li><a href="#trapdoor">{{ i18n "trapdoor" }}</a></li>{{ end }}
+        </ul>
+      </nav>
+      {{- end }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+{{- /* Build-time checks for a Trapdoor entry (3.7). Context: the failure page. */ -}}
+{{- $p := . -}}
+{{- $path := .File.Path -}}
+{{- range slice "what" "cause" "cost" "changed" -}}
+  {{- if not (index $p.Params .) }}{{ errorf "prestige: %q is required in %s" . $path }}{{ end -}}
+{{- end -}}
+{{- if not .Title }}{{ errorf "prestige: \"title\" is required in %s" $path }}{{ end -}}
+{{- if .Date.IsZero }}{{ errorf "prestige: \"date\" is required in %s" $path }}{{ end -}}
+{{- if not (in (slice "minor" "major" "critical") .Params.severity) }}{{ errorf "prestige: \"severity\" must be minor, major or critical in %s" $path }}{{ end -}}
+{{- if not .Params.lessons }}{{ errorf "prestige: \"lessons\" needs at least one entry in %s" $path }}{{ end -}}
+{{- with .Params.case -}}
+  {{- if not (site.GetPage (printf "/work/%s" .)) }}{{ warnf "prestige: case %q in %s matches no case study; the entry is shown without a link" . $path }}{{ end -}}
+{{- end -}}

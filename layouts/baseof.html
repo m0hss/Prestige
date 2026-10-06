@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "en" }}" data-default-mode="{{ site.Params.stage.default_mode | default "performance" }}">
+<head>
+{{ partial "head/meta.html" . }}
+{{ partial "head/js-init.html" . }}
+{{ partial "head/fonts.html" . }}
+{{ partial "head/css.html" . }}
+{{ partial "head/seo.html" . }}
+</head>
+<body class="body body--{{ .Kind }}{{ with .Section }} body--{{ . }}{{ end }}">
+{{ partial "site/skip-link.html" . }}
+{{ partial "site/header.html" . }}
+{{ partial "site/valance.html" . }}
+<main id="content" class="main" tabindex="-1">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "site/footer.html" . }}
+{{ partial "head/js.html" . }}
+</body>
+</html>

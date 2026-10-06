@@ -1,0 +1,17 @@
+<ul class="kb kb--hypotheses panels">
+  {{- range .Params.hypotheses }}
+  <li class="panel" data-verdict="{{ .verdict }}">
+    <div class="panel__head">
+      <span class="panel__id label">{{ .id }}</span>
+      <span class="stamp stamp--{{ .verdict }}">{{ i18n (printf "verdict_%s" .verdict) }}</span>
+    </div>
+    <h3 class="panel__title">{{ .claim }}</h3>
+    <dl class="panel__dl">
+      <div><dt class="label">{{ i18n "h_test" }}</dt><dd>{{ .test }}</dd></div>
+      {{- with .evidence }}
+      <div><dt class="label">{{ i18n "h_evidence" }}</dt><dd>{{ . }}</dd></div>
+      {{- end }}
+    </dl>
+  </li>
+  {{- end }}
+</ul>

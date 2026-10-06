@@ -1,0 +1,227 @@
+@layer tokens {
+  :root                      { color-scheme: light dark; }
+  :root[data-scheme="light"] { color-scheme: light; }
+  :root[data-scheme="dark"]  { color-scheme: dark; }
+
+  /* ---------- Colour ---------- */
+  :root,
+  [data-mode="performance"] {
+    --color-bg: light-dark(#F5EEE2, #14100D);
+    --color-surface: light-dark(#FFFBF3, #211A16);
+    --color-sunken: light-dark(#EADFCB, #0C0907);
+    --color-fg: light-dark(#14100D, #F5EEE2);
+    --color-fg-muted: light-dark(#4F4338, #C9B9A3);
+    --color-accent: light-dark(#8E1B26, #F28B92);
+    --color-curtain: light-dark(#8E1B26, #C0303F);
+    --color-on-curtain: light-dark(#FFF7EC, #FFF7EC);
+    --color-line: light-dark(#14100D, #F5EEE2);
+    --color-line-soft: light-dark(#CDBFA8, #4A3C33);
+    --color-focus: light-dark(#14100D, #F5EEE2);
+    --color-focus-on-curtain: light-dark(#FFF7EC, #FFF7EC);
+    --color-error: light-dark(#A3121C, #FF9C9C);
+    --color-error-bg: light-dark(#FBE3DF, #3A1517);
+    --color-diff-add: light-dark(#FFFBF3, #2C241E);
+    --color-diff-remove: light-dark(#F6D9D4, #3A1A1A);
+    --syn-keyword: light-dark(#8E1B26, #F28B92);
+    --syn-string: light-dark(#5C4300, #E3C16F);
+    --syn-comment: light-dark(#5E5246, #A8987F);
+    --syn-number: light-dark(#1F5C73, #7CC4DC);
+    --syn-function: light-dark(#4B2E83, #C3A9F0);
+    --color-curtain-hem: light-dark(#5E0F18, #8E1B26);
+    --color-shadow: light-dark(#14100D, #8E1B26);
+  }
+
+  [data-mode="backstage"] {
+    --color-bg: light-dark(#D9C4A3, #231A13);
+    --color-surface: light-dark(#F4ECDD, #2E231A);
+    --color-sunken: light-dark(#C9B08A, #1A120D);
+    --color-fg: light-dark(#1E140C, #EBDDC6);
+    --color-fg-muted: light-dark(#43341F, #BBA98E);
+    --color-accent: light-dark(#7A1520, #F59A95);
+    --color-curtain: light-dark(#7A1520, #C0303F);
+    --color-on-curtain: light-dark(#FFF7EC, #FFF7EC);
+    --color-line: light-dark(#1E140C, #D9C4A3);
+    --color-line-soft: light-dark(#A98F68, #5B4837);
+    --color-focus: light-dark(#1E140C, #EBDDC6);
+    --color-focus-on-curtain: light-dark(#FFF7EC, #FFF7EC);
+    --color-error: light-dark(#8F0F18, #FFA8A0);
+    --color-error-bg: light-dark(#F4D9D1, #40191A);
+    --color-diff-add: light-dark(#F4ECDD, #3A2E24);
+    --color-diff-remove: light-dark(#E7BFB2, #43201C);
+    --syn-keyword: light-dark(#7A1520, #F59A95);
+    --syn-string: light-dark(#4E3A00, #E6C679);
+    --syn-comment: light-dark(#4A3F31, #A89880);
+    --syn-number: light-dark(#0F4559, #85C8DD);
+    --syn-function: light-dark(#432878, #C7AEF2);
+    --color-curtain-hem: light-dark(#4D0C14, #8E1B26);
+    --color-shadow: light-dark(#1E140C, #000000);
+  }
+
+  @supports not (color: light-dark(#000, #fff)) {
+    :root,
+    [data-mode="performance"] {
+      --color-bg: #F5EEE2;
+      --color-surface: #FFFBF3;
+      --color-sunken: #EADFCB;
+      --color-fg: #14100D;
+      --color-fg-muted: #4F4338;
+      --color-accent: #8E1B26;
+      --color-curtain: #8E1B26;
+      --color-on-curtain: #FFF7EC;
+      --color-line: #14100D;
+      --color-line-soft: #CDBFA8;
+      --color-focus: #14100D;
+      --color-focus-on-curtain: #FFF7EC;
+      --color-error: #A3121C;
+      --color-error-bg: #FBE3DF;
+      --color-diff-add: #FFFBF3;
+      --color-diff-remove: #F6D9D4;
+      --syn-keyword: #8E1B26;
+      --syn-string: #5C4300;
+      --syn-comment: #5E5246;
+      --syn-number: #1F5C73;
+      --syn-function: #4B2E83;
+      --color-curtain-hem: #5E0F18;
+      --color-shadow: #14100D;
+    }
+    [data-mode="backstage"] {
+      --color-bg: #D9C4A3;
+      --color-surface: #F4ECDD;
+      --color-sunken: #C9B08A;
+      --color-fg: #1E140C;
+      --color-fg-muted: #43341F;
+      --color-accent: #7A1520;
+      --color-curtain: #7A1520;
+      --color-on-curtain: #FFF7EC;
+      --color-line: #1E140C;
+      --color-line-soft: #A98F68;
+      --color-focus: #1E140C;
+      --color-focus-on-curtain: #FFF7EC;
+      --color-error: #8F0F18;
+      --color-error-bg: #F4D9D1;
+      --color-diff-add: #F4ECDD;
+      --color-diff-remove: #E7BFB2;
+      --syn-keyword: #7A1520;
+      --syn-string: #4E3A00;
+      --syn-comment: #4A3F31;
+      --syn-number: #0F4559;
+      --syn-function: #432878;
+      --color-curtain-hem: #4D0C14;
+      --color-shadow: #1E140C;
+    }
+  }
+
+  /* ---------- Typefaces ---------- */
+  :root {
+    --ff-slab: "Alfa Slab One", Rockwell, "Rockwell Nova", "Roboto Slab", "Bookman Old Style", Georgia, serif;
+    --ff-sans: "Libre Franklin", "Franklin Gothic Medium", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    --ff-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* ---------- Spacing ---------- */
+    --space-1: 0.25rem; --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+    --space-5: 1.5rem;  --space-6: 2rem;    --space-7: 3rem;    --space-8: 4rem;
+    --space-9: 6rem;    --space-10: 8rem;
+
+    /* ---------- Borders, layout, targets ---------- */
+    --bw-1: 1px; --bw-2: 2px; --bw-3: 3px; --bw-4: 4px;
+    --container: 75rem;
+    --gutter: 1rem;
+    --target: 2.75rem;
+    --focus-width: 3px;
+    --focus-offset: 3px;
+    --pelmet: 3rem;
+    --valance: 3rem;
+
+    /* ---------- Motion ---------- */
+    --dur-fast: 120ms; --dur-press: 80ms; --dur-base: 200ms; --dur-step: 220ms;
+    --dur-swap: 280ms; --dur-wipe: 320ms; --dur-lower: 520ms; --dur-raise: 720ms;
+    --ease-raise: cubic-bezier(0.22, 0.8, 0.24, 1);
+    --ease-lower: cubic-bezier(0.55, 0.05, 0.85, 0.35);
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+    /* ---------- Z-index ---------- */
+    --z-drape: 10; --z-pelmet: 20; --z-valance: 40; --z-skip: 100;
+  }
+  @media (min-width: 48rem) { :root { --gutter: 1.5rem; } }
+  @media (min-width: 60rem) { :root { --gutter: 2rem; } }
+  @media (min-width: 80rem) { :root { --gutter: 2.5rem; } }
+
+  /* ---------- Mode: Performance ---------- */
+  :root,
+  [data-mode="performance"] {
+    --font-display: var(--ff-slab);
+    --font-heading: var(--ff-sans);
+    --font-body: var(--ff-sans);
+    --font-label: var(--ff-mono);
+    --fw-display: 400;
+    --fw-heading: 800;
+    --fw-body: 400;
+    --track-display: -0.005em;
+    --lh-display: 1.04;
+    --lh-heading: 1.2;
+    --lh-body: 1.6;
+    --t-display-xl: clamp(2.5rem, 1.2rem + 5.2vw, 4.5rem);
+    --t-display-l: clamp(1.75rem, 1.1rem + 2vw, 2.5rem);
+    --t-heading: 1.375rem;
+    --t-body-l: 1.3125rem;
+    --t-body: 1.125rem;
+    --t-body-s: 0.9375rem;
+    --t-label: 0.8125rem;
+    --t-code: 0.9375rem;
+    --t-metric-xl: clamp(3rem, 1.8rem + 5vw, 6rem);
+    --t-metric-l: clamp(2.25rem, 1.5rem + 2.4vw, 3.25rem);
+    --measure: 66ch;
+    --radius: 0;
+    --card-border: var(--bw-3) solid var(--color-line);
+    --elev-0: none;
+    --elev-1: 3px 3px 0 0 var(--color-shadow);
+    --elev-2: 6px 6px 0 0 var(--color-shadow);
+    --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
+  }
+
+  /* ---------- Mode: Backstage ---------- */
+  [data-mode="backstage"] {
+    --font-display: var(--ff-mono);
+    --font-heading: var(--ff-mono);
+    --font-body: var(--ff-mono);
+    --font-label: var(--ff-mono);
+    --fw-display: 700;
+    --fw-heading: 700;
+    --fw-body: 400;
+    --track-display: -0.02em;
+    --lh-display: 1.12;
+    --lh-heading: 1.3;
+    --lh-body: 1.65;
+    --t-display-xl: clamp(1.75rem, 1rem + 2.6vw, 2.75rem);
+    --t-display-l: clamp(1.375rem, 1rem + 1.2vw, 1.75rem);
+    --t-heading: 1.125rem;
+    --t-body-l: 1.125rem;
+    --t-body: 1rem;
+    --t-body-s: 0.875rem;
+    --t-label: 0.8125rem;
+    --t-code: 0.9375rem;
+    --t-metric-xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+    --t-metric-l: clamp(2rem, 1.4rem + 2vw, 2.75rem);
+    --measure: 72ch;
+    --radius: 4px;
+    --card-border: var(--bw-2) dashed var(--color-line);
+    --elev-0: none;
+    --elev-1: none;
+    --elev-2: none;
+    --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-fast: 0ms; --dur-press: 0ms; --dur-base: 0ms; --dur-step: 0ms;
+      --dur-swap: 0ms; --dur-wipe: 0ms; --dur-lower: 0ms; --dur-raise: 0ms;
+    }
+  }
+
+  /* ---------- Higher contrast preference ---------- */
+  @media (prefers-contrast: more) {
+    :root { --bw-2: 3px; --bw-3: 4px; --focus-width: 4px; }
+    [data-mode] { --color-fg-muted: var(--color-fg); }
+  }
+}

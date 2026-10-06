@@ -1,0 +1,36 @@
+html.js[data-mode=performance] .layer[data-layer=backstage],
+html.js[data-mode=performance] .layer[data-layer=trapdoor]{display:none}
+html.js[data-mode=backstage] .layer[data-layer=performance]:not([data-always]){display:none}
+html.js[data-mode=performance] .po-notice{display:none}
+.trapdoor-strip{display:none}
+html.js[data-mode=performance] .trapdoor-strip,.home-strip .trapdoor-strip{display:block}
+.case-head{padding-block:var(--space-6) var(--space-5)}
+.case-head__top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-5)}
+.case-head__back{display:inline-flex;align-items:center;gap:var(--space-2);min-height:var(--target);color:var(--color-fg);text-decoration:none}
+.case-head__title{margin-top:var(--space-4);max-width:16ch}
+.case-head__summary{margin-top:var(--space-4);max-width:var(--measure)}
+.case__barcode{margin-block:var(--space-5)}
+.layer{scroll-margin-top:4rem}
+.layer[data-mode]{background:var(--color-bg);padding-bottom:var(--space-7)}
+.case__cover img{border:var(--card-border)}
+.result-block{display:grid;gap:var(--space-6);margin-block:var(--space-7);scroll-margin-top:4rem}
+.result-block__metrics{display:grid;gap:var(--space-4);align-content:start}
+.result-block__outcome{margin-top:var(--space-5)}
+.case__body{display:grid;grid-template-columns:minmax(0,1fr)}
+.case__prose{display:contents}
+.case__prose>*{grid-column:1;max-width:var(--measure)}
+.case__prose>.figure--wide{max-width:none;grid-column:1/-1}
+.case__margin{margin-top:var(--space-6)}
+.case__links{list-style:none;padding:0;display:grid;gap:var(--space-2)}
+.layer__divider{background:var(--color-curtain);color:var(--color-on-curtain);padding-block:var(--space-3);margin-bottom:var(--space-6)}
+.layer__divider>span{display:block}
+.backstage__preface{margin-bottom:var(--space-5)}
+.steps-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3)}
+.layer__title{font:var(--fw-display) var(--t-display-l)/1.1 var(--font-display);padding-top:var(--space-7)}
+@media (max-width:29.999rem){.steps-controls__all{width:100%}}
+@media (min-width:60rem){
+  .result-block{grid-template-columns:7fr 5fr;column-gap:var(--space-8)}
+  .case__body{grid-template-columns:minmax(0,var(--measure)) minmax(0,1fr);column-gap:var(--space-8)}
+  .case__margin{grid-column:2;grid-row:1/span 3;margin:0;align-self:start}
+}
+@media (min-width:80rem){.case__prose>.aside{grid-column:2;margin-top:0}}

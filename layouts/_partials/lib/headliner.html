@@ -1,0 +1,9 @@
+{{- /* The one headliner: first explicit `headliner: true` by weight, else the lowest weight (3.4). Call with partialCached. */ -}}
+{{- $cases := partial "lib/cases.html" . -}}
+{{- $flagged := where $cases "Params.headliner" true -}}
+{{- if gt (len $flagged) 1 -}}
+  {{- warnf "prestige: %d case studies set headliner: true; %q is used and the others are ignored." (len $flagged) (index $flagged 0).File.Path -}}
+{{- end -}}
+{{- $h := false -}}
+{{- with $flagged }}{{ $h = index . 0 }}{{ else }}{{ with $cases }}{{ $h = index . 0 }}{{ end }}{{ end -}}
+{{- return $h -}}

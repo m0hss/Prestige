@@ -1,0 +1,6 @@
+{{- /* Chip (7.11). Context: dict "text" "href" (optional) "class". */ -}}
+{{- if .href -}}
+<a class="chip chip--link{{ with .class }} {{ . }}{{ end }}" href="{{ .href }}">{{ .text }}</a>
+{{- else -}}
+<span class="chip{{ with .class }} {{ . }}{{ end }}">{{ .text }}</span>
+{{- end -}}

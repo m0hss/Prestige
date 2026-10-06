@@ -1,0 +1,29 @@
+{{- /* The split stage (5.1, 9.6, 9.7). Context: the home page. */ -}}
+{{- $cases := partial "lib/cases.html" . -}}
+{{- $head := partialCached "lib/headliner.html" . "headliner" -}}
+{{- $n := len $cases -}}
+{{- $title := i18n "stage_title_many" -}}
+{{- if eq $n 1 }}{{ $title = i18n "stage_title_1" }}{{ else if eq $n 2 }}{{ $title = i18n "stage_title_2" }}{{ else if eq $n 3 }}{{ $title = i18n "stage_title_3" }}{{ end -}}
+<section class="stage container" aria-labelledby="stage-title">
+  <h2 class="stage__title label" id="stage-title">{{ $title }}</h2>
+  {{- if $n }}
+  <div class="stage__heads" aria-hidden="true">
+    <p class="stage__head stage__head--front label">{{ i18n "column_front" }}</p>
+    <p class="stage__head stage__pelmet label">{{ i18n "column_back" }}</p>
+  </div>
+  <div class="stage__body">
+    {{ partial "components/stage-row.html" (dict "page" $head "headliner" true "n" $n "first" true) }}
+    {{- range $cases }}
+      {{- if ne . $head }}
+    {{ partial "components/stage-row.html" (dict "page" . "headliner" false "n" $n "first" false) }}
+      {{- end }}
+    {{- end }}
+    <div class="drape-wrap" aria-hidden="true"><div class="drape"><p class="drape__text label">{{ i18n "drape_closed" }}</p></div></div>
+  </div>
+  {{- else }}
+  <div class="stage__empty">
+    <p>{{ i18n "nothing_on_bill" }}</p>
+    {{- if hugo.IsServer }}<p class="label">{{ i18n "dev_add_work" }}</p>{{ end }}
+  </div>
+  {{- end }}
+</section>

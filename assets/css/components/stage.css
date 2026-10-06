@@ -1,0 +1,83 @@
+.stage{margin-block:var(--space-6)}
+.stage__title{margin-bottom:var(--space-3)}
+.stage__heads{display:none}
+.stage__body{position:relative;display:grid;gap:var(--space-6)}
+.stage-row{display:grid;gap:var(--space-4)}
+.stage-row__front,.stage-row__back{position:relative;background:var(--color-surface);border:var(--card-border);border-radius:var(--radius)}
+.stage-row__front{box-shadow:var(--elev-1);transition:box-shadow var(--dur-fast),transform var(--dur-fast)}
+.stage-row__bar{display:flex;align-items:center;min-height:2.5rem;padding-inline:var(--space-4);background:var(--color-curtain);color:var(--color-on-curtain)}
+.stage-row__fbody,.stage-row__bbody{padding:var(--space-4);display:grid;gap:var(--space-3)}
+.stage-row__cover img{width:100%;border:var(--bw-2) solid var(--color-line)}
+.stage-row__text{display:grid;gap:var(--space-3);align-content:start}
+.stage-row__title{font:var(--fw-display) 1.75rem/1.05 var(--font-display);letter-spacing:var(--track-display)}
+.stage-row__link{color:var(--color-fg);text-decoration:none}
+.stage-row__link::after{content:"";position:absolute;inset:0}
+.stage-row__link:focus-visible{outline:0;text-decoration:underline 3px var(--color-accent)}
+.stage-row__front:has(.stage-row__link:focus-visible){outline:var(--focus-width) solid var(--color-focus);outline-offset:var(--focus-offset)}
+.stage-row__front:has(.stage-row__link:active){transform:translate(3px,3px);box-shadow:none}
+@media (hover:hover){.stage-row__front:has(.stage-row__link:hover){box-shadow:var(--elev-2);transform:translate(-2px,-2px)}.stage-row__link:hover{text-decoration:underline 3px var(--color-accent)}}
+.stage-row__metrics{display:grid;gap:var(--space-3)}
+.stage-row__metrics .metric{box-shadow:none;padding:var(--space-3)}
+.stage-row__field .label{display:block;margin-bottom:var(--space-1)}
+.stage-row__request{color:var(--color-fg-muted)}
+.stage-row__actions{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.stage-row[data-draft] .stage-row__front{border-style:dashed}
+.ticks{display:flex;flex-wrap:wrap;gap:var(--space-2);list-style:none;padding:0}
+.ticks a{display:grid;place-items:center;width:var(--target);height:var(--target);border:var(--bw-2) solid var(--color-line);color:var(--color-fg);text-decoration:none;font:700 var(--t-label)/1 var(--font-label)}
+@media (hover:hover){.ticks a:hover{background:var(--color-curtain);color:var(--color-on-curtain)}}
+.drape-wrap{display:none}
+.stage__empty{background:var(--color-sunken);padding:var(--space-6);border:var(--card-border)}
+.prow{position:relative;display:grid;gap:var(--space-2) var(--space-5);padding-block:var(--space-5);border-bottom:var(--bw-1) solid var(--color-line-soft)}
+.prow__sig .barcode__bars{width:120px}
+.prow__title{font:var(--fw-display) 1.75rem/1.1 var(--font-display)}
+.prow__link{color:var(--color-fg);text-decoration:none}
+.prow__link::after{content:"";position:absolute;inset:0}
+.prow__link:focus-visible{outline:0}
+.prow:has(.prow__link:focus-visible){outline:var(--focus-width) solid var(--color-focus);outline-offset:var(--focus-offset)}
+@media (hover:hover){.prow__link:hover{text-decoration:underline 3px var(--color-accent)}}
+.prow__summary{margin-top:var(--space-1)}
+.prow__tags,.prow__facts .label{margin-top:var(--space-2);color:var(--color-fg-muted)}
+.prow__chev{font-size:1.5rem;align-self:center}
+@media (min-width:30rem){.stage-row--standard .stage-row__fbody{grid-template-columns:200px minmax(0,1fr);align-items:start}}
+@media (min-width:48rem){.prow{grid-template-columns:auto minmax(0,1fr) auto auto;align-items:start}.prow__facts{text-align:right}}
+@media (max-width:59.999rem){
+  html.js[data-mode=performance] .stage-row__back,html.js[data-mode=backstage] .stage-row__front{display:none}
+  @media (prefers-reduced-motion:no-preference){
+    html.is-switching[data-mode=backstage] .stage-row__back{animation:wipe-up var(--dur-wipe) var(--ease-raise)}
+    html.is-switching[data-mode=performance] .stage-row__front{animation:wipe-down var(--dur-wipe) var(--ease-raise)}
+  }
+}
+@keyframes wipe-up{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+@keyframes wipe-down{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@media (min-width:60rem){
+  .stage__heads{display:grid;grid-template-columns:1fr 1fr}
+  .stage__head{display:flex;align-items:center;min-height:var(--pelmet);padding-inline:var(--space-4);background:var(--color-fg);color:var(--color-bg)}
+  .stage__pelmet{position:relative;z-index:var(--z-pelmet);background:var(--color-curtain);color:var(--color-on-curtain)}
+  .stage__body{gap:0}
+  .stage-row{grid-template-columns:1fr 1fr;gap:0;border-bottom:var(--bw-1) solid var(--color-line-soft)}
+  .stage-row__bar{display:none}
+  .stage-row__front,.stage-row__back{margin:var(--space-4)}
+  .stage-row__front{margin-right:var(--space-5)}
+  .stage-row__back{border-left-width:var(--bw-2)}
+  .stage-row__btitle{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .stage-row--headliner .stage-row__title{font-size:3rem}
+  .stage-row--headliner{min-height:35rem}
+  .stage-row--solo{min-height:40rem}
+  .stage-row--solo .stage-row__title{font-size:3.75rem}
+  .stage-row--solo .stage-row__metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .drape-wrap{display:block;position:absolute;inset:0 0 0 50%;overflow:hidden;pointer-events:none;z-index:var(--z-drape)}
+  html:not(.js) .drape-wrap{display:none}
+  .drape{height:100%;display:flex;align-items:center;justify-content:center;padding:var(--space-6);pointer-events:auto;cursor:pointer;background:var(--color-curtain) repeating-linear-gradient(90deg,rgba(0,0,0,.14) 0 2px,transparent 2px 56px);color:var(--color-on-curtain);border-bottom:12px solid var(--color-curtain-hem);transform:translateY(var(--curtain-lift,0%))}
+  .drape.is-moving{will-change:transform}
+  .drape__text{max-width:22ch;text-align:center}
+  html.js[data-mode=performance]{--curtain-lift:0%}
+  html.js[data-mode=backstage]{--curtain-lift:calc(-100% + 12px)}
+  html.js[data-mode=backstage] .drape{pointer-events:none}
+  html.js[data-mode=performance] .stage-row__back{visibility:hidden;opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .drape{transition:transform var(--dur-lower) var(--ease-lower)}
+    html[data-mode=backstage] .drape{transition:transform var(--dur-raise) var(--ease-raise)}
+    html.js[data-mode=performance] .stage-row__back{transition:visibility 0s linear var(--dur-lower),opacity 0s linear var(--dur-lower)}
+    html.js[data-mode=backstage] .stage-row__back{transition:opacity var(--dur-swap) var(--ease-raise) 300ms}
+  }
+}

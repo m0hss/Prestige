@@ -1,0 +1,105 @@
+{{- /*
+  Build-time schema checks for a case-study bundle (3.4 to 3.6).
+  errorf stops the build; warnf prints and continues. Context: the case-study page.
+*/ -}}
+{{- $p := . -}}
+{{- $path := .File.Path -}}
+
+{{- /* Performance layer: index.md */ -}}
+{{- range slice "title" "summary" "brief" "role" -}}
+  {{- if not (index $p.Params .) }}{{ errorf "prestige: %q is required in %s" . $path }}{{ end -}}
+{{- end -}}
+{{- if not .Params.disciplines }}{{ errorf "prestige: \"disciplines\" needs at least one entry in %s" $path }}{{ end -}}
+{{- $cover := .Params.cover | default dict -}}
+{{- if not $cover.image }}{{ errorf "prestige: \"cover.image\" is required in %s" $path }}{{ end -}}
+{{- if not $cover.alt }}{{ errorf "prestige: \"cover.alt\" is required in %s" $path }}{{ end -}}
+{{- with $cover.image }}{{ if not ($p.Resources.Get .) }}{{ errorf "prestige: cover.image %q is not a file in the bundle of %s" . $path }}{{ end }}{{ end -}}
+{{- with .Params.og_image }}{{ if not ($p.Resources.Get .) }}{{ errorf "prestige: og_image %q is not a file in the bundle of %s" . $path }}{{ end }}{{ end -}}
+
+{{- $bc := .Params.barcode | default dict -}}
+{{- if not $bc.duration }}{{ errorf "prestige: \"barcode.duration\" is required in %s" $path }}{{ end -}}
+{{- if not $bc.team }}{{ errorf "prestige: \"barcode.team\" is required in %s" $path }}{{ end -}}
+{{- with $bc.team -}}
+  {{- $t := printf "%T" . -}}
+  {{- if not (or (eq $t "string") (strings.HasPrefix $t "int") (strings.HasPrefix $t "uint")) }}{{ errorf "prestige: \"barcode.team\" must be a whole number or a string in %s" $path }}{{ end -}}
+{{- end -}}
+{{- $oc := $bc.outcome | default dict -}}
+{{- if not $oc.value }}{{ errorf "prestige: \"barcode.outcome.value\" is required in %s" $path }}{{ end -}}
+{{- if not $oc.label }}{{ errorf "prestige: \"barcode.outcome.label\" is required in %s" $path }}{{ end -}}
+
+{{- $res := .Params.result | default dict -}}
+{{- if not $res.headline }}{{ errorf "prestige: \"result.headline\" is required in %s" $path }}{{ end -}}
+{{- if not $res.outcome }}{{ errorf "prestige: \"result.outcome\" is required in %s" $path }}{{ end -}}
+{{- $nm := len ($res.metrics | default slice) -}}
+{{- if or (lt $nm 1) (gt $nm 3) }}{{ errorf "prestige: \"result.metrics\" needs 1 to 3 entries, found %d in %s" $nm $path }}{{ end -}}
+{{- range $i, $m := $res.metrics -}}
+  {{- if not (and $m.value $m.label) }}{{ errorf "prestige: result.metrics[%d] needs \"value\" and \"label\" in %s" $i $path }}{{ end -}}
+{{- end -}}
+{{- range $i, $l := .Params.links -}}
+  {{- if not (and $l.label $l.url) }}{{ errorf "prestige: links[%d] needs \"label\" and \"url\" in %s" $i $path }}{{ end -}}
+  {{- with $l.kind }}{{ if not (in (slice "live" "repo" "writeup") .) }}{{ errorf "prestige: links[%d].kind must be live, repo or writeup in %s" $i $path }}{{ end }}{{ end -}}
+{{- end -}}
+{{- with $cover.focus -}}
+  {{- if not (in (slice "Smart" "Center" "TopLeft" "Top" "TopRight" "Left" "Right" "BottomLeft" "Bottom" "BottomRight") .) }}{{ errorf "prestige: cover.focus %q is not a Hugo anchor in %s" . $path }}{{ end -}}
+{{- end -}}
+
+{{- /* Backstage layer: backstage.md and steps/ */ -}}
+{{- $steps := partial "lib/steps.html" . -}}
+{{- with .Resources.GetMatch "backstage.md" -}}
+  {{- $bp := .File.Path -}}
+  {{- if not (in (slice "complete" "in-progress") .Params.status) }}{{ errorf "prestige: \"status\" must be complete or in-progress in %s" $bp }}{{ end -}}
+  {{- if and (eq .Params.status "in-progress") (not .Params.planned) }}{{ errorf "prestige: \"planned\" is required when status is in-progress in %s" $bp }}{{ end -}}
+{{- end -}}
+
+{{- if $steps -}}
+  {{- $bs := .Params.backstage | default dict -}}
+  {{- if not $bs.teaser }}{{ errorf "prestige: \"backstage.teaser\" is required when steps/ has files, in %s" $path }}{{ end -}}
+  {{- $kinds := slice "problem" "constraints" "hypotheses" "rejected" "implementation" "result" "note" -}}
+  {{- $total := len $steps -}}
+  {{- $hasResult := false -}}
+  {{- range $i, $s := $steps -}}
+    {{- $sp := $s.File.Path -}}
+    {{- $k := $s.Params.kind -}}
+    {{- if not $s.Title }}{{ errorf "prestige: \"title\" is required in %s" $sp }}{{ end -}}
+    {{- if not $s.Params.gist }}{{ errorf "prestige: \"gist\" is required in %s" $sp }}{{ end -}}
+    {{- if not (in $kinds $k) }}{{ errorf "prestige: step kind %q is not one of %s in %s (write it as params: kind: ...)" $k (delimit $kinds ", ") $sp }}{{ end -}}
+    {{- if ne (int ($s.Params.n | default 0)) (add $i 1) }}{{ errorf "prestige: step numbers must be unique and contiguous from 1; expected n: %d in %s" (add $i 1) $sp }}{{ end -}}
+    {{- if eq $k "problem" -}}
+      {{- if not $s.Params.statement }}{{ errorf "prestige: a problem step needs \"statement\" in %s" $sp }}{{ end -}}
+    {{- else if eq $k "constraints" -}}
+      {{- if not $s.Params.constraints }}{{ errorf "prestige: a constraints step needs a \"constraints\" list in %s" $sp }}{{ end -}}
+      {{- range $s.Params.constraints -}}
+        {{- if not (and .name .limit) }}{{ errorf "prestige: each constraint needs \"name\" and \"limit\" in %s" $sp }}{{ end -}}
+        {{- if not (in (slice "hard" "soft" "assumed") .type) }}{{ errorf "prestige: constraint type must be hard, soft or assumed in %s" $sp }}{{ end -}}
+      {{- end -}}
+    {{- else if eq $k "hypotheses" -}}
+      {{- if not $s.Params.hypotheses }}{{ errorf "prestige: a hypotheses step needs a \"hypotheses\" list in %s" $sp }}{{ end -}}
+      {{- range $s.Params.hypotheses -}}
+        {{- if not (and .id .claim .test) }}{{ errorf "prestige: each hypothesis needs \"id\", \"claim\" and \"test\" in %s" $sp }}{{ end -}}
+        {{- if not (in (slice "confirmed" "refuted" "inconclusive" "untested") .verdict) }}{{ errorf "prestige: hypothesis verdict must be confirmed, refuted, inconclusive or untested in %s" $sp }}{{ end -}}
+        {{- if and (eq .verdict "untested") (eq $i (sub $total 1)) }}{{ warnf "prestige: hypothesis %s is untested in the last step of %s" .id $path }}{{ end -}}
+      {{- end -}}
+    {{- else if eq $k "rejected" -}}
+      {{- if not $s.Params.options }}{{ errorf "prestige: a rejected step needs an \"options\" list in %s" $sp }}{{ end -}}
+      {{- range $s.Params.options -}}
+        {{- if not (and .name .why) }}{{ errorf "prestige: each rejected option needs \"name\" and \"why\" in %s" $sp }}{{ end -}}
+        {{- if not (in (slice "low" "medium" "high") .revisit) }}{{ errorf "prestige: rejected option revisit must be low, medium or high in %s" $sp }}{{ end -}}
+      {{- end -}}
+    {{- else if eq $k "implementation" -}}
+      {{- range $s.Params.decisions -}}
+        {{- if not (and .decision .because) }}{{ errorf "prestige: each decision needs \"decision\" and \"because\" in %s" $sp }}{{ end -}}
+      {{- end -}}
+    {{- else if eq $k "result" -}}
+      {{- $hasResult = true -}}
+      {{- if not $s.Params.metrics }}{{ errorf "prestige: a result step needs a \"metrics\" list in %s" $sp }}{{ end -}}
+      {{- if not $s.Params.verdict }}{{ errorf "prestige: a result step needs \"verdict\" in %s" $sp }}{{ end -}}
+      {{- range $s.Params.metrics -}}
+        {{- if not .label }}{{ errorf "prestige: each result metric needs \"label\" in %s" $sp }}{{ end -}}
+        {{- if not (and (isset . "before") (isset . "after")) }}{{ errorf "prestige: each result metric needs numeric \"before\" and \"after\" in %s" $sp }}{{ end -}}
+        {{- range slice .before .after }}{{ $t := printf "%T" . }}{{ if not (or (strings.HasPrefix $t "int") (strings.HasPrefix $t "uint") (strings.HasPrefix $t "float")) }}{{ errorf "prestige: result metric \"before\" and \"after\" must be numbers in %s" $sp }}{{ end }}{{ end -}}
+        {{- with .better }}{{ if not (in (slice "lower" "higher") .) }}{{ errorf "prestige: \"better\" must be lower or higher in %s" $sp }}{{ end }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $hasResult }}{{ warnf "prestige: %s shows result metrics but no step has kind: result, so their method cannot be found (principle P1)" $path }}{{ end -}}
+{{- end -}}

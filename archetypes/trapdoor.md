@@ -1,14 +1,15 @@
 ---
-title: "TODO: name the failure"
+# A Trapdoor entry (spec 3.7). Record only verified facts; mark unknowns as TODO.
+title: "TODO: name the failure, not the lesson (60 characters max)"
 date: {{ .Date }}
 draft: true
 case: ""
 severity: "TODO: minor | major | critical"
-what: "TODO: describe what happened"
-cause: "TODO: state the confirmed cause, or say it is under investigation"
-cost: "TODO: record the measured time, money, or trust impact"
-changed: "TODO: describe the behavior that changed afterward"
-lessons: []
+what: "TODO: what happened (200 characters max)"
+cause: "TODO: the confirmed cause, or say it is under investigation (200 characters max)"
+cost: "TODO: time, money or trust lost, in numbers where possible (120 characters max)"
+changed: "TODO: the behaviour that changed afterwards (200 characters max)"
+lessons: ["TODO-lesson"]
 ---
 
 TODO: Write the evidence-based account. Do not guess at causes or costs.

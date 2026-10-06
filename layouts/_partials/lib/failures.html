@@ -1,0 +1,6 @@
+{{- /* Trapdoor entries whose `case` names this bundle, newest first. */ -}}
+{{- $out := slice -}}
+{{- with .File -}}
+  {{- $out = where (where site.RegularPages "Section" "trapdoor") "Params.case" .ContentBaseName -}}
+{{- end -}}
+{{- return $out.ByDate.Reverse -}}

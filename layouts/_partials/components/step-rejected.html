@@ -1,0 +1,12 @@
+<ul class="kb kb--rejected panels">
+  {{- range .Params.options }}
+  <li class="panel">
+    <div class="panel__head">
+      <h3 class="panel__title"><s>{{ .name }}</s></h3>
+      <span class="stamp stamp--rejected">{{ i18n "rejected_stamp" }}</span>
+    </div>
+    <p>{{ .why }}</p>
+    <p class="panel__revisit label">{{ i18n "revisit_cost" }}: <strong>{{ i18n (printf "revisit_%s" .revisit) }}</strong></p>
+  </li>
+  {{- end }}
+</ul>
