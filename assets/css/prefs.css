@@ -5,7 +5,7 @@
   .label,.muted{color:var(--color-fg)}
 }
 @media (forced-colors:active){
-  .curtain__seg,.scheme__track,.chip,.step,.panel,.stage-row__front,.stage-row__back,.metric,.failure,.ba__pane,.btn,.notice,.result-block{border:2px solid CanvasText}
+  .curtain,.scheme__track,.chip,.step,.panel,.stage-row__front,.stage-row__back,.metric,.failure,.ba__pane,.btn,.notice,.result-block{border:2px solid CanvasText}
   .curtain__seg:has(:checked),.scheme__seg:has(:checked){background:Highlight;color:HighlightText}
   .drape{border:2px solid CanvasText}
   .barcode__bars{color:CanvasText}
