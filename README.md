@@ -181,7 +181,7 @@ The build checks this schema and stops with the file path when something require
 
 Markdown links may use `http`, `https`, `mailto` and `tel`; any other scheme (such as `javascript:`) stops the build. A site path such as `/work/missing/` that matches no page prints a warning with the file name.
 
-Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer; `#decorative` allows empty alt text.
+Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer when the image stands on its own in the body (inside a list item, quote or aside, and in Backstage, it is an ordinary figure); `#decorative` allows empty alt text.
 
 ## Accessibility
 
@@ -202,6 +202,8 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 ## Development
 
 `exampleSite/` is a demo for a fictional person; every name, client, figure and failure in it is invented, and its images are original illustrations dedicated to the public domain (CC0).
+
+`exampleSite/content/work/stress-fixture/` is a draft layout stress test (full-bleed images, wide tables, awkward code fences, repeated step titles and headings). It builds only with `-D`, so `hugo server` shows it and the deployed demo does not.
 
 ```bash
 cd exampleSite && hugo server     # http://localhost:1313/
