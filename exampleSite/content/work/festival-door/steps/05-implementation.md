@@ -14,6 +14,30 @@ decisions:
     because: "The scan was the slow step, and one scanner at the gate replaces three paper lists."
 ---
 
+The published view showed each person only what they needed to act on:
+
+| Who | Sees | Can change |
+| :-- | :-- | :-: |
+| Allocator | Every slot, every supplier | Yes |
+| Supplier | Their own slot and gate time | No |
+| Gate volunteer | Trucks due in the next 30 minutes | No |
+| Road marshal | Trucks waiting in the holding field | No |
+
+A small script in the slot base stopped the allocator from booking more trucks into one slot than
+there are docks:
+
+```js {title="Slot check, run before the view is published"}
+const DOCKS = 3; // site plan
+const slots = await base.getTable("Slots").selectRecordsAsync();
+
+for (const slot of slots.records) {
+  const trucks = slot.getCellValue("Trucks") ?? [];
+  if (trucks.length > DOCKS) {
+    output.text(`${slot.name}: ${trucks.length} trucks for ${DOCKS} docks`);
+  }
+}
+```
+
 {{< ba-image before="shots/site-before.png" before_alt="Site plan with 14 trucks queued on the road outside the gate."
              after="shots/site-after.png" after_alt="Site plan with trucks waiting in the holding field and 2 on the road."
              caption="Load-in at 07:10, the same plan in two years." >}}
