@@ -4,7 +4,7 @@ A Hugo theme for case-study portfolios: every project is shown as its polished r
 
 ![Prestige: the split-stage homepage with the curtain caught mid-raise](https://raw.githubusercontent.com/m0hss/Prestige/master/images/screenshot.png)
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
+[![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](https://github.com/m0hss/Prestige/blob/master/LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
 
 > Live demo: <https://prestige-hugo.netlify.app/>. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
 
@@ -38,7 +38,7 @@ theme = "prestige"
 
 ## Minimal configuration
 
-Hugo does not merge a theme's `[markup]`, `[taxonomies]` or `[outputs]` into your site, so copy these into your `hugo.toml` (the permalinks keep slugs equal to folder and file names). The complete example is [`exampleSite/hugo.toml`](exampleSite/hugo.toml).
+Hugo does not merge a theme's `[markup]`, `[taxonomies]` or `[outputs]` into your site, so copy these into your `hugo.toml` (the permalinks keep slugs equal to folder and file names). The complete example is [`exampleSite/hugo.toml`](https://github.com/m0hss/Prestige/blob/master/exampleSite/hugo.toml).
 
 ```toml
 enableRobotsTXT = true   # robots.txt with a Sitemap: line
@@ -210,7 +210,7 @@ Chrome and Edge 123+, Firefox 120+, Safari 17.5+. Older browsers get the Perform
 
 ## Fonts and licences
 
-Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1.1 (texts in [`assets/fonts/`](assets/fonts/)):
+Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1.1 (texts in [`assets/fonts/`](https://github.com/m0hss/Prestige/tree/master/assets/fonts)):
 
 - Alfa Slab One by JM Solé
 - Libre Franklin by Impallari Type
@@ -238,4 +238,4 @@ The design source of truth is the [Prestige design specification](https://github
 
 ## Licence
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/m0hss/Prestige/blob/master/LICENSE).
