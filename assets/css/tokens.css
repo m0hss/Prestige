@@ -111,6 +111,12 @@
     }
   }
 
+  /* ---------- Colour: single values, the same in both schemes and modes ---------- */
+  :root {
+    --color-theme: #8E1B26; /* <meta name="theme-color">; head/meta.html reads this line at build time */
+    --color-drape-fold: rgb(0 0 0 / 0.14); /* curtain pleats, drawn over --color-curtain */
+  }
+
   /* ---------- Typefaces ---------- */
   :root {
     --ff-slab: "Alfa Slab One", Rockwell, "Rockwell Nova", "Roboto Slab", "Bookman Old Style", Georgia, serif;
@@ -171,7 +177,7 @@
     --t-code: 0.9375rem;
     --t-metric-xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
     --t-metric-l: clamp(2rem, 1.4rem + 2vw, 2.75rem);
-    --measure: 43.2em; /* 72ch of IBM Plex Mono */
+    --measure: 31.5em; /* Libre Franklin 400 averages 0.467em per character in English prose (spaces included): 31.5em = 67 characters, 60 to 75 spans 28em to 35em */
     --elev-0: none;
     --elev-valance: 0 3px 0 0 var(--color-curtain-hem);
   }
