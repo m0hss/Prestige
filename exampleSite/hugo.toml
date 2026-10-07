@@ -77,5 +77,6 @@ enableRobotsTXT = true
   [params.scheme]
     switch = true
   [params.footer]
+    description = "Backend engineer and production lead in Ghent. Each case study leads with the result and keeps the working one toggle away."
     note = "Available for cutovers, festivals and flows that make people write in."
   credit = true

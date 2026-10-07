@@ -89,6 +89,7 @@ Hugo does not merge a theme's `[markup]` or `[taxonomies]` into your site, so co
   [params.scheme]
     switch = true                  # footer Auto / Light / Dark switch
   [params.footer]
+    description = ""         # optional, two short lines under the footer email; replaces contact links there
     note = ""
   credit = true                    # "Built with Prestige" in the footer
 ```
