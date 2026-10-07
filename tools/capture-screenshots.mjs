@@ -2,7 +2,8 @@
 // Captures the catalogue images of spec 12.7 from a fresh build of exampleSite.
 // Development only. Requires Hugo extended, Playwright with Chromium, and ImageMagick.
 //   node tools/capture-screenshots.mjs
-// Writes images/screenshot.png (1500x1000), images/tn.png (900x600) and
+// Writes images/screenshot.png (1500x1000, the top of the homepage, header included),
+// images/tn.png (900x600, the same frame downscaled) and
 // assets/img/og-default.png (1200x630). The curtain is frozen mid-raise: a staged
 // frame documented in the README, not a state a visitor sees at rest (decision 38).
 import { chromium } from "playwright";
@@ -42,7 +43,6 @@ async function capture(height) {
     await document.fonts.ready;
     document.querySelectorAll("img[loading=lazy]").forEach((i) => { i.loading = "eager"; });
     await Promise.all(Array.from(document.images).map((i) => i.complete || new Promise((r) => { i.onload = i.onerror = r; })));
-    window.scrollTo(0, 64);
   });
   await page.waitForTimeout(200);
   return { browser, page };
@@ -54,7 +54,9 @@ const shots = path.join(repo, "images");
   await page.screenshot({ path: path.join(shots, "screenshot.png") });
   await browser.close();
 }
-execFileSync("convert", [path.join(shots, "screenshot.png"), "-crop", "1140x760+180+240", "+repage", "-filter", "Lanczos", "-resize", "900x600", path.join(shots, "tn.png")]);
+// The thumbnail is the whole screenshot scaled down (both are 3:2), never a crop:
+// a crop starts mid-word in the catalogue grid and reads as a rendering bug.
+execFileSync("convert", [path.join(shots, "screenshot.png"), "-filter", "Lanczos", "-resize", "900x600", path.join(shots, "tn.png")]);
 {
   const { browser, page } = await capture(1100);
   const top = await page.evaluate(() => Math.round(document.querySelector(".stage__body").getBoundingClientRect().top + window.scrollY));
