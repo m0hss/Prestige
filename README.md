@@ -6,7 +6,7 @@ A Hugo theme for case-study portfolios: every project is shown as its polished r
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-8E1B26)](LICENSE) [![Hugo extended ≥ 0.146.0](https://img.shields.io/badge/hugo-extended%20%E2%89%A5%200.146.0-14100D)](https://gohugo.io)
 
-> The demo is deployed to Netlify; the `demosite` URL in `theme.toml` is provisional until the Netlify site's address is set there. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
+> Live demo: <https://prestige-hugo.netlify.app/>. The screenshot is a staged frame with the curtain frozen mid-raise (see `tools/capture-screenshots.mjs`); visitors see it either down or up.
 
 ## Requirements
 
@@ -231,9 +231,9 @@ node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and Ima
 
 The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
 
-The demo is deployed to Netlify by `netlify.toml`: it builds `exampleSite/` against the same commit's theme with Hugo extended and overrides the demo's placeholder `baseURL` with the URL Netlify gives each deploy, so deploy previews work too. Its security headers come from the generated `_headers` file. To set it up, import the repository in Netlify; the build settings come from `netlify.toml`.
+The demo is deployed to Netlify by `netlify.toml`: it builds `exampleSite/` against the same commit's theme with Hugo extended and overrides the demo's placeholder `baseURL` with the URL Netlify gives each deploy, so deploy previews work too. It is published at <https://prestige-hugo.netlify.app/>; the build settings come from `netlify.toml`, and its security headers from the generated `_headers` file.
 
-The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md).
+The design source of truth is the [Prestige design specification](https://github.com/m0hss/Prestige/blob/4e31e696a2a006be096ba2612a26f602dae78017/stitch_markdown_prestige_system_designer/prestige_design.md). It is not part of the theme: the specification and its design exports live outside the repository (the `stitch_markdown_prestige_system_designer/` folder is gitignored), and the link points at the last commit that contained them.
 
 ## Licence
 
