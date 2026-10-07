@@ -49,6 +49,8 @@ everyone booked the first hour, and the queue backed up onto the provincial road
 Slots are allocated by one person and published as a read-only view. Trucks that arrive early wait
 in a field beside the gate instead of on the road. {{< stepref n="5" text="How the gate was rebuilt" >}}.
 
+{{< metric value="15" unit="min" label="Arrival slot per truck" context="Was first-come booking for the whole morning." >}}
+
 ![Queue length on the public road during load-in, before and after](shots/gate-queue.svg#wide "Trucks queued on the public road, sampled every ten minutes from 06:00.")
 
 *The festival, the people and every figure on this page are fictional; they demonstrate the theme.*
