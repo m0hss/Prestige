@@ -2,6 +2,8 @@
 # exampleSite/hugo.toml imports the theme as a module replaced by ../.., so every
 # build, production or preview, uses the same commit's theme. Its placeholder
 # baseURL is overridden with the URL Netlify gives each deploy.
+# Security headers and the CSP come from exampleSite/public/_headers, which Hugo writes from
+# layouts/home.headers so the inline-code hashes always match the build (tools/check-csp.sh).
 [build]
   base    = "exampleSite"
   publish = "public"

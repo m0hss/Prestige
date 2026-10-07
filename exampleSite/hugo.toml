@@ -40,7 +40,7 @@ enableRobotsTXT = true
     disableLatLong = true
 
 [outputs]
-  home = ["html", "rss"]
+  home = ["html", "rss", "headers"]
 
 [[menus.main]]
   name = "Work"

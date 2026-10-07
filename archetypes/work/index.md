@@ -3,6 +3,7 @@
 # The build validates this file (spec 3.4); paths are relative to this bundle folder.
 title: "TODO: case-study title (48 characters max)"
 summary: "TODO: the result as one sentence (140 characters max)"
+# description: ""   # optional: search and social description; defaults to the line above
 brief: "TODO: the problem as one sentence (160 characters max)"
 date: {{ .Date }}
 draft: true

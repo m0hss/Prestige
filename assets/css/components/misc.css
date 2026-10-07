@@ -44,6 +44,8 @@
 [data-side=before] .chroma .hl::before{content:"−"}
 .table-scroll table{width:100%;font-size:var(--t-body-s)}
 .table-scroll :is(th,td){text-align:left;vertical-align:top;padding:var(--space-2) var(--space-3);border-bottom:var(--bw-1) solid var(--color-line-soft)}
+.table-scroll .ta-center{text-align:center}
+.table-scroll .ta-right{text-align:right}
 .table-scroll thead th{font:500 var(--t-label)/1.3 var(--font-label);letter-spacing:.08em;text-transform:uppercase;border-bottom:var(--bw-2) solid var(--color-line)}
 .pager{margin-block:var(--space-7)}
 .pager__link{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-4);min-height:4rem;padding-block:var(--space-3);border-block:var(--bw-3) solid var(--color-line);color:var(--color-fg);text-decoration:none}

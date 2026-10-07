@@ -4,7 +4,7 @@
     <thead>
       {{- range . }}
       <tr>
-        {{- range . }}<th{{ with .Alignment }} style="text-align:{{ . }}"{{ end }} scope="col">{{ .Text }}</th>{{ end }}
+        {{- range . }}<th{{ with .Alignment }} class="ta-{{ . }}"{{ end }} scope="col">{{ .Text }}</th>{{ end }}
       </tr>
       {{- end }}
     </thead>
@@ -12,7 +12,7 @@
     <tbody>
       {{- range .TBody }}
       <tr>
-        {{- range . }}<td{{ with .Alignment }} style="text-align:{{ . }}"{{ end }}>{{ .Text }}</td>{{ end }}
+        {{- range . }}<td{{ with .Alignment }} class="ta-{{ . }}"{{ end }}>{{ .Text }}</td>{{ end }}
       </tr>
       {{- end }}
     </tbody>

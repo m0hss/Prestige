@@ -18,10 +18,12 @@
 
 {{- $bc := .Params.barcode | default dict -}}
 {{- if not $bc.duration }}{{ errorf "prestige: \"barcode.duration\" is required in %s" $path }}{{ end -}}
-{{- if not $bc.team }}{{ errorf "prestige: \"barcode.team\" is required in %s" $path }}{{ end -}}
-{{- with $bc.team -}}
-  {{- $t := printf "%T" . -}}
+{{- if not (partial "lib/present.html" $bc.team) }}{{ errorf "prestige: \"barcode.team\" is required in %s" $path }}{{ end -}}
+{{- if partial "lib/present.html" $bc.team -}}
+  {{- $t := printf "%T" $bc.team -}}
   {{- if not (or (eq $t "string") (strings.HasPrefix $t "int") (strings.HasPrefix $t "uint")) }}{{ errorf "prestige: \"barcode.team\" must be a whole number or a string in %s" $path }}{{ end -}}
+  {{- if and (ne $t "string") (lt (int $bc.team) 1) }}{{ errorf "prestige: \"barcode.team\" must be at least 1 (found %v) in %s" $bc.team $path }}{{ end -}}
+  {{- if and (eq $t "string") (not (trim $bc.team " ")) }}{{ errorf "prestige: \"barcode.team\" is required in %s" $path }}{{ end -}}
 {{- end -}}
 {{- $oc := $bc.outcome | default dict -}}
 {{- if not (partial "lib/present.html" $oc.value) }}{{ errorf "prestige: \"barcode.outcome.value\" is required in %s" $path }}{{ end -}}
@@ -37,6 +39,7 @@
 {{- end -}}
 {{- range $i, $l := .Params.links -}}
   {{- if not (and $l.label $l.url) }}{{ errorf "prestige: links[%d] needs \"label\" and \"url\" in %s" $i $path }}{{ end -}}
+  {{- with $l.url }}{{ with partial "lib/url-ok.html" . }}{{ if not .ok }}{{ errorf "prestige: links[%d].url uses the %q scheme, which is not allowed (allowed: %s; set params.links.schemes to change) in %s" $i .scheme .allowed $path }}{{ end }}{{ end }}{{ end -}}
   {{- with $l.kind }}{{ if not (in (slice "live" "repo" "writeup") .) }}{{ errorf "prestige: links[%d].kind must be live, repo or writeup in %s" $i $path }}{{ end }}{{ end -}}
 {{- end -}}
 {{- with $cover.focus -}}

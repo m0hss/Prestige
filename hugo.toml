@@ -33,8 +33,21 @@
   [imaging.exif]
     disableLatLong = true
 
+# Netlify _headers (security headers and the CSP hashes of the inline head code).
+# Sites must list "headers" in their own [outputs] home: Hugo does not merge [outputs] from a theme.
+[mediaTypes."text/netlify"]
+  delimiter = ""
+  suffixes  = [""]
+
+[outputFormats.headers]
+  mediaType      = "text/netlify"
+  baseName       = "_headers"
+  isPlainText    = true
+  notAlternative = true
+  root           = true
+
 [outputs]
-  home = ["html", "rss"]
+  home = ["html", "rss", "headers"]
 
 [params]
   credit = true
@@ -44,5 +57,8 @@
     trapdoor_on_home = true
   [params.scheme]
     switch = true
+  # URL schemes allowed in Markdown links, case-study links and contact links.
+  [params.links]
+    schemes = ["http", "https", "mailto", "tel"]
   [params.seo]
     og_image = "img/og-default.png"

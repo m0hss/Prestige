@@ -1,7 +1,7 @@
 {{- $u := urls.Parse .Destination -}}
 {{- $site := urls.Parse site.BaseURL -}}
 {{- $path := .PageInner.Path -}}{{- with .PageInner.File }}{{ $path = .Path }}{{ end -}}
-{{- if and $u.Scheme (not (in (slice "http" "https" "mailto" "tel") $u.Scheme)) }}{{ errorf "prestige: link %q uses the %q scheme, which is not allowed (use http, https, mailto or tel) in %s" .Destination $u.Scheme $path }}{{ end -}}
+{{- with partial "lib/url-ok.html" .Destination }}{{ if not .ok }}{{ errorf "prestige: link %q uses the %q scheme, which is not allowed (allowed: %s; set params.links.schemes to change) in %s" $.Destination .scheme .allowed $path }}{{ end }}{{ end -}}
 {{- $external := and $u.Host (ne $u.Host $site.Host) (in (slice "" "http" "https") $u.Scheme) -}}
 {{- $dest := .Destination -}}
 {{- if and (not $u.IsAbs) (not $u.Host) (not (strings.HasPrefix $dest "#")) -}}

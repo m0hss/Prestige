@@ -33,7 +33,7 @@
     {{- $msgB = i18n "status_case_only_b" -}}
   {{- end -}}
 {{- end -}}
-<div class="valance" data-mode-follow data-kind="{{ $kind }}"
+<section class="valance" aria-label="{{ i18n "valance_label" }}" data-mode-follow data-kind="{{ $kind }}"
   data-vis-p="{{ $visP }}" data-vis-b="{{ $visB }}"
   data-msg-p="{{ $msgP }}" data-msg-b="{{ $msgB }}"
   {{- with $narrowP }} data-msg-p-narrow="{{ . }}"{{ end }}{{ with $narrowB }} data-msg-b-narrow="{{ . }}"{{ end }}>
@@ -54,4 +54,4 @@
       {{- end }}
     </div>
   </div>
-</div>
+</section>

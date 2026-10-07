@@ -7,6 +7,7 @@ case: ""
 # ref: "TD-001"   # optional: pin the reference once it has been cited; otherwise it is the position by date
 severity: "TODO: minor | major | critical"
 what: "TODO: what happened (200 characters max)"
+# description: ""   # optional: search and social description; defaults to the line above
 cause: "TODO: the confirmed cause, or say it is under investigation (200 characters max)"
 cost: "TODO: time, money or trust lost, in numbers where possible (120 characters max)"
 changed: "TODO: the behaviour that changed afterwards (200 characters max)"

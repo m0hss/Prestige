@@ -38,9 +38,14 @@ theme = "prestige"
 
 ## Minimal configuration
 
-Hugo does not merge a theme's `[markup]` or `[taxonomies]` into your site, so copy these into your `hugo.toml` (the permalinks keep slugs equal to folder and file names). The complete example is [`exampleSite/hugo.toml`](exampleSite/hugo.toml).
+Hugo does not merge a theme's `[markup]`, `[taxonomies]` or `[outputs]` into your site, so copy these into your `hugo.toml` (the permalinks keep slugs equal to folder and file names). The complete example is [`exampleSite/hugo.toml`](exampleSite/hugo.toml).
 
 ```toml
+enableRobotsTXT = true   # robots.txt with a Sitemap: line
+
+[outputs]
+  home = ["html", "rss", "headers"]   # "headers" writes Netlify's _headers; see Security headers
+
 [taxonomies]
   discipline = "disciplines"
   stack      = "stack"
@@ -82,6 +87,8 @@ Hugo does not merge a theme's `[markup]` or `[taxonomies]` into your site, so co
     # [[params.contact.links]]
     #   label = "Code"
     #   url = "https://example.org"
+  [params.links]
+    schemes = ["http", "https", "mailto", "tel"]   # URL schemes allowed in any link (the default)
   [params.stage]
     default_mode = "performance"   # or "backstage": the mode for a first-time visitor
     programme_from = 5             # add the Programme list to the homepage from this many case studies
@@ -94,6 +101,14 @@ Hugo does not merge a theme's `[markup]` or `[taxonomies]` into your site, so co
 ```
 
 Prestige ships no analytics, no third-party scripts and no cookies. It stores the visitor's mode and colour scheme in `localStorage` only.
+
+## Search, feeds and security headers
+
+- **Descriptions.** `<meta name="description">` and `og:description` use the page's `description:` front matter when it is set, then `summary` (case studies), `what` (Trapdoor entries) or `lede` (sections and About). Taxonomy and term pages without one get a sentence naming the term, so no two term pages share a description. `params.description` is the last fallback.
+- **Feed.** `index.xml` lists case studies and Trapdoor entries, newest first, up to `services.rss.limit`. Each item carries its one-line description (never the full text) and its terms as categories. Sections and terms get their own feeds.
+- **Robots and sitemap.** With `enableRobotsTXT = true`, `robots.txt` allows everything and points at `sitemap.xml`.
+- **Icons.** `favicon.svg`, plus `favicon-32.png` and a 180 px `apple-touch-icon.png` rendered from it by `tools/render-favicons.mjs`. Put your own files of the same names in your site's `static/` to replace them.
+- **Security headers.** The `headers` output format writes a Netlify `_headers` file with a strict Content-Security-Policy (`default-src 'none'`, same-origin scripts, styles, fonts and images, plus `data:` images for the CSS arrow glyphs), `nosniff`, a referrer policy, a permissions policy, frame denial and long caching for the fingerprinted `/css/`, `/js/` and `/fonts/` files. The page has exactly two inline blocks, the head script that sets the mode before first paint and the `@font-face` rules. Both are built in `layouts/_partials/lib/inline-assets.html`, which also hashes them for the policy, so the hashes always match the build. Add any new inline code there, or the policy blocks it; `tools/check-csp.sh` fails when an inline block or a `style` attribute is not covered. On another host, copy the headers from the generated `_headers` into its configuration.
 
 ## Writing a case study
 
@@ -121,6 +136,7 @@ content/work/my-project/
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | ≤ 48 characters |
+| `description` | no | Search and social description; defaults to `summary` |
 | `summary` | yes | The result as one sentence, ≤ 140 characters |
 | `backstage_title` | no | H1 shown in Backstage view; defaults to “Backstage: <title>” (`i18n` key `backstage_title`). Only used when the case has steps |
 | `brief` | yes | The problem as one sentence, ≤ 160 characters |
@@ -129,7 +145,7 @@ content/work/my-project/
 | `role`, `client` | `role` yes | |
 | `disciplines`, `stack` | `disciplines` yes | Taxonomies |
 | `cover.image`, `cover.alt`, `cover.focus` | image and alt yes | `focus` is a Hugo anchor such as `TopLeft` |
-| `barcode.duration`, `barcode.team`, `barcode.outcome.value`, `.unit`, `.label`, `barcode.ref` | yes, except `unit` and `ref` | `team` is a number ("4 people") or a string |
+| `barcode.duration`, `barcode.team`, `barcode.outcome.value`, `.unit`, `.label`, `barcode.ref` | yes, except `unit` and `ref` | `team` is a whole number of at least 1 ("4 people") or a string |
 | `result.headline`, `result.metrics` (1 to 3), `result.outcome` | yes | Each metric: `value`, `unit`, `label`, `context` |
 | `links` | no | `label`, `url`, `kind` (`live`, `repo`, `writeup`) |
 | `backstage.teaser` | when steps exist | The turning point, ≤ 140 characters |
@@ -166,7 +182,7 @@ The build checks this schema and stops with the file path when something require
 
 ### Trapdoor entries
 
-`content/trapdoor/<slug>.md` with `title`, `date`, `severity` (`minor`, `major`, `critical`), `what`, `cause`, `cost`, `changed`, `lessons` (at least one) and an optional `case` naming a case-study folder. The `TD-<NNN>` reference is the entry's position by date, so it moves when an earlier entry is added or a draft is published. Add `ref: "TD-007"` to pin it once it has been cited anywhere; the build stops if two entries share a reference. (Case studies pin theirs with `barcode.ref`.)
+`content/trapdoor/<slug>.md` with `title`, `date`, `severity` (`minor`, `major`, `critical`), `what`, `cause`, `cost`, `changed`, `lessons` (at least one) and an optional `case` naming a case-study folder. An optional `description` replaces `what` as the search description. The `TD-<NNN>` reference is the entry's position by date, so it moves when an earlier entry is added or a draft is published. Add `ref: "TD-007"` to pin it once it has been cited anywhere; the build stops if two entries share a reference. (Case studies pin theirs with `barcode.ref`.)
 
 ### Shortcodes
 
@@ -179,7 +195,7 @@ The build checks this schema and stops with the file path when something require
 | `{{< aside label="Cost of being wrong" >}}…{{< /aside >}}` | A margin note |
 | `{{< stepref n="5" text="How the cutover ran" >}}` | A link to a Backstage step |
 
-Markdown links may use `http`, `https`, `mailto` and `tel`; any other scheme (such as `javascript:`) stops the build. A site path such as `/work/missing/` that matches no page prints a warning with the file name.
+Markdown links, case-study `links` and `params.contact.links` may use `http`, `https`, `mailto` and `tel` (change the list with `params.links.schemes`); any other scheme (such as `javascript:`) stops the build with the file path. A site path such as `/work/missing/` that matches no page prints a warning with the file name.
 
 Markdown images take a fragment for width: `![alt](shots/a.png#wide "Caption")`; `#bleed` spans the viewport in the Performance layer when the image stands on its own in the body (inside a list item, quote or aside, and in Backstage, it is an ordinary figure); `#decorative` allows empty alt text.
 
@@ -208,12 +224,14 @@ Self-hosted, Latin and Latin Extended subsets, under the SIL Open Font License 1
 ```bash
 cd exampleSite && hugo server     # http://localhost:1313/
 cd .. && tools/check-budgets.sh            # CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes
+tools/check-csp.sh                 # every inline block is hashed in the generated CSP
+node tools/render-favicons.mjs     # PNG icons from static/favicon.svg (needs Playwright)
 node tools/capture-screenshots.mjs  # catalogue images (needs Playwright and ImageMagick)
 ```
 
 The repository is a Hugo Module (`github.com/m0hss/Prestige`). `exampleSite/hugo.toml` imports it by that path and maps the path to the local checkout (`replacements = "github.com/m0hss/Prestige -> ../.."`), so the demo runs from any clone, whatever its folder is called, without Go installed and without a `themes/` folder.
 
-The demo is deployed to Netlify by `netlify.toml`: it builds `exampleSite/` against the same commit's theme with Hugo extended and overrides the demo's placeholder `baseURL` with the URL Netlify gives each deploy, so deploy previews work too. To set it up, import the repository in Netlify; the build settings come from `netlify.toml`.
+The demo is deployed to Netlify by `netlify.toml`: it builds `exampleSite/` against the same commit's theme with Hugo extended and overrides the demo's placeholder `baseURL` with the URL Netlify gives each deploy, so deploy previews work too. Its security headers come from the generated `_headers` file. To set it up, import the repository in Netlify; the build settings come from `netlify.toml`.
 
 The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md).
 
