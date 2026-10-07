@@ -25,12 +25,15 @@
   {{- if ne $v "compact" }}{{ with $c.availability }}
   <p class="contact__availability">{{ . }}</p>
   {{- end }}{{ end }}
-  {{- with $links }}
+  {{- $desc := cond (eq $v "compact") site.Params.footer.description "" -}}
+  {{- with $desc }}
+  <p class="contact__desc">{{ . }}</p>
+  {{- else }}{{ with $links }}
   <ul class="contact__links">
     {{- range . }}
     <li><a href="{{ .url }}">{{ .label }}</a></li>
     {{- end }}
   </ul>
-  {{- end }}
+  {{- end }}{{ end }}
 </section>
 {{- end -}}
