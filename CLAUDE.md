@@ -6,7 +6,7 @@ Prestige is a Hugo theme for case-study portfolios. Each project can present a p
 
 This repository is the standalone theme, not a site using the theme. The theme is implemented from the design specification: layouts, components, shortcodes, render hooks, styles, scripts, fonts, the `exampleSite/` demo and the `tools/` scripts.
 
-The design source of truth is [`stitch_markdown_prestige_system_designer/prestige_design.md`](stitch_markdown_prestige_system_designer/prestige_design.md). Its content model, templates, visual system, accessibility requirements, and acceptance checklist govern changes. Keep that specification unchanged unless asked to revise the design. Where Hugo forced a different mechanism than the spec describes (stylesheet bundling before Hugo 0.158, SVG sizing, `params.kind`, `:contentbasename` permalinks, site-level `[markup]` and `[taxonomies]`), the code comments and README say so.
+The design source of truth is `prestige_design.md` in `stitch_markdown_prestige_system_designer/`. That folder is kept outside the shipped theme: it is gitignored, so a maintainer keeps it locally, and the last tracked copy is [at commit 4e31e69](https://github.com/m0hss/Prestige/blob/4e31e696a2a006be096ba2612a26f602dae78017/stitch_markdown_prestige_system_designer/prestige_design.md). Never commit it back into the repository. Its content model, templates, visual system, accessibility requirements, and acceptance checklist govern changes. Keep that specification unchanged unless asked to revise the design. Where Hugo forced a different mechanism than the spec describes (stylesheet bundling before Hugo 0.158, SVG sizing, `params.kind`, `:contentbasename` permalinks, site-level `[markup]` and `[taxonomies]`), the code comments and README say so.
 
 ## Hugo requirements and local use
 
@@ -41,7 +41,7 @@ Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shor
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 
-The only repository is `github.com/m0hss/Prestige` (also the module path); every GitHub link points there, and `demosite` will be the demo's Netlify address (deployed by `netlify.toml`); until that address is known, the GitHub Pages URL in `theme.toml` is provisional. The author name in `theme.toml` (FixByte Studio) is provisional; replace it when verified project details are provided.
+The only repository is `github.com/m0hss/Prestige` (also the module path); every GitHub link points there, and `demosite` in `theme.toml` is the demo's Netlify address, `https://prestige-hugo.netlify.app/` (deployed by `netlify.toml`). The theme author is FixByte Studio. Releases are semver tags (`v0.1.0` onwards) on `master`, as Hugo Modules expect.
 
 ## Safety and accuracy
 

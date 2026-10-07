@@ -3,7 +3,7 @@ license = "MIT"
 licenselink = "https://github.com/m0hss/Prestige/blob/master/LICENSE"
 description = "A case-study portfolio theme with two authored layers per project: Performance (the result) and Backstage (the process), plus a Trapdoor for failures."
 homepage = "https://github.com/m0hss/Prestige"
-demosite = "https://m0hss.github.io/Prestige/"
+demosite = "https://prestige-hugo.netlify.app/"
 tags = ["portfolio", "personal", "responsive", "dark", "light", "accessibility"]
 features = [
   "Case-study page bundles with Performance and Backstage layers",
