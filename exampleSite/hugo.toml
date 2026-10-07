@@ -58,7 +58,7 @@ enableRobotsTXT = true
 [params]
   description = "Prestige: backend systems and live-event logistics, shown as results and as the working behind them."
   [params.author]
-    name = "Prestige"
+    name = "Prestige Hugo"
     role = "Backend engineer and production lead"
     location = "Ghent, Belgium"
   [params.contact]

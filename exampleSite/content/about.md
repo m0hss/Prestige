@@ -15,4 +15,4 @@ called_in_for:
   - "Flows that generate support tickets"
 ---
 
-Prestige is a fictional person. Every name, client, figure and failure on this demo site is invented to show how the Prestige theme presents case studies.
+Prestige Hugo is a fictional person. Every name, client, figure and failure on this demo site is invented to show how the Prestige theme presents case studies.
