@@ -7,6 +7,9 @@
 {{- if not $theme }}{{ errorf "prestige: --color-theme not found in assets/css/tokens.css" }}{{ end }}
 <meta name="theme-color" content="{{ $theme }}">
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{- /* PNG fallbacks rendered from favicon.svg by tools/render-favicons.mjs. */}}
+<link rel="icon" href="{{ "favicon-32.png" | relURL }}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 {{- with site.Home.OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
 {{- end }}

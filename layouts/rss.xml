@@ -1,0 +1,57 @@
+{{- /*
+  RSS 2.0 feed. Home: every case study and Trapdoor entry; a section or term: its own pages.
+  Newest first, capped by services.rss.limit. Each item carries the page's one-line
+  description (description, summary or what), never the full text, and its terms as categories.
+*/ -}}
+{{- $pages := slice -}}
+{{- if .IsHome -}}
+  {{- $pages = where site.RegularPages "Section" "in" (slice "work" "trapdoor") -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $pages = where site.RegularPages "Section" "in" (slice "work" "trapdoor") -}}
+{{- else -}}
+  {{- $pages = .RegularPages | default .Pages -}}
+{{- end -}}
+{{- $pages = where $pages "Kind" "page" -}}
+{{- $limit := site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 }}{{ $pages = first $limit $pages.ByDate.Reverse }}{{ else }}{{ $pages = $pages.ByDate.Reverse }}{{ end -}}
+{{- $title := site.Title -}}
+{{- if not .IsHome }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
+{{- $desc := .Description | default .Params.lede | default site.Params.description -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ $title }}</title>
+    <link>{{ .Permalink }}</link>
+    {{- with $desc }}
+    <description>{{ . | plainify }}</description>
+    {{- end }}
+    <language>{{ site.Language.LanguageCode | default site.Language.Lang }}</language>
+    {{- with site.Params.author.name }}
+    <managingEditor>{{ with site.Params.contact.email }}{{ . }} ({{ site.Params.author.name }}){{ else }}{{ . }}{{ end }}</managingEditor>
+    {{- end }}
+    {{- with $pages }}
+    <lastBuildDate>{{ (index . 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+    {{- end }}
+    <generator>Hugo with Prestige</generator>
+    {{- with .OutputFormats.Get "rss" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="{{ .MediaType.Type }}"/>
+    {{- end }}
+    {{- range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      {{- with .Description | default .Params.summary | default .Params.what }}
+      <description>{{ . | plainify }}</description>
+      {{- end }}
+      {{- $p := . }}
+      {{- range $tax, $_ := site.Taxonomies }}
+        {{- range $p.GetTerms $tax }}
+      <category>{{ .LinkTitle }}</category>
+        {{- end }}
+      {{- end }}
+    </item>
+    {{- end }}
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
 {{- $subject := "" -}}
 {{- if and (eq $v "cta") .page }}{{ $subject = i18n "walkthrough_subject" (dict "Title" .page.Title) }}{{ end -}}
 {{- if or $email $links (eq $v "cta") hugo.IsServer }}
-<section class="contact contact--{{ $v }}"{{ if ne $v "compact" }} aria-labelledby="contact-{{ $v }}"{{ else }} aria-label="{{ i18n "contact_title" }}"{{ end }}>
+<section class="contact contact--{{ $v }}"{{ if ne $v "compact" }} aria-labelledby="contact-{{ $v }}"{{ else }} aria-label="{{ i18n "contact_footer_label" }}"{{ end }}>
   {{- if eq $v "cta" }}
   <h2 class="contact__title" id="contact-{{ $v }}">{{ i18n "contact_cta_title" }}</h2>
   <p class="contact__body">{{ i18n "contact_cta_body" }}</p>
@@ -31,6 +31,8 @@
   {{- else }}{{ with $links }}
   <ul class="contact__links">
     {{- range . }}
+    {{- $url := .url }}
+    {{- with partial "lib/url-ok.html" $url }}{{ if not .ok }}{{ errorf "prestige: params.contact.links url %q uses the %q scheme, which is not allowed (allowed: %s; set params.links.schemes to change)" $url .scheme .allowed }}{{ end }}{{ end }}
     <li><a href="{{ .url }}">{{ .label }}</a></li>
     {{- end }}
   </ul>

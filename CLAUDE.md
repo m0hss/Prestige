@@ -23,7 +23,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes).
+The repository's `.claude/launch.json` starts `hugo server -D --source exampleSite` on port 1313 from the repository root. To work on the theme itself, run `cd exampleSite && hugo server`: the repository is the Hugo Module `github.com/m0hss/Prestige`, and `exampleSite/hugo.toml` imports it with a local replacement (`../..`), so no themes folder or symlink is needed. Run `tools/check-budgets.sh` before committing CSS or JS changes (CSS ≤ 51,200 bytes, JS ≤ 30,720 bytes). Run `tools/check-csp.sh` after touching anything in `<head>` or adding markup.
 
 ## Content vocabulary
 
@@ -37,7 +37,7 @@ See the `issue-to-case-study` and `incident-to-trapdoor` skills in `.claude/skil
 
 ## Implementation notes
 
-Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shortcodes/`, `layouts/_markup/`). Every user-visible string lives in `i18n/en.toml`. Only `assets/css/tokens.css` may contain colour values. Both modes share one size scale (the Backstage values in `tokens.css`): a mode changes colour, border style, radius and shadow, never a typeface or a size (Backstage uses the Performance type: same families, weights, line heights and tracking). Do not size `:root` by mode, and write font-relative widths in `em`, not `ch`. Content is never put in JavaScript, and nothing is hidden except under `html.js` gating.
+Templates use the Hugo 0.146 layout system (`layouts/_partials/`, `layouts/_shortcodes/`, `layouts/_markup/`). Every user-visible string lives in `i18n/en.toml`. Only `assets/css/tokens.css` may contain colour values. Both modes share one size scale (the Backstage values in `tokens.css`): a mode changes colour, border style, radius and shadow, never a typeface or a size (Backstage uses the Performance type: same families, weights, line heights and tracking). Do not size `:root` by mode, and write font-relative widths in `em`, not `ch`. Content is never put in JavaScript, and nothing is hidden except under `html.js` gating. The site runs under a strict CSP (`layouts/home.headers`): no `style=""` attributes or inline event handlers, and the only inline `<script>`/`<style>` are the two built and hashed in `layouts/_partials/lib/inline-assets.html`. Any new link URL from content or config goes through `lib/url-ok.html`.
 
 Hugo reserves `kind` as page metadata: a top-level `kind:` in a step file is an error on Hugo 0.150 and deprecated on later releases. Step files therefore write the design spec's step `kind` under `params:` (`params: { kind: problem }`); templates read it as `.Params.kind`.
 

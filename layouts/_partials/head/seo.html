@@ -1,7 +1,16 @@
 {{- $title := site.Title -}}
 {{- if not .IsHome }}{{ $title = printf "%s · %s" .Title site.Title }}{{ end -}}
 {{- if eq .Kind "404" }}{{ $title = printf "%s · %s" (i18n "err_404_title") site.Title }}{{ end -}}
-{{- $desc := .Params.summary | default .Params.what | default .Params.lede | default site.Params.description -}}
+{{- /* Description: front-matter description, then the layer's own one-liner, then one written for list pages, then the site's. */ -}}
+{{- $desc := .Description | default .Params.summary | default .Params.what | default .Params.lede -}}
+{{- if not $desc -}}
+  {{- if eq .Kind "term" -}}
+    {{- $desc = i18n "desc_term" (dict "Label" (i18n (printf "tax_%s" .Data.Singular) | default .Data.Singular) "Term" .Title "Site" site.Title) -}}
+  {{- else if eq .Kind "taxonomy" -}}
+    {{- $desc = i18n "desc_taxonomy" (dict "Name" .Title "Site" site.Title) -}}
+  {{- end -}}
+{{- end -}}
+{{- $desc = $desc | default site.Params.description -}}
 <title>{{ $title }}</title>
 {{- with $desc }}
 <meta name="description" content="{{ . | plainify }}">

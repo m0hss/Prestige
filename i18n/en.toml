@@ -191,6 +191,7 @@ latest_case = "Latest case study"
 
 # Contact
 contact_title = "Contact"
+contact_footer_label = "Footer contact"
 contact_cta_title = "Want the walkthrough?"
 contact_cta_body = "Backstage is one toggle away on every case study. If it isn't written up, ask."
 walkthrough_subject = "Walkthrough: {{ .Title }}"
@@ -203,3 +204,10 @@ scheme_light = "Light"
 scheme_dark = "Dark"
 external = "(external)"
 credit = "Built with Prestige"
+
+# SEO descriptions for list pages without a front-matter description.
+desc_term = "Case studies and Trapdoor reports filed under {{ .Label }}: {{ .Term }}, on {{ .Site }}."
+desc_taxonomy = "Every entry in {{ .Name }} on {{ .Site }}, with the number of case studies and reports under each."
+
+# Name of the landmark around the sticky valance (layer toggle and status).
+valance_label = "Page layers"

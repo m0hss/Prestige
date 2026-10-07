@@ -1,0 +1,10 @@
+{{- /*
+  Link scheme allowlist for every href built from content or config: Markdown links,
+  case-study links[].url and params.contact.links[].url. A URL without a scheme (a path,
+  ./ or ../, #fragment or //host) passes; one with a scheme passes only when the scheme is in
+  params.links.schemes (default http, https, mailto, tel). Returns dict "ok" "scheme" "allowed".
+  Context: the URL string.
+*/ -}}
+{{- $allowed := site.Params.links.schemes | default (slice "http" "https" "mailto" "tel") -}}
+{{- $scheme := lower (urls.Parse (printf "%v" .)).Scheme -}}
+{{- return dict "ok" (or (eq $scheme "") (in $allowed $scheme)) "scheme" $scheme "allowed" (delimit $allowed ", ") -}}

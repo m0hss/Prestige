@@ -1,0 +1,37 @@
+{{- /*
+  The only inline code in a page: the head script (sets the mode before first paint) and the
+  @font-face rules (fingerprinted font URLs). Both are minified here, so `hugo --minify` leaves
+  them byte-for-byte as hashed, and their sha256 hashes feed the Content-Security-Policy in
+  _headers (layouts/home.headers). Anything else added inline needs a hash here too.
+  Returns dict "js" "css" "jsHash" "cssHash" "preload" (fingerprinted fonts to preload).
+  Call with partialCached.
+*/ -}}
+{{- $latin := "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+25A0-25A1,U+25B8,U+25BE,U+25CB,U+25CF,U+2713,U+2717,U+26A0,U+FEFF,U+FFFD" -}}
+{{- $ext := "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF" -}}
+{{- $faces := slice
+  (dict "f" "AlfaSlabOne-latin" "fam" "Alfa Slab One" "w" "400" "d" "optional" "r" $latin "pre" true)
+  (dict "f" "LibreFranklin-latin" "fam" "Libre Franklin" "w" "400 800" "d" "swap" "r" $latin "pre" true)
+  (dict "f" "LibreFranklin-latin-ext" "fam" "Libre Franklin" "w" "400 800" "d" "swap" "r" $ext)
+  (dict "f" "PlexMono-400-latin" "fam" "IBM Plex Mono" "w" "400" "d" "swap" "r" $latin)
+  (dict "f" "PlexMono-400-latin-ext" "fam" "IBM Plex Mono" "w" "400" "d" "swap" "r" $ext)
+  (dict "f" "PlexMono-500-latin" "fam" "IBM Plex Mono" "w" "500" "d" "swap" "r" $latin "pre" true)
+  (dict "f" "PlexMono-700-latin" "fam" "IBM Plex Mono" "w" "700" "d" "swap" "r" $latin)
+-}}
+{{- $css := "" -}}
+{{- $preload := slice -}}
+{{- range $faces -}}
+  {{- $face := . -}}
+  {{- with resources.Get (printf "fonts/%s.woff2" $face.f) | fingerprint -}}
+    {{- if $face.pre }}{{ $preload = $preload | append .RelPermalink }}{{ end -}}
+    {{- $css = printf "%s@font-face{font-family:\"%s\";font-style:normal;font-weight:%s;font-display:%s;src:url(%s) format(\"woff2\");unicode-range:%s}" $css $face.fam $face.w $face.d .RelPermalink $face.r -}}
+  {{- end -}}
+{{- end -}}
+{{- $cssRes := resources.FromString "inline/fonts.css" $css | minify -}}
+{{- $jsRes := resources.Get "js/head-init.js" | js.Build (dict "minify" true "target" "es2020" "format" "iife") | minify -}}
+{{- return dict
+  "js" $jsRes.Content
+  "css" $cssRes.Content
+  "jsHash" ($jsRes | fingerprint "sha256").Data.Integrity
+  "cssHash" ($cssRes | fingerprint "sha256").Data.Integrity
+  "preload" $preload
+-}}

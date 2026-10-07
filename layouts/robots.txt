@@ -1,0 +1,5 @@
+{{- /* Written when the site sets enableRobotsTXT = true. */ -}}
+User-agent: *
+Allow: /
+
+Sitemap: {{ "sitemap.xml" | absURL }}
