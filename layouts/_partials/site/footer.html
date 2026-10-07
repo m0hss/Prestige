@@ -23,7 +23,9 @@
       <p class="footer__note">{{ . }}</p>
       {{- end }}
       {{- if ne site.Params.credit false }}
-      <p class="footer__credit label"><a href="https://github.com/m0hss/Prestige">{{ i18n "credit" }}</a></p>
+      {{- $theme := printf "<a href=\"https://github.com/m0hss/Prestige\">%s</a>" (i18n "credit_theme") }}
+      {{- $studio := printf "<a href=\"https://studio.fixbyte.be/\">%s</a>" (i18n "credit_studio") }}
+      <p class="footer__credit label">{{ i18n "credit" (dict "Theme" $theme "Studio" $studio) | safeHTML }}</p>
       {{- end }}
     </div>
   </div>
