@@ -98,7 +98,7 @@ enableRobotsTXT = true   # robots.txt with a Sitemap: line
   [params.footer]
     description = ""         # optional, two short lines under the footer email; replaces contact links there
     note = ""
-  credit = true                    # "Built with Prestige" in the footer
+  credit = true                    # "Built with Prestige by FixByte" in the footer
 ```
 
 Prestige ships no analytics, no third-party scripts and no cookies. It stores the visitor's mode and colour scheme in `localStorage` only.

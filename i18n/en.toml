@@ -203,7 +203,10 @@ scheme_auto = "Auto"
 scheme_light = "Light"
 scheme_dark = "Dark"
 external = "(external)"
-credit = "Built with Prestige"
+# {{ .Theme }} and {{ .Studio }} are the links below.
+credit = "Built with {{ .Theme }} by {{ .Studio }}"
+credit_theme = "Prestige"
+credit_studio = "FixByte"
 
 # SEO descriptions for list pages without a front-matter description.
 desc_term = "Case studies and Trapdoor reports filed under {{ .Label }}: {{ .Term }}, on {{ .Site }}."
