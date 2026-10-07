@@ -25,7 +25,10 @@
     {{- with $desc }}
     <description>{{ . | plainify }}</description>
     {{- end }}
-    <language>{{ site.Language.LanguageCode | default site.Language.Lang }}</language>
+    {{- /* .Language.Locale arrived in Hugo 0.158 and deprecates .Language.LanguageCode. */}}
+    {{- $locale := "" }}
+    {{- if ge hugo.Version "0.158.0" }}{{ $locale = site.Language.Locale }}{{ else }}{{ $locale = site.Language.LanguageCode }}{{ end }}
+    <language>{{ $locale | default site.Language.Lang }}</language>
     {{- with site.Params.author.name }}
     <managingEditor>{{ with site.Params.contact.email }}{{ . }} ({{ site.Params.author.name }}){{ else }}{{ . }}{{ end }}</managingEditor>
     {{- end }}
